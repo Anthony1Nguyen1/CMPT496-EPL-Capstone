@@ -114,9 +114,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 89
-        y: 89
-        width: 81
-        height: 81
+        y: 86
+        width: 83
+        height: 87
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +134,10 @@ TextureImporter:
       name: redDot
       rect:
         serializedVersion: 2
-        x: 348
-        y: 89
-        width: 81
-        height: 81
+        x: 345
+        y: 87
+        width: 87
+        height: 86
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,10 +155,10 @@ TextureImporter:
       name: blueDot
       rect:
         serializedVersion: 2
-        x: 605
-        y: 89
-        width: 86
-        height: 81
+        x: 603
+        y: 86
+        width: 88
+        height: 86
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,10 +176,10 @@ TextureImporter:
       name: greenDot
       rect:
         serializedVersion: 2
-        x: 866
-        y: 89
-        width: 81
-        height: 81
+        x: 864
+        y: 86
+        width: 85
+        height: 87
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
