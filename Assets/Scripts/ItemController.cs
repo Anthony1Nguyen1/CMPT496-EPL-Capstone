@@ -22,13 +22,13 @@ public class ItemController : MonoBehaviour
 
     private void UpdateDotColor()
     {
-        // foreach (Transform child in transform)
-        // {
-        //     Destroy(child.gameObject);
-        // }
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
 
-        // var newDot = Instantiate(dotPrefabs[currentIndex], transform.position, Quaternion.identity);
-        // newDot.transform.parent = transform;
+        var newDot = Instantiate(dotPrefabs[currentIndex], transform.position, Quaternion.identity);
+        newDot.transform.parent = transform;
         print("hi");
     }
 }

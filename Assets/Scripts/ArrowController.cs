@@ -1,10 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TouchScript.Gestures;
 
 public class ArrowController : MonoBehaviour
 {
-    public ItemController itemController;
-    public void OnDownArrowClick() { itemController.CycleDown(); }
-    public void OnUpArrowClick() { itemController.CycleUp(); }
+    private void OnEnable()
+    {
+        GetComponent<PressGesture>().Pressed += PressedHandler;
+    }
+
+    private void OnDisable()
+    {
+        GetComponent<PressGesture>().Pressed -= PressedHandler;
+    }
+
+    private void PressedHandler(object sender, System.EventArgs e)
+    {
+        Debug.Log("Print!");
+    }
 }
