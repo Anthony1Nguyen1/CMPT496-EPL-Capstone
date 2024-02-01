@@ -5,30 +5,35 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    public GameObject[] dotPrefabs;
+    [SerializeField] public GameObject[] dotPrefabs;
     private int currentIndex = 0;
 
     public void CycleDown()
     {
+        Debug.Log("Cycle down!");
         currentIndex = (currentIndex - 1 + dotPrefabs.Length) % dotPrefabs.Length;
         UpdateDotColor();
     }
 
     public void CycleUp()
     {
+        Debug.Log("Cycle up!");
         currentIndex = (currentIndex + 1) % dotPrefabs.Length;
         UpdateDotColor();
     }
 
-    private void UpdateDotColor()
+private void UpdateDotColor()
+{
+    Debug.Log("Updating dot color...");
+    Debug.Log("child count: " + transform.childCount);
+    foreach (Transform child in transform)
     {
-        foreach (Transform child in transform)
-        {
-            Destroy(child.gameObject);
-        }
-
-        var newDot = Instantiate(dotPrefabs[currentIndex], transform.position, Quaternion.identity);
-        newDot.transform.parent = transform;
-        print("hi");
+        Debug.Log("Destroying child: " + child.name);
+        Destroy(child.gameObject);
     }
+
+    Debug.Log("Instantiating new dot...");
+    var newDot = Instantiate(dotPrefabs[currentIndex], transform.position, Quaternion.identity);
+    newDot.transform.parent = transform;
+}
 }

@@ -3,6 +3,10 @@ using TouchScript.Gestures;
 
 public class ArrowController : MonoBehaviour
 {
+    public ItemController item;
+    public enum ArrowDirection { Up, Down }
+    public ArrowDirection direction;
+
     private void OnEnable()
     {
         GetComponent<PressGesture>().Pressed += PressedHandler;
@@ -15,6 +19,8 @@ public class ArrowController : MonoBehaviour
 
     private void PressedHandler(object sender, System.EventArgs e)
     {
-        Debug.Log("Print!");
+        // Debug.Log("Print!");
+        if      (direction == ArrowDirection.Up) { item.CycleUp(); }
+        else if (direction == ArrowDirection.Down) { item.CycleDown(); }
     }
 }
