@@ -19,7 +19,6 @@ public class ArrowController : MonoBehaviour
 
     private void PressedHandler(object sender, System.EventArgs e)
     {
-        // Debug.Log("Print!");
         if      (direction == ArrowDirection.Up) { item.CycleUp(); }
         else if (direction == ArrowDirection.Down) { item.CycleDown(); }
     }

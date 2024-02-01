@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -5,35 +6,39 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    [SerializeField] public GameObject[] dotPrefabs;
-    private int currentIndex = 0;
+    [SerializeField] public GameObject[] dotPrefabs; // These are entered on Unity-side.
+    private List<GameObject> dotPool;                // These are script-side.
+    private int currentIndex = 0;                    // Keeps an index of what item we should be on.
+
+    private void Start()
+    {
+        dotPool = new List<GameObject>();
+
+        // Instantiate all of the dots, setting them to false.
+        foreach (var item in dotPrefabs)
+        {
+            var dot = Instantiate(item, transform.position, Quaternion.identity);
+            dot.transform.parent = transform;
+            dot.SetActive(false);
+            dotPool.Add(dot);
+        }
+
+        // Activate the appropriate starting dot.
+        dotPool[currentIndex].SetActive(true);
+    }
 
     public void CycleDown()
     {
-        Debug.Log("Cycle down!");
-        currentIndex = (currentIndex - 1 + dotPrefabs.Length) % dotPrefabs.Length;
-        UpdateDotColor();
+        dotPool[currentIndex].SetActive(false);
+        currentIndex = (currentIndex - 1 + dotPool.Count) % dotPool.Count;
+        dotPool[currentIndex].SetActive(true);
     }
 
     public void CycleUp()
     {
-        Debug.Log("Cycle up!");
-        currentIndex = (currentIndex + 1) % dotPrefabs.Length;
-        UpdateDotColor();
+        dotPool[currentIndex].SetActive(false);
+        currentIndex = (currentIndex + 1) % dotPool.Count;
+        dotPool[currentIndex].SetActive(true);
     }
 
-private void UpdateDotColor()
-{
-    Debug.Log("Updating dot color...");
-    Debug.Log("child count: " + transform.childCount);
-    foreach (Transform child in transform)
-    {
-        Debug.Log("Destroying child: " + child.name);
-        Destroy(child.gameObject);
-    }
-
-    Debug.Log("Instantiating new dot...");
-    var newDot = Instantiate(dotPrefabs[currentIndex], transform.position, Quaternion.identity);
-    newDot.transform.parent = transform;
-}
 }
