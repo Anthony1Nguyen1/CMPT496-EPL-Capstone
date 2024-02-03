@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TouchScript.Gestures;
-
+using UnityEngine.SceneManagement;
 
 public class ButtonSimulator : MonoBehaviour
 {
     // Reference to the images and sprites
     [SerializeField] private Image _img;
     [SerializeField] private Sprite _default, _pressed;
-
+    public string MainCamera;
     private void OnEnable()
     {
         GetComponent<PressGesture>().Pressed += OnPointerDown;
@@ -45,5 +45,11 @@ public class ButtonSimulator : MonoBehaviour
     {
         // Change image to default when the button is "pressed"
         _img.sprite = _default;
+
+        // Load a new scene
+        if (!string.IsNullOrEmpty(MainCamera))
+        {
+            SceneManager.LoadScene(MainCamera);
+        }
     }
 }
