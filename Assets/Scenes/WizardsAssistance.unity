@@ -291,6 +291,7 @@ MonoBehaviour:
   _img: {fileID: 306584727}
   _default: {fileID: 21300000, guid: 5431505066dbd4d478c5e31c8bebd718, type: 3}
   _pressed: {fileID: 21300000, guid: a5ce23e786bd76045a2ae90d74dd4e0f, type: 3}
+  MainCamera: MainScene
 --- !u!114 &306584731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +339,7 @@ MonoBehaviour:
   OnStateChange:
     m_PersistentCalls:
       m_Calls: []
-  basicEditor: 1
+  basicEditor: 0
   generalProps: 0
   limitsProps: 0
   advancedProps: 0
@@ -347,13 +348,25 @@ MonoBehaviour:
   useSendMessage: 0
   sendStateChangeMessages: 0
   sendMessageTarget: {fileID: 0}
-  useUnityEvents: 0
+  useUnityEvents: 1
   sendStateChangeEvents: 0
   requireGestureToFail: {fileID: 0}
   friendlyGestures: []
   OnRelease:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: changeScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   ignoreChildren: 0
 --- !u!1 &399753318
 GameObject:
@@ -940,6 +953,7 @@ MonoBehaviour:
   _img: {fileID: 2092414631}
   _default: {fileID: 21300000, guid: 456731e4bbbac454ea514d8587664574, type: 3}
   _pressed: {fileID: 21300000, guid: 14bfe78922d1749499427a019d4c9c54, type: 3}
+  MainCamera: 
 --- !u!114 &2092414631
 MonoBehaviour:
   m_ObjectHideFlags: 0
