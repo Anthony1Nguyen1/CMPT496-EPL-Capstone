@@ -22,9 +22,6 @@ public class ItemController : MonoBehaviour
             dot.SetActive(false);
             dotPool.Add(dot);
         }
-
-        // Activate the appropriate starting dot.
-        dotPool[currentIndex].SetActive(true);
     }
 
     public void CycleDown()
