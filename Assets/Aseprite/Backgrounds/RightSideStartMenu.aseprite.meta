@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 14f8ac13b6afda1428e60203d35651dc
+guid: 818fe6c80b12cab4bbd3097b8f95b48b
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638429373734108453
+  platformSettingsDirtyTick: 638429374866054005
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: LeftSideStartMenu_Frame_0
+  - name: RightSideStartMenu_Frame_0
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 1080
       height: 1920
-    spriteID: 6a1c11ca4e4e0e04a87341d506619b19
+    spriteID: 0894dd68ffe39bc4d82eb9ea1392695c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -141,7 +141,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: LeftSideStartMenu_Frame_1
+  - name: RightSideStartMenu_Frame_1
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -152,7 +152,7 @@ ScriptedImporter:
       y: 1932
       width: 1080
       height: 1920
-    spriteID: a277abd07b65f7b42b64dc8dd60b7c4a
+    spriteID: cf06a7cbb9167e74e9726890432ef5b2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -161,7 +161,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 1932}
-  - name: LeftSideStartMenu_Frame_2
+  - name: RightSideStartMenu_Frame_2
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -172,7 +172,7 @@ ScriptedImporter:
       y: 3860
       width: 1080
       height: 1920
-    spriteID: 7fe253ffacbb5ba479e4cf683c417ff1
+    spriteID: 912b4075c50e1234382d7dc693d7add0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -181,7 +181,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 3860}
-  - name: LeftSideStartMenu_Frame_3
+  - name: RightSideStartMenu_Frame_3
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -192,7 +192,7 @@ ScriptedImporter:
       y: 5788
       width: 1080
       height: 1920
-    spriteID: db355810f7de48d4d991c1281d7d999d
+    spriteID: 09999eaf181ff8148bf7297ebd364a15
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -201,7 +201,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 5788}
-  - name: LeftSideStartMenu_Frame_4
+  - name: RightSideStartMenu_Frame_4
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -212,7 +212,7 @@ ScriptedImporter:
       y: 4
       width: 1080
       height: 1920
-    spriteID: 58b00f0d103dd1c47aff24225d0d615d
+    spriteID: df89cced8d66f854f8127b022d304902
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -221,7 +221,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 1092, y: 4}
-  - name: LeftSideStartMenu_Frame_5
+  - name: RightSideStartMenu_Frame_5
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -232,7 +232,7 @@ ScriptedImporter:
       y: 1932
       width: 1080
       height: 1920
-    spriteID: c356cd90e1e5cff4cabc120dea0a9294
+    spriteID: cf3c03a8093f23f4bac08aa928b66090
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -241,7 +241,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 1092, y: 1932}
-  - name: LeftSideStartMenu_Frame_6
+  - name: RightSideStartMenu_Frame_6
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -252,7 +252,7 @@ ScriptedImporter:
       y: 3860
       width: 1080
       height: 1920
-    spriteID: 6c8bc084854b2e54e9b19e6c133d26bb
+    spriteID: 1fd60d4d98e692f4fae1e5821b68fafd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -261,211 +261,71 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 1092, y: 3860}
-  - name: LeftSideStartMenu_Frame_7
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1092
-      y: 5788
-      width: 1080
-      height: 1920
-    spriteID: 9b62cdfaf1b3d074b9690539c0d9f992
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 1092, y: 5788}
-  - name: LeftSideStartMenu_Frame_8
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 2180
-      y: 4
-      width: 1080
-      height: 1920
-    spriteID: 57e135a0b5253744dba95a1d744a92c7
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 2180, y: 4}
-  - name: LeftSideStartMenu_Frame_9
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 2180
-      y: 1932
-      width: 1080
-      height: 1920
-    spriteID: ef61d425a783e7e4bb67aa9cd33c5a0a
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 2180, y: 1932}
-  - name: LeftSideStartMenu_Frame_10
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 2180
-      y: 3860
-      width: 1080
-      height: 1920
-    spriteID: 0924b6e3dc9407f40ad4bf1baa8beeaf
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 2180, y: 3860}
-  - name: LeftSideStartMenu_Frame_11
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 2180
-      y: 5788
-      width: 1080
-      height: 1920
-    spriteID: 1af49c7d77b23e24ebbca9ad437a298b
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 2180, y: 5788}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1284519955
-    name: LeftSideStartMenu
+    guid: 977953774
+    name: RightSideStartMenu
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: LeftSideStartMenu_Frame_0
+    - name: RightSideStartMenu_Frame_0
       frameIndex: 0
       cellRect:
         x: 0
         y: 0
         width: 1080
         height: 1920
-      spriteId: 6a1c11ca4e4e0e04a87341d506619b19
-    - name: LeftSideStartMenu_Frame_1
+      spriteId: 0894dd68ffe39bc4d82eb9ea1392695c
+    - name: RightSideStartMenu_Frame_1
       frameIndex: 1
       cellRect:
         x: 0
         y: 0
         width: 1080
         height: 1920
-      spriteId: a277abd07b65f7b42b64dc8dd60b7c4a
-    - name: LeftSideStartMenu_Frame_2
+      spriteId: cf06a7cbb9167e74e9726890432ef5b2
+    - name: RightSideStartMenu_Frame_2
       frameIndex: 2
       cellRect:
         x: 0
         y: 0
         width: 1080
         height: 1920
-      spriteId: 7fe253ffacbb5ba479e4cf683c417ff1
-    - name: LeftSideStartMenu_Frame_3
+      spriteId: 912b4075c50e1234382d7dc693d7add0
+    - name: RightSideStartMenu_Frame_3
       frameIndex: 3
       cellRect:
         x: 0
         y: 0
         width: 1080
         height: 1920
-      spriteId: db355810f7de48d4d991c1281d7d999d
-    - name: LeftSideStartMenu_Frame_4
+      spriteId: 09999eaf181ff8148bf7297ebd364a15
+    - name: RightSideStartMenu_Frame_4
       frameIndex: 4
       cellRect:
         x: 0
         y: 0
         width: 1080
         height: 1920
-      spriteId: 58b00f0d103dd1c47aff24225d0d615d
-    - name: LeftSideStartMenu_Frame_5
+      spriteId: df89cced8d66f854f8127b022d304902
+    - name: RightSideStartMenu_Frame_5
       frameIndex: 5
       cellRect:
         x: 0
         y: 0
         width: 1080
         height: 1920
-      spriteId: c356cd90e1e5cff4cabc120dea0a9294
-    - name: LeftSideStartMenu_Frame_6
+      spriteId: cf3c03a8093f23f4bac08aa928b66090
+    - name: RightSideStartMenu_Frame_6
       frameIndex: 6
       cellRect:
         x: 0
         y: 0
         width: 1080
         height: 1920
-      spriteId: 6c8bc084854b2e54e9b19e6c133d26bb
-    - name: LeftSideStartMenu_Frame_7
-      frameIndex: 7
-      cellRect:
-        x: 0
-        y: 0
-        width: 1080
-        height: 1920
-      spriteId: 9b62cdfaf1b3d074b9690539c0d9f992
-    - name: LeftSideStartMenu_Frame_8
-      frameIndex: 8
-      cellRect:
-        x: 0
-        y: 0
-        width: 1080
-        height: 1920
-      spriteId: 57e135a0b5253744dba95a1d744a92c7
-    - name: LeftSideStartMenu_Frame_9
-      frameIndex: 9
-      cellRect:
-        x: 0
-        y: 0
-        width: 1080
-        height: 1920
-      spriteId: ef61d425a783e7e4bb67aa9cd33c5a0a
-    - name: LeftSideStartMenu_Frame_10
-      frameIndex: 10
-      cellRect:
-        x: 0
-        y: 0
-        width: 1080
-        height: 1920
-      spriteId: 0924b6e3dc9407f40ad4bf1baa8beeaf
-    - name: LeftSideStartMenu_Frame_11
-      frameIndex: 11
-      cellRect:
-        x: 0
-        y: 0
-        width: 1080
-        height: 1920
-      spriteId: 1af49c7d77b23e24ebbca9ad437a298b
+      spriteId: 1fd60d4d98e692f4fae1e5821b68fafd
     linkedCells: []
     parentIndex: -1
   platformSettings:
