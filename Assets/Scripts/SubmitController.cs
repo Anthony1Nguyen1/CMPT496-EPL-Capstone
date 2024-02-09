@@ -24,15 +24,9 @@ public class SubmitController : MonoBehaviour
         foreach (var element in columns)
         {
             var ingredient = element.GetComponent<ItemController>();
-            var index = ingredient.currentIndex;
-            var ingredientName = ingredient.dotPool[index].name;
             var ingredientChosen = ingredient.itemChosen;
-            if (!ingredientChosen)
-            {
-                return false;
-            }
+            if (!ingredientChosen) { return false; }
         }
-
         return true;
     }
 
