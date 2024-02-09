@@ -42,15 +42,7 @@ public class SubmitController : MonoBehaviour
 
     private void TappedHandler(object sender, System.EventArgs e)
     {
-        print("Try button tapped!");
-        if (IsReadyForSubmit())
-        {
-            print("Good for submit!");
-        }
-        else
-        {
-            print("Not ready to submit!");
-        }
+        print(IsReadyForSubmit() ? "Good for submit!" : "Not ready to submit!");
     }
 
 }
