@@ -9,15 +9,15 @@ public class ArrowController : MonoBehaviour
 
     private void OnEnable()
     {
-        GetComponent<PressGesture>().Pressed += PressedHandler;
+        GetComponent<TapGesture>().Tapped += TappedHandler;
     }
 
     private void OnDisable()
     {
-        GetComponent<PressGesture>().Pressed -= PressedHandler;
+        GetComponent<TapGesture>().Tapped += TappedHandler;
     }
 
-    private void PressedHandler(object sender, System.EventArgs e)
+    private void TappedHandler(object sender, System.EventArgs e)
     {
         if      (direction == ArrowDirection.Up) { item.CycleUp(); }
         else if (direction == ArrowDirection.Down) { item.CycleDown(); }
