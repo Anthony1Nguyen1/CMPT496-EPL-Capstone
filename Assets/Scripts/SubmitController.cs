@@ -7,6 +7,7 @@ public class SubmitController : MonoBehaviour
 {
     public GameObject[] columns; // The four categories/containers of items.
     private int[] pattern; // The predetermined recipe.
+    private int tryNumber = 1;
 
     private void Start()
     {
