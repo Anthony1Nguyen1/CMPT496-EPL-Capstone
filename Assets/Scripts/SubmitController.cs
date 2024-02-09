@@ -32,6 +32,17 @@ public class SubmitController : MonoBehaviour
     private void TappedHandler(object sender, System.EventArgs e)
     {
         print("Try button tapped!");
+        foreach (var element in columns)
+        {
+            var ingredient = element.GetComponent<ItemController>();
+            var index = ingredient.currentIndex;
+            var ingredientName = ingredient.dotPool[index].name;
+            var ingredientChosen = ingredient.itemChosen;
+            if (!ingredientChosen)
+            {
+                Debug.Log($"{ingredientName} is blank!");
+            }
+        }
     }
 
 }
