@@ -19,6 +19,23 @@ public class SubmitController : MonoBehaviour
         }
     }
 
+    private bool IsReadyForSubmit()
+    {
+        foreach (var element in columns)
+        {
+            var ingredient = element.GetComponent<ItemController>();
+            var index = ingredient.currentIndex;
+            var ingredientName = ingredient.dotPool[index].name;
+            var ingredientChosen = ingredient.itemChosen;
+            if (!ingredientChosen)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     private void OnEnable()
     {
         GetComponent<TapGesture>().Tapped += TappedHandler;
@@ -32,16 +49,13 @@ public class SubmitController : MonoBehaviour
     private void TappedHandler(object sender, System.EventArgs e)
     {
         print("Try button tapped!");
-        foreach (var element in columns)
+        if (IsReadyForSubmit())
         {
-            var ingredient = element.GetComponent<ItemController>();
-            var index = ingredient.currentIndex;
-            var ingredientName = ingredient.dotPool[index].name;
-            var ingredientChosen = ingredient.itemChosen;
-            if (!ingredientChosen)
-            {
-                Debug.Log($"{ingredientName} is blank!");
-            }
+            print("Good for submit!");
+        }
+        else
+        {
+            print("Not ready to submit!");
         }
     }
 
