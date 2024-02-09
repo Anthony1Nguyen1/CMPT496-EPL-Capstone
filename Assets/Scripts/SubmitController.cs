@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class SubmitController : MonoBehaviour
 {
-    public GameObject[] columns; // The four categories/containers of items.
+    public GameObject[] items; // The four categories/containers of items.
+    public GameObject[] moves; // The moves to be placed in the history pane.
     private int[] pattern; // The predetermined recipe.
     private int tryNumber = 1;
 
@@ -22,13 +23,37 @@ public class SubmitController : MonoBehaviour
 
     private bool IsReadyForSubmit()
     {
-        foreach (var element in columns)
+        foreach (var item in items)
         {
-            var ingredient = element.GetComponent<ItemController>();
+            var ingredient = item.GetComponent<ItemController>();
             var ingredientChosen = ingredient.itemChosen;
             if (!ingredientChosen) { return false; }
         }
         return true;
+    }
+
+    private void SubmitMove()
+    {
+        // Temporary array to hold player's submitted move.
+        var submittedItems = new GameObject[items.Length];
+
+        // Copy player's move into temporary array.
+        for (var i = 0; i < items.Length; i++)
+        {
+            var ingredient = items[i].GetComponent<ItemController>();
+            submittedItems[i] = ingredient.gameObject;
+        }
+
+        Debug.Log($"Current row: {tryNumber}");
+        var moveRow = moves[tryNumber];
+        Debug.Log($"Current row object: {moves[tryNumber]}");
+
+        // Loop through the children of moveRow
+        for (var i = 0; i < submittedItems.Length; i++)
+        {
+            var child = moveRow.transform.GetChild(i);
+            Debug.Log($"Child {i}: {child}");
+        }
     }
 
     private void OnEnable()
@@ -43,7 +68,15 @@ public class SubmitController : MonoBehaviour
 
     private void TappedHandler(object sender, System.EventArgs e)
     {
-        print(IsReadyForSubmit() ? "Good for submit!" : "Not ready to submit!");
+        if (IsReadyForSubmit())
+        {
+            SubmitMove();
+            Debug.Log("Submitted successfully!");
+        }
+        else
+        {
+            Debug.Log("Not ready to submit!");
+        }
     }
 
 }
