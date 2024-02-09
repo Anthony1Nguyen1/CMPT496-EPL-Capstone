@@ -7,8 +7,9 @@ using UnityEngine;
 public class ItemController : MonoBehaviour
 {
     [SerializeField] public GameObject[] dotPrefabs; // These are entered on Unity-side.
-    private List<GameObject> dotPool;                // These are script-side.
-    private int currentIndex = 0;                    // Keeps an index of what item we should be on.
+    public List<GameObject> dotPool;                 // These are script-side.
+    public int currentIndex = 0;                     // Keeps an index of what item we should be on.
+    public bool itemChosen = false;                  // Set to true when an arrow is clicked (helpful for submission script)
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class ItemController : MonoBehaviour
 
     public void CycleDown()
     {
+        itemChosen = true;
         dotPool[currentIndex].SetActive(false);
         currentIndex = (currentIndex - 1 + dotPool.Count) % dotPool.Count;
         dotPool[currentIndex].SetActive(true);
@@ -33,6 +35,7 @@ public class ItemController : MonoBehaviour
 
     public void CycleUp()
     {
+        itemChosen = true;
         dotPool[currentIndex].SetActive(false);
         currentIndex = (currentIndex + 1) % dotPool.Count;
         dotPool[currentIndex].SetActive(true);
