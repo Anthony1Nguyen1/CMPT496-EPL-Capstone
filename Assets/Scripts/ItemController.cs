@@ -41,4 +41,13 @@ public class ItemController : MonoBehaviour
         dotPool[currentIndex].SetActive(true);
     }
 
+    public void DeactivateDots()
+    {
+        itemChosen = false;
+        foreach (var dot in dotPool)
+        {
+            dot.SetActive(false);
+        }
+    }
+
 }
