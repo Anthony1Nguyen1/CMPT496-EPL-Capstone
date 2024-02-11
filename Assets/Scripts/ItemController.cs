@@ -50,6 +50,7 @@ public class ItemController : MonoBehaviour
     public void DeactivateDots()
     {
         itemChosen = false;
+        currentIndex = 0;
         foreach (var item in itemPool)
         {
             item.SetActive(false);
