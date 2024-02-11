@@ -1,5 +1,6 @@
 /* Description: Script that controls the history panel. */
 
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HistoryController : MonoBehaviour
@@ -9,15 +10,14 @@ public class HistoryController : MonoBehaviour
     //     1) items: array of user-selected items
     //     2) tryNumber: the number of tries the user has attempted so far.
     // Return: void
-    public void Submit(GameObject[] items, int tryNumber)
+    public void Submit(List<GameObject> items, int tryNumber)
     {
         var row = transform.GetChild(tryNumber); // Get the corresponding row in the history panel.
-        for (var i = 0; i < items.Length; i++)
+        for (var i = 0; i < items.Count; i++)
         {
             var item                     = items[i];                                            // Item to be copied.
             var rowFrame                 = row.GetChild(i);                                     // Square box for the new item
             var newItem                  = Instantiate(item, rowFrame, false); // Copy the item over.
-            newItem.transform.localScale = Vector3.one;                                        // Set its scale locally.
             newItem.SetActive(true);                                                           // Make the new item active.
         }
     }

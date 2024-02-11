@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 6385881708973523910}
   - component: {fileID: 6876236803589163260}
   - component: {fileID: 3143095390807805297}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: yellowDot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6385881708973523910
 RectTransform:
   m_ObjectHideFlags: 0

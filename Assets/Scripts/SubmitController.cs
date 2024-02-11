@@ -1,5 +1,6 @@
 /* Description: Script on the "TRY" button (acts as a go-between for the HistoryController and ItemController scripts). */
 
+using System.Collections.Generic;
 using TouchScript.Gestures;
 using UnityEngine;
 
@@ -28,13 +29,43 @@ public class SubmitController : MonoBehaviour
     // Return: true if all boxes have been filled, false otherwise.
     private bool IsReadyForSubmit()
     {
+        // Iterate over each item.
         foreach (var item in items)
         {
-            var ingredient = item.GetComponent<ItemController>();
-            var ingredientChosen = ingredient.itemChosen;
-            if (!ingredientChosen) { return false; }
+            GameObject activeChild = null;
+
+            // Iterate over the children of the item.
+            foreach (Transform child in item.transform)
+            {
+                if (child.gameObject.activeInHierarchy)
+                {
+                    activeChild = child.gameObject;
+                    break;
+                }
+            }
+
+            if (activeChild == null) { return false; }
         }
+
         return true;
+    }
+
+    // Desc: Gets the active prefab within the frame.
+    // Params: none
+    // Return: The actual objects the user has selected for submission.
+    private List<GameObject> GetActiveChildren()
+    {
+        List<GameObject> activeChildren = new List<GameObject>();
+
+        foreach (var item in items)
+        {
+            foreach (Transform child in item.transform)
+            {
+                if (child.gameObject.activeInHierarchy) { activeChildren.Add(child.gameObject); break; }
+            }
+        }
+
+        return activeChildren;
     }
 
     // Desc: Calls the submit function on the history script and increments the try number.
@@ -42,7 +73,7 @@ public class SubmitController : MonoBehaviour
     // Return: void
     private void SubmitMove()
     {
-        history.GetComponent<HistoryController>().Submit(items, _tryNumber);
+        history.GetComponent<HistoryController>().Submit(GetActiveChildren(), _tryNumber);
         _tryNumber++;
     }
 
