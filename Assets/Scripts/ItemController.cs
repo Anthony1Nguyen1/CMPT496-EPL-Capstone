@@ -1,21 +1,21 @@
-using System;
-using System.Collections;
+/* Description: Script that handles the main category/item pane in the middle. */
+
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    [SerializeField] public GameObject[] dotPrefabs; // These are entered on Unity-side.
-    public List<GameObject> dotPool;                 // These are script-side.
-    public int currentIndex = 0;                     // Keeps an index of what item we should be on.
+    [SerializeField] public GameObject[] dotPrefabs; // These are the display items (entered on Unity-side).
+    public List<GameObject> dotPool;                 // Script-side list of the items.
+    public int currentIndex = 0;                     // Index of which move the player is currently on.
     public bool itemChosen = false;                  // Set to true when an arrow is clicked (helpful for submission script)
 
+    // Desc: Instantiates all of the items and adds them to the dot pool for that item.
+    // Params: none
+    // Return: void
     private void Start()
     {
         dotPool = new List<GameObject>();
-
-        // Instantiate all of the dots, setting them to false.
         foreach (var item in dotPrefabs)
         {
             var dot = Instantiate(item, transform.position, Quaternion.identity);
@@ -25,6 +25,9 @@ public class ItemController : MonoBehaviour
         }
     }
 
+    // Desc: Cycles through the dotPool, downwards.
+    // Params: none
+    // Return: void
     public void CycleDown()
     {
         itemChosen = true;
@@ -33,6 +36,9 @@ public class ItemController : MonoBehaviour
         dotPool[currentIndex].SetActive(true);
     }
 
+    // Desc: Cycles through the dotPool, upwards.
+    // Params: none
+    // Return: void
     public void CycleUp()
     {
         itemChosen = true;
@@ -41,6 +47,9 @@ public class ItemController : MonoBehaviour
         dotPool[currentIndex].SetActive(true);
     }
 
+    // Desc: Deactivates the item as well as its candidates.
+    // Params: none
+    // Return: void
     public void DeactivateDots()
     {
         itemChosen = false;
