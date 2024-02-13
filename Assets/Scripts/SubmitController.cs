@@ -6,25 +6,32 @@ using UnityEngine;
 
 public class SubmitController : MonoBehaviour
 {
-    public GameObject[] items; // The four items selected by the user.
-    public GameObject history; // Reference to the history pane.
-    private int[] _pattern;     // The predetermined recipe.
-    private int _tryNumber = 0;
+    public GameObject[] items;                  // The four items selected by the user.
+    public HistoryController historyController; // Reference to the history pane.
 
-    // Desc: Generates the winning pattern (proper indices) of items for the game.
+    private int[] indices;                      // The indices of the items chosen.
+    private int[] pattern;                      // The indices for the winning recipe.
+
+    public int tryNumber = 0;
+
+    // Purpose: Generates the winning pattern (proper indices) of items for the game.
     // Params: none
     // Return: void
     private void Start()
     {
-        // Winning pattern.
-        _pattern = new int[4];
-        for (var i = 0; i < _pattern.Length; i++)
+        // List declarations for winning pattern and chosen.
+        pattern = new int[4];
+        indices = new int[4];
+
+        for (var i = 0; i < 4; i++)
         {
-            _pattern[i] = Random.Range(0, 4);
+            pattern[i] = (Random.Range(0, 4));
         }
+        print("Pattern is: " + string.Join(", ", pattern));
+
     }
 
-    // Desc: Boolean check for whether a full pattern has been selected by the user in the main panel.
+    // Purpose: Boolean check for whether a full pattern has been selected by the user in the main panel.
     // Params: none
     // Return: true if all boxes have been filled, false otherwise.
     private bool IsReadyForSubmit()
@@ -44,40 +51,49 @@ public class SubmitController : MonoBehaviour
                 }
             }
 
+            // If we hit this line, we know there is an inactive child.
             if (activeChild == null) { return false; }
         }
 
         return true;
     }
 
-    // Desc: Gets the active prefab within the frame.
+    // Purpose: Gets the active prefab within the frame.
     // Params: none
     // Return: The actual objects the user has selected for submission.
     private List<GameObject> GetActiveChildren()
     {
-        List<GameObject> activeChildren = new List<GameObject>();
+        var activeChildren = new List<GameObject>();
 
-        foreach (var item in items)
+        for(var i = 0; i < items.Length; i++)
         {
-            foreach (Transform child in item.transform)
+            foreach (Transform child in items[i].transform)
             {
-                if (child.gameObject.activeInHierarchy) { activeChildren.Add(child.gameObject); break; }
+                if (child.gameObject.activeInHierarchy)
+                {
+                    activeChildren.Add(child.gameObject);
+
+                    var index = items[i].GetComponent<ItemController>().currentIndex;
+                    indices[i] = index;
+                    break;
+                }
             }
         }
 
         return activeChildren;
     }
 
-    // Desc: Calls the submit function on the history script and increments the try number.
+    // Purpose: Calls the submit function on the history script and increments the try number.
     // Params: none
     // Return: void
     private void SubmitMove()
     {
-        history.GetComponent<HistoryController>().Submit(GetActiveChildren(), _tryNumber);
-        _tryNumber++;
+        historyController.Submit(GetActiveChildren(), tryNumber);
+        HistoryController.CheckIfWon(pattern, indices);
+        tryNumber++;
     }
 
-    // Desc: Calls the deactivate dots function on the item script (for each item).
+    // Purpose: Calls the deactivate dots function on the item script (for each item).
     // Params: none
     // Return: void
     private void DeactivateDots()
@@ -91,7 +107,7 @@ public class SubmitController : MonoBehaviour
     private void OnEnable() { GetComponent<TapGesture>().Tapped += TappedHandler; }
     private void OnDisable() { GetComponent<TapGesture>().Tapped += TappedHandler; }
 
-    // Desc: Main function for controlling submit behaviour.
+    // Purpose: Main function for controlling submit behaviour.
     // Params: sender, e
     // Return: void
     private void TappedHandler(object sender, System.EventArgs e)
@@ -99,7 +115,7 @@ public class SubmitController : MonoBehaviour
         if (IsReadyForSubmit())
         {
             SubmitMove();
-            Debug.Log("Submitted successfully!");
+            Debug.LogFormat("Submitted successfully on try number {0}!", tryNumber);
             DeactivateDots();
         }
         else
