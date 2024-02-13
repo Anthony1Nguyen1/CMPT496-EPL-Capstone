@@ -24,6 +24,8 @@ public class HistoryController : MonoBehaviour
 
     public static void CheckIfWon(int[] pattern, int[] indices)
     {
+        print($"Win pattern: {string.Join(", ", pattern)}");
+        print($"User pattern: {string.Join(", ", indices)}");
         // LINQ function that checks if the lists match at each index.
         print(pattern.SequenceEqual(indices) ? "You have won!" : "You have not won yet.");
     }

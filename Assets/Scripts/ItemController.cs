@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    public List<GameObject> itemPool; // List of the items.
-    public int currentIndex = 0;      // Index of which move the player is currently on.
+    [SerializeField] public List<GameObject> itemPool; // List of the items.
+    [SerializeField] public int currentIndex = 0;      // Index of which move the player is currently on.
 
     // Purpose: Instantiates all of the items and adds them to the dot pool for that item.
     // Params: none
@@ -46,7 +46,7 @@ public class ItemController : MonoBehaviour
     // Return: void
     public void DeactivateDots()
     {
-        currentIndex = 0;
+        currentIndex = -1;
         foreach (var item in itemPool)
         {
             item.SetActive(false);

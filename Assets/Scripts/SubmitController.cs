@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class SubmitController : MonoBehaviour
 {
-    public GameObject[] items;                  // The four items selected by the user.
-    public HistoryController historyController; // Reference to the history pane.
+    [SerializeField] public GameObject[] items;                  // The four items selected by the user.
+    [SerializeField] public HistoryController historyController; // Reference to the history pane.
 
-    private int[] indices;                      // The indices of the items chosen.
-    private int[] pattern;                      // The indices for the winning recipe.
+    private int[] indices; // The indices of the items chosen.
+    private int[] pattern; // The indices for the winning recipe.
 
     public int tryNumber = 0;
 
