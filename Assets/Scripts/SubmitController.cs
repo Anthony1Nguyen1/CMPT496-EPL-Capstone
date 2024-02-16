@@ -9,6 +9,8 @@ public class SubmitController : MonoBehaviour
     public GameObject history; // Reference to the history pane.
     private int[] _pattern;     // The predetermined recipe.
     private int _tryNumber = 0;
+    [SerializeField] private AudioClip _pressSound;
+    private AudioSource audioSource;
 
     // Desc: Generates the winning pattern (proper indices) of items for the game.
     // Params: none
@@ -21,6 +23,16 @@ public class SubmitController : MonoBehaviour
         {
             _pattern[i] = Random.Range(0, 4);
         }
+
+        // Get or add AudioSource component
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Assign the button press sound to the audio source
+        audioSource.clip = _pressSound;
     }
 
     // Desc: Boolean check for whether a full pattern has been selected by the user in the main panel.
@@ -65,6 +77,11 @@ public class SubmitController : MonoBehaviour
     // Return: void
     private void TappedHandler(object sender, System.EventArgs e)
     {
+        if (_pressSound != null && audioSource != null)
+        {
+            audioSource.Play();
+        }
+
         if (IsReadyForSubmit())
         {
             SubmitMove();

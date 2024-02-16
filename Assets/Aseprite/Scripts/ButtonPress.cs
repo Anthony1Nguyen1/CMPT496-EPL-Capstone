@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using TouchScript.Gestures;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +11,23 @@ public class ButtonSimulator : MonoBehaviour
     // Reference to the images and sprites
     [SerializeField] private Image _img;
     [SerializeField] private Sprite _default, _pressed;
+    [SerializeField] private AudioClip _pressSound;
+    private AudioSource audioSource;
+
     public string MainCamera;
+    private void Start()
+    {
+        // Get or add AudioSource component
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Assign the button press sound to the audio source
+        audioSource.clip = _pressSound;
+    }
+
     private void OnEnable()
     {
         GetComponent<PressGesture>().Pressed += OnPointerDown;
@@ -39,6 +56,11 @@ public class ButtonSimulator : MonoBehaviour
     {
         // Change image to pressed when the button is "pressed"
         _img.sprite = _pressed;
+
+        if (_pressSound != null && audioSource != null)
+        {
+            audioSource.Play();
+        }
     }
 
     private void SimulateButtonUp()
