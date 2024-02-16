@@ -3,9 +3,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HistoryController : MonoBehaviour
 {
+    [SerializeField] public Sprite winSprite;
+
     // Purpose: Fills a row/move in the history panel with whatever the user submitted.
     // Params: items: array of user-selected items
     //         tryNumber: the number of tries the user has attempted so far.
@@ -22,11 +25,10 @@ public class HistoryController : MonoBehaviour
         }
     }
 
-    public static void CheckIfWon(int[] pattern, int[] indices)
+    public void CheckIfWon(int[] pattern, int[] indices, GameObject historyPanel)
     {
         print($"Win pattern: {string.Join(", ", pattern)}");
         print($"User pattern: {string.Join(", ", indices)}");
-        // LINQ function that checks if the lists match at each index.
-        print(pattern.SequenceEqual(indices) ? "You have won!" : "You have not won yet.");
+        if (pattern.SequenceEqual(indices)) { historyPanel.GetComponent<Image>().sprite = winSprite; }
     }
 }

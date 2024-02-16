@@ -9,8 +9,8 @@ public class SubmitController : MonoBehaviour
     [SerializeField] public GameObject[] items;                  // The four items selected by the user.
     [SerializeField] public HistoryController historyController; // Reference to the history pane.
 
-    private int[] indices; // The indices of the items chosen.
-    private int[] pattern; // The indices for the winning recipe.
+    private int[] _indices; // The indices of the items chosen.
+    private int[] _pattern; // The indices for the winning recipe.
 
     public int tryNumber = 0;
 
@@ -20,14 +20,14 @@ public class SubmitController : MonoBehaviour
     private void Start()
     {
         // List declarations for winning pattern and chosen.
-        pattern = new int[4];
-        indices = new int[4];
+        _pattern = new int[4];
+        _indices = new int[4];
 
         for (var i = 0; i < 4; i++)
         {
-            pattern[i] = (Random.Range(0, 4));
+            _pattern[i] = (Random.Range(0, 4));
         }
-        print("Pattern is: " + string.Join(", ", pattern));
+        print("Pattern is: " + string.Join(", ", _pattern));
 
     }
 
@@ -74,7 +74,7 @@ public class SubmitController : MonoBehaviour
                     activeChildren.Add(child.gameObject);
 
                     var index = items[i].GetComponent<ItemController>().currentIndex;
-                    indices[i] = index;
+                    _indices[i] = index;
                     break;
                 }
             }
@@ -89,7 +89,7 @@ public class SubmitController : MonoBehaviour
     private void SubmitMove()
     {
         historyController.Submit(GetActiveChildren(), tryNumber);
-        HistoryController.CheckIfWon(pattern, indices);
+        historyController.CheckIfWon(_pattern, _indices, historyController.gameObject);
         tryNumber++;
     }
 
@@ -115,7 +115,6 @@ public class SubmitController : MonoBehaviour
         if (IsReadyForSubmit())
         {
             SubmitMove();
-            Debug.LogFormat("Submitted successfully on try number {0}!", tryNumber);
             DeactivateDots();
         }
         else

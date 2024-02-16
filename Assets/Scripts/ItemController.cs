@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    [SerializeField] public List<GameObject> itemPool; // List of the items.
     [SerializeField] public int currentIndex = 0;      // Index of which move the player is currently on.
 
     // Purpose: Instantiates all of the items and adds them to the dot pool for that item.
@@ -16,7 +15,6 @@ public class ItemController : MonoBehaviour
         // Populate the itemPool with the child GameObjects of the Frame object
         foreach (Transform child in transform)
         {
-            itemPool.Add(child.gameObject);
             child.gameObject.SetActive(false);
         }
     }
@@ -26,19 +24,20 @@ public class ItemController : MonoBehaviour
     // Return: void
     public void CycleDown()
     {
-        itemPool[currentIndex].SetActive(false);
-        currentIndex = (currentIndex - 1 + itemPool.Count) % itemPool.Count;
-        itemPool[currentIndex].SetActive(true);
+        transform.GetChild(currentIndex).gameObject.SetActive(false);
+        currentIndex = (currentIndex - 1 + transform.childCount) % transform.childCount;
+        transform.GetChild(currentIndex).gameObject.SetActive(true);
     }
 
     // Purpose: Cycles through the dotPool, upwards.
     // Params: none
     // Return: void
+
     public void CycleUp()
     {
-        itemPool[currentIndex].SetActive(false);
-        currentIndex = (currentIndex + 1) % itemPool.Count;
-        itemPool[currentIndex].SetActive(true);
+        transform.GetChild(currentIndex).gameObject.SetActive(false);
+        currentIndex = (currentIndex + 1) % transform.childCount;
+        transform.GetChild(currentIndex).gameObject.SetActive(true);
     }
 
     // Purpose: Deactivates the item as well as its candidates.
@@ -46,10 +45,10 @@ public class ItemController : MonoBehaviour
     // Return: void
     public void DeactivateDots()
     {
-        currentIndex = -1;
-        foreach (var item in itemPool)
+        currentIndex = 0;
+        foreach (Transform child in transform)
         {
-            item.SetActive(false);
+            child.gameObject.SetActive(false);
         }
     }
 
