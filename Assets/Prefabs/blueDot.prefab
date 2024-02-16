@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1424920797582760625}
   - component: {fileID: 6420701122142208421}
   - component: {fileID: 6944217818768623157}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: blueDot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -175, y: 424.03705}
-  m_SizeDelta: {x: 0.88, y: 0.86}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0.88, y: 0.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6420701122142208421
 CanvasRenderer:

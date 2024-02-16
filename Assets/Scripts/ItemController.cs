@@ -5,57 +5,50 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    [SerializeField] public GameObject[] dotPrefabs; // These are the display items (entered on Unity-side).
-    public List<GameObject> dotPool;                 // Script-side list of the items.
-    public int currentIndex = 0;                     // Index of which move the player is currently on.
-    public bool itemChosen = false;                  // Set to true when an arrow is clicked (helpful for submission script)
+    [SerializeField] public int currentIndex = 0;      // Index of which move the player is currently on.
 
-    // Desc: Instantiates all of the items and adds them to the dot pool for that item.
+    // Purpose: Instantiates all of the items and adds them to the dot pool for that item.
     // Params: none
     // Return: void
     private void Start()
     {
-        dotPool = new List<GameObject>();
-        foreach (var item in dotPrefabs)
+        // Populate the itemPool with the child GameObjects of the Frame object
+        foreach (Transform child in transform)
         {
-            var dot = Instantiate(item, transform.position, Quaternion.identity);
-            dot.transform.parent = transform;
-            dot.SetActive(false);
-            dotPool.Add(dot);
+            child.gameObject.SetActive(false);
         }
     }
 
-    // Desc: Cycles through the dotPool, downwards.
+    // Purpose: Cycles through the dotPool, downwards.
     // Params: none
     // Return: void
     public void CycleDown()
     {
-        itemChosen = true;
-        dotPool[currentIndex].SetActive(false);
-        currentIndex = (currentIndex - 1 + dotPool.Count) % dotPool.Count;
-        dotPool[currentIndex].SetActive(true);
+        transform.GetChild(currentIndex).gameObject.SetActive(false);
+        currentIndex = (currentIndex - 1 + transform.childCount) % transform.childCount;
+        transform.GetChild(currentIndex).gameObject.SetActive(true);
     }
 
-    // Desc: Cycles through the dotPool, upwards.
+    // Purpose: Cycles through the dotPool, upwards.
     // Params: none
     // Return: void
+
     public void CycleUp()
     {
-        itemChosen = true;
-        dotPool[currentIndex].SetActive(false);
-        currentIndex = (currentIndex + 1) % dotPool.Count;
-        dotPool[currentIndex].SetActive(true);
+        transform.GetChild(currentIndex).gameObject.SetActive(false);
+        currentIndex = (currentIndex + 1) % transform.childCount;
+        transform.GetChild(currentIndex).gameObject.SetActive(true);
     }
 
-    // Desc: Deactivates the item as well as its candidates.
+    // Purpose: Deactivates the item as well as its candidates.
     // Params: none
     // Return: void
     public void DeactivateDots()
     {
-        itemChosen = false;
-        foreach (var dot in dotPool)
+        currentIndex = 0;
+        foreach (Transform child in transform)
         {
-            dot.SetActive(false);
+            child.gameObject.SetActive(false);
         }
     }
 

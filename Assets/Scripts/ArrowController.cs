@@ -27,7 +27,7 @@ public class ArrowController : MonoBehaviour
     private void OnEnable() { GetComponent<TapGesture>().Tapped += TappedHandler; }
     private void OnDisable() { GetComponent<TapGesture>().Tapped += TappedHandler; }
 
-    // Desc: Main function for controlling cycling behaviour. Calls upon item methods depending on the arrow direction.
+    // Purpose: Main function for controlling cycling behaviour. Calls upon item methods depending on the arrow direction.
     // Params: sender, e
     // Return: void
     private void TappedHandler(object sender, System.EventArgs e)
