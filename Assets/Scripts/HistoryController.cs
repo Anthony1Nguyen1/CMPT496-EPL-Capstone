@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class HistoryController : MonoBehaviour
 {
-    [SerializeField] public Sprite winSprite;
+    [SerializeField] private Sprite winSprite;
 
     // Purpose: Fills a row/move in the history panel with whatever the user submitted.
     // Params: items: array of user-selected items
@@ -25,10 +25,23 @@ public class HistoryController : MonoBehaviour
         }
     }
 
-    public void CheckIfWon(int[] pattern, int[] indices, GameObject historyPanel)
+    private static int GetCorrectNumberOfItems(int[] pattern, int[] indices)
     {
-        print($"Win pattern: {string.Join(", ", pattern)}");
-        print($"User pattern: {string.Join(", ", indices)}");
-        if (pattern.SequenceEqual(indices)) { historyPanel.GetComponent<Image>().sprite = winSprite; }
+        var correctSoFar = 0;
+        for (var i = 0; i < pattern.Length; i++)
+        {
+            if (pattern[i] == indices[i]) { correctSoFar++; }
+        }
+
+        return correctSoFar;
+    }
+
+    public bool CheckIfWon(int[] pattern, int[] indices, GameObject historyPanel)
+    {
+        var correctSoFar = GetCorrectNumberOfItems(pattern, indices);
+        print($"Correct guesses: {correctSoFar}");
+        if (correctSoFar != 4) return false;
+        historyPanel.GetComponent<Image>().sprite = winSprite;
+        return true;
     }
 }
