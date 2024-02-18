@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class HistoryController : MonoBehaviour
 {
-    [SerializeField] private Sprite winSprite;
     [SerializeField] private Sprite[] guessesBoxSprites;
     [SerializeField] private int[] pattern;
 
@@ -56,12 +55,4 @@ public class HistoryController : MonoBehaviour
         return correctSoFar;
     }
 
-    private bool CheckIfWon(int[] indices, GameObject historyPanel)
-    {
-        var correctSoFar = GetCorrectNumberOfItems(indices);
-        print($"Correct guesses: {correctSoFar}");
-        if (correctSoFar != 4) return false;
-        historyPanel.GetComponent<Image>().sprite = winSprite;
-        return true;
-    }
 }
