@@ -68,11 +68,12 @@ public class SubmitController : MonoBehaviour
 
     // Purpose: Calls the submit function on the history script and increments the try number.
     // Params: none
-    // Return: void
-    private void SubmitMove()
+    // Return: a boolean to determine if the game has been won.
+    private bool SubmitMove()
     {
-        historyController.Submit(GetActiveChildren(), tryNumber, indices);
+        var correct = historyController.Submit(GetActiveChildren(), tryNumber, indices);
         tryNumber++;
+        return correct == 4;
     }
 
     // Purpose: Calls the deactivate dots function on the item script (for each item).
@@ -96,7 +97,12 @@ public class SubmitController : MonoBehaviour
     {
         if (IsReadyForSubmit())
         {
-            SubmitMove();
+            var gameWon = SubmitMove();
+            if (gameWon)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
             DeactivateDots();
         }
         else

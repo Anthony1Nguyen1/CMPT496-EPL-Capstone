@@ -28,8 +28,8 @@ public class HistoryController : MonoBehaviour
     // Purpose: Fills a row/move in the history panel with whatever the user submitted.
     // Params: items: array of user-selected items
     //         tryNumber: the number of tries the user has attempted so far.
-    // Return: void
-    public void Submit(List<GameObject> items, int tryNumber, int[] indices)
+    // Return: the number of correct guesses.
+    public int Submit(List<GameObject> items, int tryNumber, int[] indices)
     {
         var row = transform.GetChild(tryNumber); // Get the corresponding row in the history panel.
         for (var i = 0; i < items.Count; i++)
@@ -42,6 +42,7 @@ public class HistoryController : MonoBehaviour
 
         var correctGuesses = GetCorrectNumberOfItems(indices);
         row.GetChild(4).GetComponent<Image>().sprite = guessesBoxSprites[correctGuesses];
+        return correctGuesses;
     }
 
     private int GetCorrectNumberOfItems(int[] indices)
