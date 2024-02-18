@@ -8,6 +8,22 @@ using UnityEngine.UI;
 public class HistoryController : MonoBehaviour
 {
     [SerializeField] private Sprite winSprite;
+    [SerializeField] private int[] pattern;
+
+    // Purpose: Generates the winning pattern (proper indices) of items for the game.
+    // Params: none
+    // Return: void
+    private void Start()
+    {
+        // List declarations for winning pattern and chosen.
+        pattern = new int[4];
+        for (var i = 0; i < 4; i++)
+        {
+            pattern[i] = (Random.Range(0, 4));
+        }
+        print("Pattern is: " + string.Join(", ", pattern));
+
+    }
 
     // Purpose: Fills a row/move in the history panel with whatever the user submitted.
     // Params: items: array of user-selected items
@@ -36,7 +52,7 @@ public class HistoryController : MonoBehaviour
         return correctSoFar;
     }
 
-    public bool CheckIfWon(int[] pattern, int[] indices, GameObject historyPanel)
+    public bool CheckIfWon(int[] indices, GameObject historyPanel)
     {
         var correctSoFar = GetCorrectNumberOfItems(pattern, indices);
         print($"Correct guesses: {correctSoFar}");

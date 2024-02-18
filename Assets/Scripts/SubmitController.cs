@@ -6,30 +6,11 @@ using UnityEngine;
 
 public class SubmitController : MonoBehaviour
 {
-    [SerializeField] public GameObject[] items;                  // The four items selected by the user.
-    [SerializeField] public HistoryController historyController; // Reference to the history pane.
-
-    private int[] _indices; // The indices of the items chosen.
-    private int[] _pattern; // The indices for the winning recipe.
+    [SerializeField] private GameObject[] items;                  // The four items selected by the user.
+    [SerializeField] private HistoryController historyController; // Reference to the history pane.
+    [SerializeField] private int[] indices;                       // The indices of the items chosen.
 
     public int tryNumber = 0;
-
-    // Purpose: Generates the winning pattern (proper indices) of items for the game.
-    // Params: none
-    // Return: void
-    private void Start()
-    {
-        // List declarations for winning pattern and chosen.
-        _pattern = new int[4];
-        _indices = new int[4];
-
-        for (var i = 0; i < 4; i++)
-        {
-            _pattern[i] = (Random.Range(0, 4));
-        }
-        print("Pattern is: " + string.Join(", ", _pattern));
-
-    }
 
     // Purpose: Boolean check for whether a full pattern has been selected by the user in the main panel.
     // Params: none
@@ -65,6 +46,8 @@ public class SubmitController : MonoBehaviour
     {
         var activeChildren = new List<GameObject>();
 
+        indices = new int[items.Length];
+
         for(var i = 0; i < items.Length; i++)
         {
             foreach (Transform child in items[i].transform)
@@ -74,7 +57,7 @@ public class SubmitController : MonoBehaviour
                     activeChildren.Add(child.gameObject);
 
                     var index = items[i].GetComponent<ItemController>().currentIndex;
-                    _indices[i] = index;
+                    indices[i] = index;
                     break;
                 }
             }
@@ -89,7 +72,7 @@ public class SubmitController : MonoBehaviour
     private void SubmitMove()
     {
         historyController.Submit(GetActiveChildren(), tryNumber);
-        historyController.CheckIfWon(_pattern, _indices, historyController.gameObject);
+        historyController.CheckIfWon(indices, historyController.gameObject);
         tryNumber++;
     }
 
