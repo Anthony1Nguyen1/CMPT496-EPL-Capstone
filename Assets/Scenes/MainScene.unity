@@ -4760,6 +4760,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winSprite: {fileID: -1344641316, guid: 6fd73c954ecac80368027a5a497ceff6, type: 3}
+  guessesBoxSprites:
+  - {fileID: 21300000, guid: 85668b5b775efefb3874864f6f2c8948, type: 3}
+  - {fileID: 21300000, guid: b9ef462fdf970623da4728489799f46c, type: 3}
+  - {fileID: 21300000, guid: d073a03100b049223a23225bfa1fc1f0, type: 3}
+  - {fileID: 21300000, guid: e1d1ced48a3d2afc59355bb65064cc38, type: 3}
+  - {fileID: 21300000, guid: f8fb5eea866030776acdde6b09850f75, type: 3}
   pattern: 
 --- !u!224 &1159777425 stripped
 RectTransform:

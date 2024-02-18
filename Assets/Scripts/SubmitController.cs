@@ -71,8 +71,7 @@ public class SubmitController : MonoBehaviour
     // Return: void
     private void SubmitMove()
     {
-        historyController.Submit(GetActiveChildren(), tryNumber);
-        historyController.CheckIfWon(indices, historyController.gameObject);
+        historyController.Submit(GetActiveChildren(), tryNumber, indices);
         tryNumber++;
     }
 
