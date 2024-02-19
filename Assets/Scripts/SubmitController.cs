@@ -6,30 +6,11 @@ using UnityEngine;
 
 public class SubmitController : MonoBehaviour
 {
-    [SerializeField] public GameObject[] items;                  // The four items selected by the user.
-    [SerializeField] public HistoryController historyController; // Reference to the history pane.
-
-    private int[] _indices; // The indices of the items chosen.
-    private int[] _pattern; // The indices for the winning recipe.
-
-    public int tryNumber = 0;
-
-    // Purpose: Generates the winning pattern (proper indices) of items for the game.
-    // Params: none
-    // Return: void
-    private void Start()
-    {
-        // List declarations for winning pattern and chosen.
-        _pattern = new int[4];
-        _indices = new int[4];
-
-        for (var i = 0; i < 4; i++)
-        {
-            _pattern[i] = (Random.Range(0, 4));
-        }
-        print("Pattern is: " + string.Join(", ", _pattern));
-
-    }
+    [SerializeField] private GameObject[] items;                  // The four items selected by the user.
+    [SerializeField] private HistoryController historyController; // Reference to the history pane.
+    [SerializeField] private int[] indices;                       // The indices of the items chosen.
+    public bool GameWon { get; private set; }                     // Flag that checks if game has been won.
+    private int tryNumber = 0;
 
     // Purpose: Boolean check for whether a full pattern has been selected by the user in the main panel.
     // Params: none
@@ -65,6 +46,8 @@ public class SubmitController : MonoBehaviour
     {
         var activeChildren = new List<GameObject>();
 
+        indices = new int[items.Length];
+
         for(var i = 0; i < items.Length; i++)
         {
             foreach (Transform child in items[i].transform)
@@ -73,8 +56,8 @@ public class SubmitController : MonoBehaviour
                 {
                     activeChildren.Add(child.gameObject);
 
-                    var index = items[i].GetComponent<ItemController>().currentIndex;
-                    _indices[i] = index;
+                    var index = items[i].GetComponent<ItemController>().CurrentIndex;
+                    indices[i] = index;
                     break;
                 }
             }
@@ -83,17 +66,17 @@ public class SubmitController : MonoBehaviour
         return activeChildren;
     }
 
-    // Purpose: Calls the submit function on the history script and increments the try number.
+    // Purpose: Calls the submit function on the history script and increments the try number. Disables TRY button on win.
     // Params: none
     // Return: void
     private void SubmitMove()
     {
-        historyController.Submit(GetActiveChildren(), tryNumber);
-        historyController.CheckIfWon(_pattern, _indices, historyController.gameObject);
+        GameWon = historyController.Submit(GetActiveChildren(), tryNumber, indices).GameWon;
         tryNumber++;
+        if (GameWon) { gameObject.SetActive(false); }
     }
 
-    // Purpose: Calls the deactivate dots function on the item script (for each item).
+    // Purpose: Calls the deactivate dots function on the item script (for each item frame).
     // Params: none
     // Return: void
     private void DeactivateDots()
@@ -105,7 +88,7 @@ public class SubmitController : MonoBehaviour
     }
 
     private void OnEnable() { GetComponent<TapGesture>().Tapped += TappedHandler; }
-    private void OnDisable() { GetComponent<TapGesture>().Tapped += TappedHandler; }
+    private void OnDisable() { GetComponent<TapGesture>().Tapped -= TappedHandler; }
 
     // Purpose: Main function for controlling submit behaviour.
     // Params: sender, e
@@ -115,6 +98,7 @@ public class SubmitController : MonoBehaviour
         if (IsReadyForSubmit())
         {
             SubmitMove();
+            if (GameWon) { gameObject.SetActive(false); return; } // If won, disable try button and early exit.
             DeactivateDots();
         }
         else
@@ -122,5 +106,4 @@ public class SubmitController : MonoBehaviour
             Debug.Log("Not ready to submit!");
         }
     }
-
 }
