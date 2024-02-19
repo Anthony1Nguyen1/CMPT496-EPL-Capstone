@@ -9,6 +9,7 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private GameObject[] items;                  // The four items selected by the user.
     [SerializeField] private HistoryController historyController; // Reference to the history pane.
     [SerializeField] private int[] indices;                       // The indices of the items chosen.
+    [SerializeField] public bool gameWon;                         // Flag that checks if game has been won.
 
     public int tryNumber = 0;
 
@@ -97,7 +98,7 @@ public class SubmitController : MonoBehaviour
     {
         if (IsReadyForSubmit())
         {
-            var gameWon = SubmitMove();
+            gameWon = SubmitMove();
             if (gameWon)
             {
                 gameObject.SetActive(false);

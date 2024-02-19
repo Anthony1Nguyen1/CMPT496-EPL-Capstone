@@ -8,6 +8,7 @@ public class ArrowController : MonoBehaviour
     public ItemController item;             // The item.
     public enum ArrowDirection { Up, Down } // Enum for the two different arrow types.
     public ArrowDirection direction;
+    [SerializeField] private SubmitController submitController;
 
     private void OnEnable() { GetComponent<TapGesture>().Tapped += TappedHandler; }
     private void OnDisable() { GetComponent<TapGesture>().Tapped += TappedHandler; }
@@ -17,7 +18,10 @@ public class ArrowController : MonoBehaviour
     // Return: void
     private void TappedHandler(object sender, System.EventArgs e)
     {
-        if      (direction == ArrowDirection.Up) { item.CycleUp(); }
-        else if (direction == ArrowDirection.Down) { item.CycleDown(); }
+        if (submitController.gameWon == false)
+        {
+            if      (direction == ArrowDirection.Up) { item.CycleUp(); }
+            else if (direction == ArrowDirection.Down) { item.CycleDown(); }
+        }
     }
 }
