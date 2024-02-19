@@ -66,7 +66,7 @@ public class SubmitController : MonoBehaviour
         return activeChildren;
     }
 
-    // Purpose: Calls the submit function on the history script and increments the try number.
+    // Purpose: Calls the submit function on the history script and increments the try number. Disables TRY button on win.
     // Params: none
     // Return: void
     private void SubmitMove()
@@ -80,7 +80,7 @@ public class SubmitController : MonoBehaviour
         }
     }
 
-    // Purpose: Calls the deactivate dots function on the item script (for each item).
+    // Purpose: Calls the deactivate dots function on the item script (for each item frame).
     // Params: none
     // Return: void
     private void DeactivateDots()
