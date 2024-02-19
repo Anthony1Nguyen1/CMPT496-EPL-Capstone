@@ -56,7 +56,7 @@ public class SubmitController : MonoBehaviour
                 {
                     activeChildren.Add(child.gameObject);
 
-                    var index = items[i].GetComponent<ItemController>().currentIndex;
+                    var index = items[i].GetComponent<ItemController>().CurrentIndex;
                     indices[i] = index;
                     break;
                 }

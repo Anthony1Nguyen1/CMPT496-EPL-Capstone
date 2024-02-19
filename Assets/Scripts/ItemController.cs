@@ -1,11 +1,10 @@
 /* Description: Script that handles the main category/item pane in the middle. */
 
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    [SerializeField] public int currentIndex = 0;      // Index of which move the player is currently on.
+    public int CurrentIndex { get; private set; } = 0;
 
     // Purpose: Instantiates all of the items and adds them to the dot pool for that item.
     // Params: none
@@ -24,20 +23,27 @@ public class ItemController : MonoBehaviour
     // Return: void
     public void CycleDown()
     {
-        transform.GetChild(currentIndex).gameObject.SetActive(false);
-        currentIndex = (currentIndex - 1 + transform.childCount) % transform.childCount;
-        transform.GetChild(currentIndex).gameObject.SetActive(true);
+        ToggleActive(false);
+        CurrentIndex = (CurrentIndex - 1 + transform.childCount) % transform.childCount;
+        ToggleActive(true);
     }
 
     // Purpose: Cycles through the dotPool, upwards.
     // Params: none
     // Return: void
-
     public void CycleUp()
     {
-        transform.GetChild(currentIndex).gameObject.SetActive(false);
-        currentIndex = (currentIndex + 1) % transform.childCount;
-        transform.GetChild(currentIndex).gameObject.SetActive(true);
+        ToggleActive(false);
+        CurrentIndex = (CurrentIndex + 1) % transform.childCount;
+        ToggleActive(true);
+    }
+
+    // Purpose: Deactivates or activates a prefab.
+    // Params: isActive: a boolean for whether the prefab is currently enabled/disabled.
+    // Return: void
+    private void ToggleActive(bool isActive)
+    {
+        transform.GetChild(CurrentIndex).gameObject.SetActive(isActive);
     }
 
     // Purpose: Deactivates the item as well as its candidates.
@@ -45,7 +51,7 @@ public class ItemController : MonoBehaviour
     // Return: void
     public void DeactivateDots()
     {
-        currentIndex = 0;
+        CurrentIndex = 0;
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(false);
