@@ -9,7 +9,7 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private GameObject[] items;                  // The four items selected by the user.
     [SerializeField] private HistoryController historyController; // Reference to the history pane.
     [SerializeField] private int[] indices;                       // The indices of the items chosen.
-    public bool gameWon { get; private set; }                     // Flag that checks if game has been won.
+    public bool GameWon { get; private set; }                     // Flag that checks if game has been won.
     private int tryNumber = 0;
 
     // Purpose: Boolean check for whether a full pattern has been selected by the user in the main panel.
@@ -71,13 +71,9 @@ public class SubmitController : MonoBehaviour
     // Return: void
     private void SubmitMove()
     {
-        var result = historyController.Submit(GetActiveChildren(), tryNumber, indices);
+        GameWon = historyController.Submit(GetActiveChildren(), tryNumber, indices).GameWon;
         tryNumber++;
-        if (result.GameWon)
-        {
-            gameWon = true;
-            gameObject.SetActive(false);
-        }
+        if (GameWon) { gameObject.SetActive(false); }
     }
 
     // Purpose: Calls the deactivate dots function on the item script (for each item frame).
@@ -102,7 +98,7 @@ public class SubmitController : MonoBehaviour
         if (IsReadyForSubmit())
         {
             SubmitMove();
-            if (gameWon) { gameObject.SetActive(false); return; } // If won, disable try button and early exit.
+            if (GameWon) { gameObject.SetActive(false); return; } // If won, disable try button and early exit.
             DeactivateDots();
         }
         else

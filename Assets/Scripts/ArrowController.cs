@@ -18,7 +18,7 @@ public class ArrowController : MonoBehaviour
     // Return: void
     private void TappedHandler(object sender, System.EventArgs e)
     {
-        if (submitController.gameWon == false)
+        if (submitController.GameWon == false)
         {
             if      (direction == ArrowDirection.Upwards) { itemController.CycleUp(); }
             else if (direction == ArrowDirection.Downwards) { itemController.CycleDown(); }
