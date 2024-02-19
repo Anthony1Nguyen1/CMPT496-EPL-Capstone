@@ -9,9 +9,8 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private GameObject[] items;                  // The four items selected by the user.
     [SerializeField] private HistoryController historyController; // Reference to the history pane.
     [SerializeField] private int[] indices;                       // The indices of the items chosen.
-    [SerializeField] public bool gameWon;                         // Flag that checks if game has been won.
-
-    public int tryNumber = 0;
+    public bool gameWon { get; private set; }                     // Flag that checks if game has been won.
+    private int tryNumber = 0;
 
     // Purpose: Boolean check for whether a full pattern has been selected by the user in the main panel.
     // Params: none
@@ -69,12 +68,16 @@ public class SubmitController : MonoBehaviour
 
     // Purpose: Calls the submit function on the history script and increments the try number.
     // Params: none
-    // Return: a boolean to determine if the game has been won.
-    private bool SubmitMove()
+    // Return: void
+    private void SubmitMove()
     {
-        var correct = historyController.Submit(GetActiveChildren(), tryNumber, indices);
+        var result = historyController.Submit(GetActiveChildren(), tryNumber, indices);
         tryNumber++;
-        return correct == 4;
+        if (result.GameWon)
+        {
+            gameWon = true;
+            gameObject.SetActive(false);
+        }
     }
 
     // Purpose: Calls the deactivate dots function on the item script (for each item).
@@ -89,7 +92,7 @@ public class SubmitController : MonoBehaviour
     }
 
     private void OnEnable() { GetComponent<TapGesture>().Tapped += TappedHandler; }
-    private void OnDisable() { GetComponent<TapGesture>().Tapped += TappedHandler; }
+    private void OnDisable() { GetComponent<TapGesture>().Tapped -= TappedHandler; }
 
     // Purpose: Main function for controlling submit behaviour.
     // Params: sender, e
@@ -98,12 +101,8 @@ public class SubmitController : MonoBehaviour
     {
         if (IsReadyForSubmit())
         {
-            gameWon = SubmitMove();
-            if (gameWon)
-            {
-                gameObject.SetActive(false);
-                return;
-            }
+            SubmitMove();
+            if (gameWon) { gameObject.SetActive(false); return; } // If won, disable try button and early exit.
             DeactivateDots();
         }
         else
@@ -111,5 +110,4 @@ public class SubmitController : MonoBehaviour
             Debug.Log("Not ready to submit!");
         }
     }
-
 }
