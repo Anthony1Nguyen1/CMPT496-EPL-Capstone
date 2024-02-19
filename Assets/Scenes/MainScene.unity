@@ -1359,6 +1359,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4912684786399739612}
     - target: {fileID: 3911805584656581754, guid: 5fa448ebcfcabd344ac902721e1d71f2, type: 3}
+      propertyPath: itemController
+      value: 
+      objectReference: {fileID: 4912684786399739612}
+    - target: {fileID: 3911805584656581754, guid: 5fa448ebcfcabd344ac902721e1d71f2, type: 3}
       propertyPath: submitController
       value: 
       objectReference: {fileID: 1439255032}
@@ -2603,6 +2607,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3911805584656581754, guid: 5fa448ebcfcabd344ac902721e1d71f2, type: 3}
       propertyPath: item
+      value: 
+      objectReference: {fileID: 3735947538233485796}
+    - target: {fileID: 3911805584656581754, guid: 5fa448ebcfcabd344ac902721e1d71f2, type: 3}
+      propertyPath: itemController
       value: 
       objectReference: {fileID: 3735947538233485796}
     - target: {fileID: 3911805584656581754, guid: 5fa448ebcfcabd344ac902721e1d71f2, type: 3}
@@ -4365,8 +4373,12 @@ PrefabInstance:
       objectReference: {fileID: 3735947538233485796}
     - target: {fileID: -2573805729215254228, guid: ecb1114c01e4476fba54b268ad9e9ac1, type: 3}
       propertyPath: direction
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -2573805729215254228, guid: ecb1114c01e4476fba54b268ad9e9ac1, type: 3}
+      propertyPath: itemController
+      value: 
+      objectReference: {fileID: 3735947538233485796}
     - target: {fileID: -2573805729215254228, guid: ecb1114c01e4476fba54b268ad9e9ac1, type: 3}
       propertyPath: submitController
       value: 
@@ -5287,8 +5299,12 @@ PrefabInstance:
       objectReference: {fileID: 6937867899005082497}
     - target: {fileID: -2573805729215254228, guid: ecb1114c01e4476fba54b268ad9e9ac1, type: 3}
       propertyPath: direction
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -2573805729215254228, guid: ecb1114c01e4476fba54b268ad9e9ac1, type: 3}
+      propertyPath: itemController
+      value: 
+      objectReference: {fileID: 6937867899005082497}
     - target: {fileID: -2573805729215254228, guid: ecb1114c01e4476fba54b268ad9e9ac1, type: 3}
       propertyPath: submitController
       value: 
@@ -6375,8 +6391,12 @@ PrefabInstance:
       objectReference: {fileID: 4912684786399739612}
     - target: {fileID: -2573805729215254228, guid: ecb1114c01e4476fba54b268ad9e9ac1, type: 3}
       propertyPath: direction
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -2573805729215254228, guid: ecb1114c01e4476fba54b268ad9e9ac1, type: 3}
+      propertyPath: itemController
+      value: 
+      objectReference: {fileID: 4912684786399739612}
     - target: {fileID: -2573805729215254228, guid: ecb1114c01e4476fba54b268ad9e9ac1, type: 3}
       propertyPath: submitController
       value: 
@@ -6946,6 +6966,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3911805584656581754, guid: 5fa448ebcfcabd344ac902721e1d71f2, type: 3}
       propertyPath: item
+      value: 
+      objectReference: {fileID: 6937867899005082497}
+    - target: {fileID: 3911805584656581754, guid: 5fa448ebcfcabd344ac902721e1d71f2, type: 3}
+      propertyPath: itemController
       value: 
       objectReference: {fileID: 6937867899005082497}
     - target: {fileID: 3911805584656581754, guid: 5fa448ebcfcabd344ac902721e1d71f2, type: 3}
@@ -8316,6 +8340,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9019516497469362467}
     - target: {fileID: 3911805584656581754, guid: 5fa448ebcfcabd344ac902721e1d71f2, type: 3}
+      propertyPath: itemController
+      value: 
+      objectReference: {fileID: 9019516497469362467}
+    - target: {fileID: 3911805584656581754, guid: 5fa448ebcfcabd344ac902721e1d71f2, type: 3}
       propertyPath: submitController
       value: 
       objectReference: {fileID: 1439255032}
@@ -8628,6 +8656,10 @@ PrefabInstance:
       propertyPath: direction
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -2573805729215254228, guid: ecb1114c01e4476fba54b268ad9e9ac1, type: 3}
+      propertyPath: itemController
+      value: 
+      objectReference: {fileID: 9019516497469362467}
     - target: {fileID: -2573805729215254228, guid: ecb1114c01e4476fba54b268ad9e9ac1, type: 3}
       propertyPath: submitController
       value: 

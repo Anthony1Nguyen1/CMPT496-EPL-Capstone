@@ -5,13 +5,13 @@ using TouchScript.Gestures;
 
 public class ArrowController : MonoBehaviour
 {
-    public ItemController item;             // The item.
-    public enum ArrowDirection { Up, Down } // Enum for the two different arrow types.
-    public ArrowDirection direction;
+    [SerializeField] public ItemController itemController;
     [SerializeField] private SubmitController submitController;
+    [SerializeField] public ArrowDirection direction;
+    public enum ArrowDirection { Upwards, Downwards } // Enum for the two different arrow types.
 
     private void OnEnable() { GetComponent<TapGesture>().Tapped += TappedHandler; }
-    private void OnDisable() { GetComponent<TapGesture>().Tapped += TappedHandler; }
+    private void OnDisable() { GetComponent<TapGesture>().Tapped -= TappedHandler; }
 
     // Purpose: Main function for controlling cycling behaviour. Calls upon item methods depending on the arrow direction.
     // Params: sender, e
@@ -20,8 +20,8 @@ public class ArrowController : MonoBehaviour
     {
         if (submitController.gameWon == false)
         {
-            if      (direction == ArrowDirection.Up) { item.CycleUp(); }
-            else if (direction == ArrowDirection.Down) { item.CycleDown(); }
+            if      (direction == ArrowDirection.Upwards) { itemController.CycleUp(); }
+            else if (direction == ArrowDirection.Downwards) { itemController.CycleDown(); }
         }
     }
 }
