@@ -9,8 +9,23 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private GameObject[] items;                  // The four items selected by the user.
     [SerializeField] private HistoryController historyController; // Reference to the history pane.
     [SerializeField] private int[] indices;                       // The indices of the items chosen.
+    [SerializeField] private AudioClip _pressSound;
+    private AudioSource audioSource;
     public bool GameWon { get; private set; }                     // Flag that checks if game has been won.
     private int tryNumber = 0;
+
+    private void Start()
+    {
+        // Get or add AudioSource component
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Assign the button press sound to the audio source
+        audioSource.clip = _pressSound;
+    }
 
     // Purpose: Boolean check for whether a full pattern has been selected by the user in the main panel.
     // Params: none
@@ -95,6 +110,11 @@ public class SubmitController : MonoBehaviour
     // Return: void
     private void TappedHandler(object sender, System.EventArgs e)
     {
+        if (_pressSound != null && audioSource != null)
+        {
+            audioSource.Play();
+        }
+
         if (IsReadyForSubmit())
         {
             SubmitMove();
