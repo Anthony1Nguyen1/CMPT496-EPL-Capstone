@@ -9,7 +9,7 @@ public class HistoryController : MonoBehaviour
     [SerializeField] private Sprite[] guessesBoxSprites;
     [SerializeField] private int[] pattern;
 
-    // Define SubmitResult class
+    // Subclass for the submit result (returns amount of correct guesses and whether the game has been won)
     public class SubmitResult
     {
         public int CorrectGuesses { get; set; }
@@ -41,7 +41,7 @@ public class HistoryController : MonoBehaviour
         for (var i = 0; i < items.Count; i++)
         {
             var item     = items[i];                                         // Item to be copied.
-            var rowFrame = row.GetChild(i);                                  // Square box for the new item
+            var rowFrame = row.GetChild(i);                                  // Frame for the new item.
             var newItem  = Instantiate(item, rowFrame, false); // Copy the item over.
             newItem.SetActive(true);                                         // Make the new item active.
         }
