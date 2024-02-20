@@ -165,11 +165,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1424920797582760625, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 1424920797582760625, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 1424920797582760625, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
       propertyPath: m_LocalPosition.x
@@ -221,12 +221,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1443099175974271777, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
       propertyPath: m_Name
-      value: blueDot
+      value: silverCauldron
       objectReference: {fileID: 0}
     - target: {fileID: 1443099175974271777, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6944217818768623157, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1687964418, guid: 867b8323d2cd96e20a4b4c6d0ee276be, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -520,12 +524,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 106496413454780332, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
       propertyPath: m_Name
-      value: yellowDot
+      value: redCauldron
       objectReference: {fileID: 0}
     - target: {fileID: 106496413454780332, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3143095390807805297, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1997298909, guid: 317431c18087bfc7380ab6f80ef89ad5, type: 3}
     - target: {fileID: 6385881708973523910, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -560,11 +568,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6385881708973523910, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 6385881708973523910, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 6385881708973523910, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3156,12 +3164,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1372116626145848141, guid: e85f6bad45b19b57dbeda49110d0c3e7, type: 3}
       propertyPath: m_Name
-      value: greenDot
+      value: purpleCauldron
       objectReference: {fileID: 0}
     - target: {fileID: 1372116626145848141, guid: e85f6bad45b19b57dbeda49110d0c3e7, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8059849336318731726, guid: e85f6bad45b19b57dbeda49110d0c3e7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1661224976, guid: 990740bd9c8689c71a2b72eaa8ef0efb, type: 3}
     - target: {fileID: 8194328896929730687, guid: e85f6bad45b19b57dbeda49110d0c3e7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3196,11 +3208,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8194328896929730687, guid: e85f6bad45b19b57dbeda49110d0c3e7, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 8194328896929730687, guid: e85f6bad45b19b57dbeda49110d0c3e7, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 8194328896929730687, guid: e85f6bad45b19b57dbeda49110d0c3e7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5005,12 +5017,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2039825687681632278, guid: 62c599f4d7d88d6c4829e1b4f450ec98, type: 3}
       propertyPath: m_Name
-      value: redDot
+      value: brownCauldron
       objectReference: {fileID: 0}
     - target: {fileID: 2039825687681632278, guid: 62c599f4d7d88d6c4829e1b4f450ec98, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3102029221748348620, guid: 62c599f4d7d88d6c4829e1b4f450ec98, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -483982752, guid: 751d8974d4729f8f9843cdb66938073d, type: 3}
     - target: {fileID: 5442484346182315153, guid: 62c599f4d7d88d6c4829e1b4f450ec98, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5045,11 +5061,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5442484346182315153, guid: 62c599f4d7d88d6c4829e1b4f450ec98, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 5442484346182315153, guid: 62c599f4d7d88d6c4829e1b4f450ec98, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 5442484346182315153, guid: 62c599f4d7d88d6c4829e1b4f450ec98, type: 3}
       propertyPath: m_LocalPosition.x
