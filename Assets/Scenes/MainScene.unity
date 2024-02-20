@@ -4324,12 +4324,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 106496413454780332, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
       propertyPath: m_Name
-      value: yellowDot
+      value: bluePotion
       objectReference: {fileID: 0}
     - target: {fileID: 106496413454780332, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3143095390807805297, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1894649050, guid: 00d8ec3ea15b79b9791a3a27ecf1795b, type: 3}
     - target: {fileID: 6385881708973523910, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4364,11 +4368,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6385881708973523910, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 6385881708973523910, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 6385881708973523910, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
       propertyPath: m_LocalPosition.x
