@@ -3945,12 +3945,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2039825687681632278, guid: 62c599f4d7d88d6c4829e1b4f450ec98, type: 3}
       propertyPath: m_Name
-      value: redDot
+      value: greenPotion
       objectReference: {fileID: 0}
     - target: {fileID: 2039825687681632278, guid: 62c599f4d7d88d6c4829e1b4f450ec98, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3102029221748348620, guid: 62c599f4d7d88d6c4829e1b4f450ec98, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1621459924, guid: e14d195b0f9a775969376bb6af6c49f0, type: 3}
     - target: {fileID: 5442484346182315153, guid: 62c599f4d7d88d6c4829e1b4f450ec98, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3985,11 +3989,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5442484346182315153, guid: 62c599f4d7d88d6c4829e1b4f450ec98, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 5442484346182315153, guid: 62c599f4d7d88d6c4829e1b4f450ec98, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 5442484346182315153, guid: 62c599f4d7d88d6c4829e1b4f450ec98, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4510,11 +4514,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1424920797582760625, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 1424920797582760625, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 1424920797582760625, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4566,12 +4570,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1443099175974271777, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
       propertyPath: m_Name
-      value: blueDot
+      value: orange potion
       objectReference: {fileID: 0}
     - target: {fileID: 1443099175974271777, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6944217818768623157, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -116367965, guid: 232de943875ce8c1cb92a74cf14807d6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5970,12 +5978,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1372116626145848141, guid: e85f6bad45b19b57dbeda49110d0c3e7, type: 3}
       propertyPath: m_Name
-      value: greenDot
+      value: redPotion
       objectReference: {fileID: 0}
     - target: {fileID: 1372116626145848141, guid: e85f6bad45b19b57dbeda49110d0c3e7, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8059849336318731726, guid: e85f6bad45b19b57dbeda49110d0c3e7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -721985347, guid: 438f88821f529e96fbf004ef42ed7bad, type: 3}
     - target: {fileID: 8194328896929730687, guid: e85f6bad45b19b57dbeda49110d0c3e7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6010,11 +6022,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8194328896929730687, guid: e85f6bad45b19b57dbeda49110d0c3e7, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 8194328896929730687, guid: e85f6bad45b19b57dbeda49110d0c3e7, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 8194328896929730687, guid: e85f6bad45b19b57dbeda49110d0c3e7, type: 3}
       propertyPath: m_LocalPosition.x
