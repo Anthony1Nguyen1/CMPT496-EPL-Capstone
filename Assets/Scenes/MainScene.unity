@@ -5773,11 +5773,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 106496413454780332, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
       propertyPath: m_Name
-      value: yellowDot
+      value: orangeCrystal
       objectReference: {fileID: 0}
     - target: {fileID: 106496413454780332, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143095390807805297, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 249fe7a83240afb5fbb7a6d6cd526dbe, type: 3}
+    - target: {fileID: 3143095390807805297, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6385881708973523910, guid: 163bb8e58bbd508fd860430489ae12ee, type: 3}
       propertyPath: m_Pivot.x
@@ -9333,13 +9341,13 @@ PrefabInstance:
       addedObject: {fileID: 2060847560}
     - targetCorrespondingSourceObject: {fileID: 4228031448413040393, guid: 3df2ea6054688c99d94a538d7708e829, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 449463073}
+      addedObject: {fileID: 1569984736}
     - targetCorrespondingSourceObject: {fileID: 4228031448413040393, guid: 3df2ea6054688c99d94a538d7708e829, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1819130184}
     - targetCorrespondingSourceObject: {fileID: 4228031448413040393, guid: 3df2ea6054688c99d94a538d7708e829, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1569984736}
+      addedObject: {fileID: 449463073}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4300245825233504944, guid: 3df2ea6054688c99d94a538d7708e829, type: 3}
       insertIndex: -1
