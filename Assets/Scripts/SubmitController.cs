@@ -9,7 +9,7 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private GameObject[] items;                  // The four items selected by the user.
     [SerializeField] private HistoryController historyController; // Reference to the history pane.
     [SerializeField] private int[] indices;                       // The indices of the items chosen.
-    [SerializeField] private AudioClip _pressSound;
+    [SerializeField] private AudioClip _pressSound;               // Sound
     [SerializeField] private AudioSource audioSource;
     public bool GameWon { get; private set; }                     // Flag that checks if game has been won.
     private int tryNumber = 0;
