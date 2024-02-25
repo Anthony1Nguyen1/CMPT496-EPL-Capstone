@@ -10,7 +10,7 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private HistoryController historyController; // Reference to the history pane.
     [SerializeField] private int[] indices;                       // The indices of the items chosen.
     [SerializeField] private AudioClip _pressSound;
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
     public bool GameWon { get; private set; }                     // Flag that checks if game has been won.
     private int tryNumber = 0;
 
@@ -112,7 +112,7 @@ public class SubmitController : MonoBehaviour
     {
         if (_pressSound != null && audioSource != null)
         {
-            audioSource.Play();
+            audioSource.PlayOneShot(_pressSound);
         }
 
         if (IsReadyForSubmit())

@@ -12,7 +12,7 @@ public class ButtonSimulator : MonoBehaviour
     [SerializeField] private Image _img;
     [SerializeField] private Sprite _default, _pressed;
     [SerializeField] private AudioClip _pressSound;
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
 
     public string MainCamera;
     private void Start()
@@ -59,7 +59,7 @@ public class ButtonSimulator : MonoBehaviour
 
         if (_pressSound != null && audioSource != null)
         {
-            audioSource.Play();
+            audioSource.PlayOneShot(_pressSound);
         }
     }
 
