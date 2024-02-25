@@ -4,10 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TouchScript.Gestures;
 
-public class SoundManager : MonoBehaviour
+public class MusicManager : MonoBehaviour
 {
     [SerializeField] Slider volumeSlider;
     private PressGesture pressGesture;
+    private ReleaseGesture releaseGesture;
+    private bool isDragging = false;
+    public AudioSource musicAudioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,19 +25,25 @@ public class SoundManager : MonoBehaviour
         }
 
         pressGesture = volumeSlider.GetComponent<PressGesture>();
+        releaseGesture = volumeSlider.GetComponent<ReleaseGesture>();
 
         pressGesture.Pressed += OnSliderPressed;
+        releaseGesture.Released += OnSliderReleased;
     }
 
     private void OnDestroy()
     {
         pressGesture.Pressed -= OnSliderPressed;
+        releaseGesture.Released -= OnSliderReleased;
     }
 
     public void ChangeVolume()
     {
-        AudioListener.volume = volumeSlider.value;
-        Save();
+        if (!isDragging)
+        {
+            musicAudioSource.volume = volumeSlider.value;
+            Save();
+        }
     }
 
     private void Load() 
@@ -49,6 +58,13 @@ public class SoundManager : MonoBehaviour
 
     private void OnSliderPressed(object sender, System.EventArgs e)
     {
+        isDragging = true;
+        ChangeVolume();
+    }
+
+    private void OnSliderReleased(object sender, System.EventArgs e)
+    {
+        isDragging = false;
         ChangeVolume();
     }
 }
