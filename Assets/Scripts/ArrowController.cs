@@ -9,7 +9,7 @@ public class ArrowController : MonoBehaviour
     [SerializeField] private SubmitController submitController;
     [SerializeField] public ArrowDirection direction;
     [SerializeField] private AudioClip _pressSound;
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
     private void Start()
     {
         // Get or add AudioSource component
@@ -34,7 +34,7 @@ public class ArrowController : MonoBehaviour
     {
         if (_pressSound != null && audioSource != null)
         {
-            audioSource.Play();
+            audioSource.PlayOneShot(_pressSound);
         }
 
         if (submitController.GameWon == false)
