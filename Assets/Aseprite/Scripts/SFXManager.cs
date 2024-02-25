@@ -10,7 +10,7 @@ public class SFXManager : MonoBehaviour
     private PressGesture pressGesture;
     private ReleaseGesture releaseGesture;
     private bool isDragging = false;
-
+    public AudioSource[] sfxAudioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,8 +41,10 @@ public class SFXManager : MonoBehaviour
     {
         if (!isDragging)
         {
-            AudioListener.volume = volumeSlider.value;
-            Save();
+            foreach (var audioSource in sfxAudioSource)
+            {
+                audioSource.volume = volumeSlider.value;
+            }
         }
     }
 
@@ -58,6 +60,7 @@ public class SFXManager : MonoBehaviour
 
     private void OnSliderPressed(object sender, System.EventArgs e)
     {
+        isDragging = true;
         ChangeVolume();
     }
 
