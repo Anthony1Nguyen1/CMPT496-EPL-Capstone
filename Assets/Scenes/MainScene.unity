@@ -3613,11 +3613,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1424920797582760625, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 1424920797582760625, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 1424920797582760625, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3669,11 +3669,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1443099175974271777, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
       propertyPath: m_Name
-      value: blueDot
+      value: mushroom
       objectReference: {fileID: 0}
     - target: {fileID: 1443099175974271777, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6944217818768623157, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3aea3a84ad33fd6a3b15a14b3fcb50a4, type: 3}
+    - target: {fileID: 6944217818768623157, guid: 7a09b81eaad3ac326a1eed856000e2db, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
