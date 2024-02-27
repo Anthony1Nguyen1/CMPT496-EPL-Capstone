@@ -12,7 +12,7 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private AudioClip _pressSound;               // Sound
     [SerializeField] private AudioSource audioSource;
     public bool GameWon { get; private set; }                     // Flag that checks if game has been won.
-    private int tryNumber = 0;
+    private int tryNumber;
 
     private void Start()
     {
@@ -118,7 +118,7 @@ public class SubmitController : MonoBehaviour
         if (IsReadyForSubmit())
         {
             SubmitMove();
-            if (GameWon) { gameObject.SetActive(false); return; } // If won, disable try button and early exit.
+            if (GameWon || tryNumber == 12) { gameObject.SetActive(false); return; } // Win/loss will disable button.
             DeactivateDots();
         }
         else
