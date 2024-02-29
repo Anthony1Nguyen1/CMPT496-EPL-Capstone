@@ -1,8 +1,10 @@
 /* Description: Script on the "TRY" button (acts as a go-between for the HistoryController and ItemController scripts). */
 
+using System.Collections;
 using System.Collections.Generic;
 using TouchScript.Gestures;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SubmitController : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private int[] indices;                       // The indices of the items chosen.
     [SerializeField] private AudioClip _pressSound;               // Sound
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private Image _img;                           // Reference to the image component
+    [SerializeField] private Sprite _defaultSprite, _pressedSprite; // Sprites for default and pressed states
     public bool GameWon { get; private set; }                     // Flag that checks if game has been won.
     private int tryNumber;
 
@@ -115,10 +119,25 @@ public class SubmitController : MonoBehaviour
             audioSource.PlayOneShot(_pressSound);
         }
 
+        StartCoroutine(ChangeSpriteTemporarily());
+    }
+
+    // Coroutine to temporarily change sprite
+    private IEnumerator ChangeSpriteTemporarily()
+    {
+        // Change sprite to pressed sprite
+        _img.sprite = _pressedSprite;
+
+        // Wait for a short duration
+        yield return new WaitForSeconds(0.1f); // Adjust as needed
+
+        // Revert back to default sprite
+        _img.sprite = _defaultSprite;
+
         if (IsReadyForSubmit())
         {
             SubmitMove();
-            if (GameWon || tryNumber == 12) { gameObject.SetActive(false); return; } // Win/loss will disable button.
+            if (GameWon || tryNumber == 12) { gameObject.SetActive(false); yield break; } // Win/loss will disable button.
             DeactivateDots();
         }
         else
