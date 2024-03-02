@@ -15,6 +15,9 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private Image _img;                           // Reference to the image component
     [SerializeField] private Sprite _defaultSprite, _pressedSprite; // Sprites for default and pressed states
+
+    [SerializeField] private FrameAnimations frameAnimations;
+
     public bool GameWon { get; private set; }                     // Flag that checks if game has been won.
     private int tryNumber;
 
@@ -85,16 +88,6 @@ public class SubmitController : MonoBehaviour
         return activeChildren;
     }
 
-    // Purpose: Calls the submit function on the history script and increments the try number. Disables TRY button on win.
-    // Params: none
-    // Return: void
-    private void SubmitMove()
-    {
-        GameWon = historyController.Submit(GetActiveChildren(), tryNumber, indices).GameWon;
-        tryNumber++;
-        if (GameWon) { gameObject.SetActive(false); }
-    }
-
     // Purpose: Calls the deactivate dots function on the item script (for each item frame).
     // Params: none
     // Return: void
@@ -106,23 +99,23 @@ public class SubmitController : MonoBehaviour
         }
     }
 
-    private void OnEnable() { GetComponent<TapGesture>().Tapped += TappedHandler; }
-    private void OnDisable() { GetComponent<TapGesture>().Tapped -= TappedHandler; }
-
-    // Purpose: Main function for controlling submit behaviour.
-    // Params: sender, e
+    // Purpose: Calls the submit function on the history script and increments the try number. Disables TRY button on win.
+    // Params: none
     // Return: void
-    private void TappedHandler(object sender, System.EventArgs e)
+    private void SubmitMove()
     {
-        if (_pressSound != null && audioSource != null)
+        GameWon = historyController.Submit(GetActiveChildren(), tryNumber, indices).GameWon;
+        tryNumber++;
+        if (GameWon)
         {
-            audioSource.PlayOneShot(_pressSound);
+            gameObject.SetActive(false);
+            frameAnimations.PlayAnimations();
         }
-
-        StartCoroutine(ChangeSpriteTemporarily());
     }
 
-    // Coroutine to temporarily change sprite
+    // Purpose: Main logic for submitting game state.
+    // Params: none
+    // Return: void
     private IEnumerator ChangeSpriteTemporarily()
     {
         // Change sprite to pressed sprite
@@ -144,5 +137,21 @@ public class SubmitController : MonoBehaviour
         {
             Debug.Log("Not ready to submit!");
         }
+    }
+
+    private void OnEnable() { GetComponent<TapGesture>().Tapped += TappedHandler; }
+    private void OnDisable() { GetComponent<TapGesture>().Tapped -= TappedHandler; }
+
+    // Purpose: Main function for controlling submit behaviour.
+    // Params: sender, e
+    // Return: void
+    private void TappedHandler(object sender, System.EventArgs e)
+    {
+        if (_pressSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(_pressSound);
+        }
+
+        StartCoroutine(ChangeSpriteTemporarily());
     }
 }
