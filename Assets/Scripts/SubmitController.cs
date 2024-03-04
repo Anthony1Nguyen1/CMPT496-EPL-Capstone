@@ -16,7 +16,7 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private Image _img;                           // Reference to the image component
     [SerializeField] private Sprite _defaultSprite, _pressedSprite; // Sprites for default and pressed states
 
-    [SerializeField] private FrameAnimations frameAnimations;
+    [SerializeField] private WinAnimations WinAnimations;
 
     public bool GameWon { get; private set; }                     // Flag that checks if game has been won.
     private int tryNumber;
@@ -109,7 +109,7 @@ public class SubmitController : MonoBehaviour
         if (GameWon)
         {
             gameObject.SetActive(false);
-            frameAnimations.PlayAnimations();
+            WinAnimations.PlayAnimations();
         }
     }
 
