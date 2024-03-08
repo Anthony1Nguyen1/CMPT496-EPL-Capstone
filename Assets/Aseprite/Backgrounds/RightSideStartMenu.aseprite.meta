@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638429374866054005
+  platformSettingsDirtyTick: 638454836520810824
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 1080
       height: 1920
-    spriteID: 0894dd68ffe39bc4d82eb9ea1392695c
+    spriteID: 697f8bd118e41e04aac759c8960ec3ac
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -152,7 +152,7 @@ ScriptedImporter:
       y: 1932
       width: 1080
       height: 1920
-    spriteID: cf06a7cbb9167e74e9726890432ef5b2
+    spriteID: a6c716225616cf946a278736a14d9f40
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -172,7 +172,7 @@ ScriptedImporter:
       y: 3860
       width: 1080
       height: 1920
-    spriteID: 912b4075c50e1234382d7dc693d7add0
+    spriteID: f1fd8759464f7ff4dac7d31ecb3b4b2b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -192,7 +192,7 @@ ScriptedImporter:
       y: 5788
       width: 1080
       height: 1920
-    spriteID: 09999eaf181ff8148bf7297ebd364a15
+    spriteID: 8374a3e75f999bf4dbe8b5a58a48fe0e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -212,7 +212,7 @@ ScriptedImporter:
       y: 4
       width: 1080
       height: 1920
-    spriteID: df89cced8d66f854f8127b022d304902
+    spriteID: 71461feec0f1a4a409936ca48429d68a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -232,7 +232,7 @@ ScriptedImporter:
       y: 1932
       width: 1080
       height: 1920
-    spriteID: cf3c03a8093f23f4bac08aa928b66090
+    spriteID: 50b1ad8b272fc1643b702dd26a77fae6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -252,7 +252,7 @@ ScriptedImporter:
       y: 3860
       width: 1080
       height: 1920
-    spriteID: 1fd60d4d98e692f4fae1e5821b68fafd
+    spriteID: 46a498bd253012b48a41ab648aae0e57
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -261,6 +261,106 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 1092, y: 3860}
+  - name: RightSideStartMenu_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1092
+      y: 5788
+      width: 1080
+      height: 1920
+    spriteID: a3dc9a554d1a0ec40a2a9fd039127675
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 1092, y: 5788}
+  - name: RightSideStartMenu_Frame_8
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2180
+      y: 4
+      width: 1080
+      height: 1920
+    spriteID: 35e9d2b8811d260499796d53bccbea96
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 2180, y: 4}
+  - name: RightSideStartMenu_Frame_9
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2180
+      y: 1932
+      width: 1080
+      height: 1920
+    spriteID: fdffdd5b3700487489f71eed840f7124
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 2180, y: 1932}
+  - name: RightSideStartMenu_Frame_10
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2180
+      y: 3860
+      width: 1080
+      height: 1920
+    spriteID: bb00cbc1ba1a9214ea3406f4bc7d9f0a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 2180, y: 3860}
+  - name: RightSideStartMenu_Frame_11
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2180
+      y: 5788
+      width: 1080
+      height: 1920
+    spriteID: 114e003777a5cd24cbd9e2e1e0722296
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 2180, y: 5788}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -277,7 +377,7 @@ ScriptedImporter:
         y: 0
         width: 1080
         height: 1920
-      spriteId: 0894dd68ffe39bc4d82eb9ea1392695c
+      spriteId: 697f8bd118e41e04aac759c8960ec3ac
     - name: RightSideStartMenu_Frame_1
       frameIndex: 1
       cellRect:
@@ -285,7 +385,7 @@ ScriptedImporter:
         y: 0
         width: 1080
         height: 1920
-      spriteId: cf06a7cbb9167e74e9726890432ef5b2
+      spriteId: a6c716225616cf946a278736a14d9f40
     - name: RightSideStartMenu_Frame_2
       frameIndex: 2
       cellRect:
@@ -293,7 +393,7 @@ ScriptedImporter:
         y: 0
         width: 1080
         height: 1920
-      spriteId: 912b4075c50e1234382d7dc693d7add0
+      spriteId: f1fd8759464f7ff4dac7d31ecb3b4b2b
     - name: RightSideStartMenu_Frame_3
       frameIndex: 3
       cellRect:
@@ -301,7 +401,7 @@ ScriptedImporter:
         y: 0
         width: 1080
         height: 1920
-      spriteId: 09999eaf181ff8148bf7297ebd364a15
+      spriteId: 8374a3e75f999bf4dbe8b5a58a48fe0e
     - name: RightSideStartMenu_Frame_4
       frameIndex: 4
       cellRect:
@@ -309,7 +409,7 @@ ScriptedImporter:
         y: 0
         width: 1080
         height: 1920
-      spriteId: df89cced8d66f854f8127b022d304902
+      spriteId: 71461feec0f1a4a409936ca48429d68a
     - name: RightSideStartMenu_Frame_5
       frameIndex: 5
       cellRect:
@@ -317,7 +417,7 @@ ScriptedImporter:
         y: 0
         width: 1080
         height: 1920
-      spriteId: cf3c03a8093f23f4bac08aa928b66090
+      spriteId: 50b1ad8b272fc1643b702dd26a77fae6
     - name: RightSideStartMenu_Frame_6
       frameIndex: 6
       cellRect:
@@ -325,7 +425,47 @@ ScriptedImporter:
         y: 0
         width: 1080
         height: 1920
-      spriteId: 1fd60d4d98e692f4fae1e5821b68fafd
+      spriteId: 46a498bd253012b48a41ab648aae0e57
+    - name: RightSideStartMenu_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 0
+        y: 0
+        width: 1080
+        height: 1920
+      spriteId: a3dc9a554d1a0ec40a2a9fd039127675
+    - name: RightSideStartMenu_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 0
+        y: 0
+        width: 1080
+        height: 1920
+      spriteId: 35e9d2b8811d260499796d53bccbea96
+    - name: RightSideStartMenu_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 0
+        y: 0
+        width: 1080
+        height: 1920
+      spriteId: fdffdd5b3700487489f71eed840f7124
+    - name: RightSideStartMenu_Frame_10
+      frameIndex: 10
+      cellRect:
+        x: 0
+        y: 0
+        width: 1080
+        height: 1920
+      spriteId: bb00cbc1ba1a9214ea3406f4bc7d9f0a
+    - name: RightSideStartMenu_Frame_11
+      frameIndex: 11
+      cellRect:
+        x: 0
+        y: 0
+        width: 1080
+        height: 1920
+      spriteId: 114e003777a5cd24cbd9e2e1e0722296
     linkedCells: []
     parentIndex: -1
   platformSettings:
