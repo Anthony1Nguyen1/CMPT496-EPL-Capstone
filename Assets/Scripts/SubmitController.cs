@@ -15,7 +15,7 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private Image _img;                           // Reference to the image component
     [SerializeField] private Sprite _defaultSprite, _pressedSprite; // Sprites for default and pressed states
-
+    [SerializeField] private ScreenFade screenFade;
     [SerializeField] private WinAnimations WinAnimations;
 
     public bool GameWon { get; private set; }                     // Flag that checks if game has been won.
@@ -129,6 +129,7 @@ public class SubmitController : MonoBehaviour
 
         if (IsReadyForSubmit())
         {
+            screenFade.FadeInOut();
             SubmitMove();
             if (GameWon || tryNumber == 12) { gameObject.SetActive(false); yield break; } // Win/loss will disable button.
             DeactivateDots();
