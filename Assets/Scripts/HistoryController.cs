@@ -35,20 +35,18 @@ public class HistoryController : MonoBehaviour
     // Params: items: array of user-selected items
     //         tryNumber: the number of tries the user has attempted so far.
     // Return: the number of correct guesses.
-    public SubmitResult Submit(List<GameObject> items, int tryNumber, int[] indices)
+    public SubmitResult Submit(List<Sprite> items, int tryNumber, int[] indices)
     {
         var row = transform.GetChild(tryNumber); // Get the corresponding row in the history panel.
         for (var i = 0; i < items.Count; i++)
         {
-            var item     = items[i];                                         // Item to be copied.
-            var rowFrame = row.GetChild(i);                                  // Frame for the new item.
-            var newItem  = Instantiate(item, rowFrame, false); // Copy the item over.
-            newItem.SetActive(true);                                         // Make the new item active.
+            var item     = items[i];                          // Item to be copied.
+            var rowFrame = row.GetChild(i);                   // Frame for the new item.
+            Instantiate(item, rowFrame, false); // Copy the item over.
         }
 
         var correctGuesses = GetCorrectNumberOfItems(indices);
         row.GetChild(4).GetComponent<Image>().sprite = guessesBoxSprites[correctGuesses];
-
         var result = new SubmitResult
         {
             CorrectGuesses = correctGuesses,

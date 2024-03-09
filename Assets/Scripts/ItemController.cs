@@ -1,61 +1,52 @@
-/* Description: Script that handles the main category/item pane in the middle. */
-
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemController : MonoBehaviour
 {
-    public int CurrentIndex { get; private set; } = 0;
+    public int CurrentIndex { get; set; }
+    public GameObject initObject;
+    public Sprite[] sprites;
 
-    // Purpose: Instantiates all of the items and adds them to the dot pool for that item.
-    // Params: none
-    // Return: void
-    private void Start()
-    {
-        // Populate the itemPool with the child GameObjects of the Frame object
-        foreach (Transform child in transform)
-        {
-            child.gameObject.SetActive(false);
-        }
-    }
-
-    // Purpose: Cycles through the dotPool, downwards.
+    // Purpose: Cycles through the images downwards.
     // Params: none
     // Return: void
     public void CycleDown()
     {
         ToggleActive(false);
-        CurrentIndex = (CurrentIndex - 1 + transform.childCount) % transform.childCount;
+        CurrentIndex = (CurrentIndex - 1 + sprites.Length) % sprites.Length;
         ToggleActive(true);
     }
 
-    // Purpose: Cycles through the dotPool, upwards.
+    // Purpose: Cycles through the images upwards.
     // Params: none
     // Return: void
     public void CycleUp()
     {
         ToggleActive(false);
-        CurrentIndex = (CurrentIndex + 1) % transform.childCount;
+        CurrentIndex = (CurrentIndex + 1) % sprites.Length;
         ToggleActive(true);
     }
 
-    // Purpose: Deactivates or activates a prefab.
-    // Params: isActive: a boolean for whether the prefab is currently enabled/disabled.
+    // Purpose: Deactivates or activates an image.
+    // Params: isActive: a boolean for whether the image is currently enabled/disabled.
     // Return: void
     private void ToggleActive(bool isActive)
     {
-        transform.GetChild(CurrentIndex).gameObject.SetActive(isActive);
+        var image = initObject.transform;
+        if (isActive)
+        {
+            image.GetComponent<Image>().sprite = sprites[CurrentIndex];
+        }
+        image.gameObject.SetActive(isActive);
+        initObject.SetActive(isActive); // Hide the invisible object when an arrow is clicked
     }
 
-    // Purpose: Deactivates the item as well as its candidates.
+    // Purpose: Deactivates all images.
     // Params: none
     // Return: void
     public void DeactivateDots()
     {
         CurrentIndex = 0;
-        foreach (Transform child in transform)
-        {
-            child.gameObject.SetActive(false);
-        }
+        initObject.SetActive(false);
     }
-
 }
