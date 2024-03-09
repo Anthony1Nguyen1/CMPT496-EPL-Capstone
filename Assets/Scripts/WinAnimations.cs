@@ -8,6 +8,7 @@ public class WinAnimations : MonoBehaviour
 
     public void PlayAnimations()
     {
+        Debug.Log("WON ANIMATION");
         animator.SetTrigger("GameWon");
     }
 }
