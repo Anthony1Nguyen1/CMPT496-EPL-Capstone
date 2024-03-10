@@ -7,8 +7,6 @@ public class ItemController : MonoBehaviour
     public GameObject initObject;
     public Sprite[] sprites;
 
-    [SerializeField] private bool shouldReset;
-
     // Purpose: Cycles through the images downwards.
     // Params: none
     // Return: void

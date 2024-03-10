@@ -47,20 +47,21 @@ public class SubmitController : MonoBehaviour
     // Purpose: Gets the active sprites.
     // Params: none
     // Return: List of Sprites.
-    private List<Sprite> GetActiveItems()
+    private List<(Sprite sprite, Vector3 position)> GetActiveItems()
     {
-        var activeSprites = new List<Sprite>();
+        var activeItems = new List<(Sprite sprite, Vector3 position)>();
         indices = new int[items.Length];
 
         var i = 0;
         foreach (var item in items)
         {
-            activeSprites.Add(item.GetComponent<Image>().sprite);
+            var image = item.GetComponent<Image>();
+            activeItems.Add((image.sprite, item.transform.position));
             indices[i] = item.GetComponent<ItemController>().CurrentIndex;
             i++;
         }
 
-        return activeSprites;
+        return activeItems;
     }
 
     // Purpose: Calls the deactivate dots function on the item script (for each item frame).
@@ -79,8 +80,12 @@ public class SubmitController : MonoBehaviour
     // Return: void
     private void SubmitMove()
     {
-        GameWon = historyController.Submit(GetActiveItems(), tryNumber, indices).GameWon;
-        SubmitAnimations.PlayAnimations(tryNumber);
+        var activeItems = GetActiveItems();
+        var sprites = activeItems.Select(item => item.sprite).ToList();
+        var positions = activeItems.Select(item => item.position).ToList();
+
+        GameWon = historyController.Submit(sprites, positions, tryNumber, indices).GameWon;
+        // SubmitAnimations.PlayAnimations(tryNumber);
         tryNumber++;
         if (GameWon)
         {
