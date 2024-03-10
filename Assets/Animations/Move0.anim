@@ -30,7 +30,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.5
-        value: {x: 0.4086, y: 0.4086, z: 0.4086}
+        value: {x: 0.42889744, y: 0.42889744, z: 0.42889744}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -40,7 +40,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: CategoryA/FrameA/initCauldron
+    path: CategoryA/FrameA/animCauldron
   m_FloatCurves:
   - serializedVersion: 2
     curve:
@@ -57,7 +57,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5
-        value: -897
+        value: -898
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -68,7 +68,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: CategoryA/FrameA/initCauldron
+    path: CategoryA/FrameA/animCauldron
     classID: 224
     script: {fileID: 0}
     flags: 0
@@ -98,7 +98,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: CategoryA/FrameA/initCauldron
+    path: CategoryA/FrameA/animCauldron
     classID: 224
     script: {fileID: 0}
     flags: 0
@@ -111,7 +111,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 2291560422
+      path: 2398743858
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -120,7 +120,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 2291560422
+      path: 2398743858
       attribute: 1460864421
       script: {fileID: 0}
       typeID: 224
@@ -129,7 +129,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 2291560422
+      path: 2398743858
       attribute: 538195251
       script: {fileID: 0}
       typeID: 224
@@ -174,7 +174,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5
-        value: -897
+        value: -898
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -185,7 +185,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: CategoryA/FrameA/initCauldron
+    path: CategoryA/FrameA/animCauldron
     classID: 224
     script: {fileID: 0}
     flags: 0
@@ -215,7 +215,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: CategoryA/FrameA/initCauldron
+    path: CategoryA/FrameA/animCauldron
     classID: 224
     script: {fileID: 0}
     flags: 0
@@ -234,7 +234,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5
-        value: 0.4086
+        value: 0.42889744
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -245,7 +245,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: CategoryA/FrameA/initCauldron
+    path: CategoryA/FrameA/animCauldron
     classID: 224
     script: {fileID: 0}
     flags: 0
@@ -264,7 +264,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5
-        value: 0.4086
+        value: 0.42889744
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -275,7 +275,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: CategoryA/FrameA/initCauldron
+    path: CategoryA/FrameA/animCauldron
     classID: 224
     script: {fileID: 0}
     flags: 0
@@ -294,7 +294,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5
-        value: 0.4086
+        value: 0.42889744
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -305,7 +305,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: CategoryA/FrameA/initCauldron
+    path: CategoryA/FrameA/animCauldron
     classID: 224
     script: {fileID: 0}
     flags: 0
