@@ -6,9 +6,8 @@ public class SubmitAnimations : MonoBehaviour
 {
     [SerializeField] private Animator animator = null;
 
-    public void PlayAnimations()
+    public void PlayAnimations(int TryNumber)
     {
-        Debug.Log("SUBMIT ANIMATION");
-        animator.SetTrigger("SubmitClicked");
+        animator.Play("Move0");
     }
 }

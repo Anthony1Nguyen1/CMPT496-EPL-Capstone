@@ -7,6 +7,8 @@ public class ItemController : MonoBehaviour
     public GameObject initObject;
     public Sprite[] sprites;
 
+    [SerializeField] private bool shouldReset;
+
     // Purpose: Cycles through the images downwards.
     // Params: none
     // Return: void
@@ -30,7 +32,7 @@ public class ItemController : MonoBehaviour
     // Purpose: Deactivates or activates an image.
     // Params: isActive: a boolean for whether the image is currently enabled/disabled.
     // Return: void
-    private void ToggleActive(bool isActive)
+    protected virtual void ToggleActive(bool isActive)
     {
         var image = initObject.transform;
         if (isActive)
@@ -44,7 +46,7 @@ public class ItemController : MonoBehaviour
     // Purpose: Deactivates all images.
     // Params: none
     // Return: void
-    public void DeactivateDots()
+    public virtual void DeactivateDots()
     {
         CurrentIndex = 0;
         initObject.SetActive(false);

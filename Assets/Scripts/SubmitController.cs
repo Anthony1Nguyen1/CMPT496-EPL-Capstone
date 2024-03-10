@@ -21,7 +21,7 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private SubmitAnimations SubmitAnimations;
 
     public bool GameWon { get; private set; }                     // Flag that checks if game has been won.
-    private int tryNumber;
+    [SerializeField] private int tryNumber;
 
     private void Start()
     {
@@ -80,7 +80,7 @@ public class SubmitController : MonoBehaviour
     private void SubmitMove()
     {
         GameWon = historyController.Submit(GetActiveItems(), tryNumber, indices).GameWon;
-        SubmitAnimations.PlayAnimations();
+        SubmitAnimations.PlayAnimations(tryNumber);
         tryNumber++;
         if (GameWon)
         {

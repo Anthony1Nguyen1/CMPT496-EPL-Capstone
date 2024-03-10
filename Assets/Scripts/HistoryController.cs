@@ -1,6 +1,7 @@
 /* Description: Script that controls the history panel. */
 
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,16 +38,7 @@ public class HistoryController : MonoBehaviour
     // Return: the number of correct guesses.
     public SubmitResult Submit(List<Sprite> items, int tryNumber, int[] indices)
     {
-        var row = transform.GetChild(tryNumber); // Get the corresponding row in the history panel.
-        for (var i = 0; i < items.Count; i++)
-        {
-            var item     = items[i];                          // Item to be copied.
-            var rowFrame = row.GetChild(i);                   // Frame for the new item.
-            Instantiate(item, rowFrame, false); // Copy the item over.
-        }
-
         var correctGuesses = GetCorrectNumberOfItems(indices);
-        row.GetChild(4).GetComponent<Image>().sprite = guessesBoxSprites[correctGuesses];
         var result = new SubmitResult
         {
             CorrectGuesses = correctGuesses,
