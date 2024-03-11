@@ -17,7 +17,7 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private Image _img;                           // Reference to the image component
     [SerializeField] private Sprite _defaultSprite, _pressedSprite; // Sprites for default and pressed states
     [SerializeField] private ScreenFade screenFade;
-    [SerializeField] private WinAnimations WinAnimations;
+    // [SerializeField] private WinAnimations WinAnimations;
     [SerializeField] private SubmitAnimations SubmitAnimations;
 
     public bool GameWon { get; private set; }                     // Flag that checks if game has been won.
@@ -81,16 +81,25 @@ public class SubmitController : MonoBehaviour
     private void SubmitMove()
     {
         var activeItems = GetActiveItems();
-        var sprites   = activeItems.Select(item => item.sprite).ToList();
-        var sources   = activeItems.Select(item => item.source).ToList();
+        var sprites = activeItems.Select(item => item.sprite).ToList();
+        var sources = activeItems.Select(item => item.source).ToList();
 
-        GameWon = historyController.Submit(sprites, sources, tryNumber, indices).GameWon;
-        // SubmitAnimations.PlayAnimations(tryNumber);
+        StartCoroutine(AnimateAndSubmit(sprites, sources));
+    }
+
+    private IEnumerator AnimateAndSubmit(List<Sprite> sprites, List<GameObject> sources)
+    {
+        SubmitAnimations.AnimateActiveSprites(sprites, sources, tryNumber, historyController.transform);
+
+        // Wait for one second before displaying results.
+        yield return new WaitForSeconds(1.3f);
+        GameWon = historyController.GetResult(indices, tryNumber).GameWon;
         tryNumber++;
+
         if (GameWon)
         {
             gameObject.SetActive(false);
-            WinAnimations.PlayAnimations();
+            // WinAnimations.PlayAnimations();
         }
     }
 

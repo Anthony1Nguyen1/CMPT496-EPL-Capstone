@@ -328,7 +328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4300245825233504944, guid: 3df2ea6054688c99d94a538d7708e829, type: 3}
       propertyPath: m_Name
-      value: Frame3
+      value: Frame2
       objectReference: {fileID: 0}
     - target: {fileID: 7399567830899531460, guid: 3df2ea6054688c99d94a538d7708e829, type: 3}
       propertyPath: m_PreserveAspect
@@ -2985,10 +2985,8 @@ GameObject:
   m_Component:
   - component: {fileID: 527293082}
   - component: {fileID: 527293083}
-  - component: {fileID: 527293085}
   - component: {fileID: 527293084}
   - component: {fileID: 527293086}
-  - component: {fileID: 527293087}
   m_Layer: 6
   m_Name: Categories
   m_TagString: Untagged
@@ -3043,28 +3041,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04270432d689b23c296e1a7619d4413d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 527293085}
---- !u!95 &527293085
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 527293081}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f807d35d55eab74cda15bb7420c8eb2a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &527293086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3077,23 +3053,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1dbc25da2f9b847cbc374b4e89fa899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 527293085}
---- !u!111 &527293087
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 527293081}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 7400000, guid: f973dd57fad6f5240b29274eb7fc575e, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!224 &534293166 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4228031448413040393, guid: 3df2ea6054688c99d94a538d7708e829, type: 3}
@@ -7490,7 +7449,6 @@ MonoBehaviour:
   _defaultSprite: {fileID: 21300000, guid: 751d5aeb6b1aff24eaee53a4ba4b1cb7, type: 3}
   _pressedSprite: {fileID: 21300000, guid: b281b919d9fd086428fb7dbaad9d8ea9, type: 3}
   screenFade: {fileID: 1126045009}
-  WinAnimations: {fileID: 527293084}
   SubmitAnimations: {fileID: 527293086}
   tryNumber: 0
 --- !u!114 &1439255033
@@ -11150,7 +11108,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4300245825233504944, guid: 3df2ea6054688c99d94a538d7708e829, type: 3}
       propertyPath: m_Name
-      value: Frame4
+      value: Frame3
       objectReference: {fileID: 0}
     - target: {fileID: 7399567830899531460, guid: 3df2ea6054688c99d94a538d7708e829, type: 3}
       propertyPath: m_PreserveAspect

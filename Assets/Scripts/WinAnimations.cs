@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class WinAnimations : MonoBehaviour
 {
-    [SerializeField] private Animator animator = null;
+    // [SerializeField] private Animator animator = null;
 
     public void PlayAnimations()
     {
         Debug.Log("WON ANIMATION");
-        animator.SetTrigger("GameWon");
+        // animator.SetTrigger("GameWon");
     }
 }
