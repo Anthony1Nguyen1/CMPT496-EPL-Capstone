@@ -17,6 +17,7 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private Image _img;                           // Reference to the image component
     [SerializeField] private Sprite _defaultSprite, _pressedSprite; // Sprites for default and pressed states
     [SerializeField] private ScreenFade screenFade;
+    [SerializeField] private GameObject[] cauldrons;
     // [SerializeField] private WinAnimations WinAnimations;
     [SerializeField] private SubmitAnimations SubmitAnimations;
 
@@ -100,6 +101,20 @@ public class SubmitController : MonoBehaviour
         {
             gameObject.SetActive(false);
             // WinAnimations.PlayAnimations();
+        }
+
+        // Show the corresponding cauldron and hide the others
+        var selectedCauldronIndex = indices[0]; // Assuming the first item determines the cauldron
+        for (int i = 0; i < cauldrons.Length; i++)
+        {
+            if (i == selectedCauldronIndex)
+            {
+                cauldrons[i].SetActive(true);
+            }
+            else
+            {
+                cauldrons[i].SetActive(false);
+            }
         }
     }
 
