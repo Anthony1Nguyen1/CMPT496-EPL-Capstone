@@ -1,6 +1,5 @@
 /* Description: Script that controls the history panel. */
 
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,27 +27,17 @@ public class HistoryController : MonoBehaviour
             pattern[i] = (Random.Range(0, 4));
         }
         print("Pattern is: " + string.Join(", ", pattern));
-
     }
 
     // Purpose: Fills a row/move in the history panel with whatever the user submitted.
     // Params: items: array of user-selected items
     //         tryNumber: the number of tries the user has attempted so far.
     // Return: the number of correct guesses.
-    public SubmitResult Submit(List<GameObject> items, int tryNumber, int[] indices)
+    public SubmitResult GetResult(int[] indices, int tryNumber)
     {
-        var row = transform.GetChild(tryNumber); // Get the corresponding row in the history panel.
-        for (var i = 0; i < items.Count; i++)
-        {
-            var item     = items[i];                                         // Item to be copied.
-            var rowFrame = row.GetChild(i);                                  // Frame for the new item.
-            var newItem  = Instantiate(item, rowFrame, false); // Copy the item over.
-            newItem.SetActive(true);                                         // Make the new item active.
-        }
-
         var correctGuesses = GetCorrectNumberOfItems(indices);
+        var row = transform.GetChild(tryNumber);
         row.GetChild(4).GetComponent<Image>().sprite = guessesBoxSprites[correctGuesses];
-
         var result = new SubmitResult
         {
             CorrectGuesses = correctGuesses,
@@ -58,6 +47,10 @@ public class HistoryController : MonoBehaviour
         return result;
     }
 
+
+    // Purpose: Calculates the number of correctly guessed items (provided indices vs. this object's pattern).
+    // Params: indices: An array containing the indices of the user's guesses.
+    // Return: the number of correct guesses.
     private int GetCorrectNumberOfItems(int[] indices)
     {
         var correctSoFar = 0;
@@ -68,5 +61,4 @@ public class HistoryController : MonoBehaviour
 
         return correctSoFar;
     }
-
 }

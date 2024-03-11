@@ -2,6 +2,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TouchScript.Gestures;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,10 +17,11 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private Image _img;                           // Reference to the image component
     [SerializeField] private Sprite _defaultSprite, _pressedSprite; // Sprites for default and pressed states
     [SerializeField] private ScreenFade screenFade;
-    [SerializeField] private WinAnimations WinAnimations;
+    // [SerializeField] private WinAnimations WinAnimations;
+    [SerializeField] private SubmitAnimations SubmitAnimations;
 
     public bool GameWon { get; private set; }                     // Flag that checks if game has been won.
-    private int tryNumber;
+    [SerializeField] private int tryNumber;
 
     private void Start()
     {
@@ -39,53 +41,27 @@ public class SubmitController : MonoBehaviour
     // Return: true if all boxes have been filled, false otherwise.
     private bool IsReadyForSubmit()
     {
-        // Iterate over each item.
-        foreach (var item in items)
-        {
-            GameObject activeChild = null;
-
-            // Iterate over the children of the item.
-            foreach (Transform child in item.transform)
-            {
-                if (child.gameObject.activeInHierarchy)
-                {
-                    activeChild = child.gameObject;
-                    break;
-                }
-            }
-
-            // If we hit this line, we know there is an inactive child.
-            if (activeChild == null) { return false; }
-        }
-
-        return true;
+        return items.All(item => item.activeSelf);
     }
 
-    // Purpose: Gets the active prefab within the frame.
+    // Purpose: Gets the active sprites.
     // Params: none
-    // Return: The actual objects the user has selected for submission.
-    private List<GameObject> GetActiveChildren()
+    // Return: List of Sprites.
+    private List<(Sprite sprite, GameObject source)> GetActiveItems()
     {
-        var activeChildren = new List<GameObject>();
+        var activeItems = new List<(Sprite sprite, GameObject source)>();
+        indices         = new int[items.Length];
 
-        indices = new int[items.Length];
-
-        for(var i = 0; i < items.Length; i++)
+        var i = 0;
+        foreach (var item in items)
         {
-            foreach (Transform child in items[i].transform)
-            {
-                if (child.gameObject.activeInHierarchy)
-                {
-                    activeChildren.Add(child.gameObject);
-
-                    var index = items[i].GetComponent<ItemController>().CurrentIndex;
-                    indices[i] = index;
-                    break;
-                }
-            }
+            var image = item.GetComponent<Image>();
+            activeItems.Add((image.sprite, item));
+            indices[i] = item.GetComponent<ItemController>().CurrentIndex;
+            i++;
         }
 
-        return activeChildren;
+        return activeItems;
     }
 
     // Purpose: Calls the deactivate dots function on the item script (for each item frame).
@@ -104,12 +80,26 @@ public class SubmitController : MonoBehaviour
     // Return: void
     private void SubmitMove()
     {
-        GameWon = historyController.Submit(GetActiveChildren(), tryNumber, indices).GameWon;
+        var activeItems = GetActiveItems();
+        var sprites = activeItems.Select(item => item.sprite).ToList();
+        var sources = activeItems.Select(item => item.source).ToList();
+
+        StartCoroutine(AnimateAndSubmit(sprites, sources));
+    }
+
+    private IEnumerator AnimateAndSubmit(List<Sprite> sprites, List<GameObject> sources)
+    {
+        SubmitAnimations.AnimateActiveSprites(sprites, sources, tryNumber, historyController.transform);
+
+        // Wait for one second before displaying results.
+        yield return new WaitForSeconds(1.3f);
+        GameWon = historyController.GetResult(indices, tryNumber).GameWon;
         tryNumber++;
+
         if (GameWon)
         {
             gameObject.SetActive(false);
-            WinAnimations.PlayAnimations();
+            // WinAnimations.PlayAnimations();
         }
     }
 
