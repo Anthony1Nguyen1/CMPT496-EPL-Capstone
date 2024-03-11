@@ -1,7 +1,5 @@
 /* Description: Script that controls the history panel. */
 
-/* Description: Script that controls the history panel. */
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,9 +35,9 @@ public class HistoryController : MonoBehaviour
     // Params: items: array of user-selected items
     //         tryNumber: the number of tries the user has attempted so far.
     // Return: the number of correct guesses.
-    public SubmitResult Submit(List<Sprite> items, List<Vector3> positions, int tryNumber, int[] indices)
+    public SubmitResult Submit(List<Sprite> sprites, List<GameObject> sources, int tryNumber, int[] indices)
     {
-        AnimateActiveSprites(items, positions);
+        AnimateActiveSprites(sprites, sources, tryNumber);
         var correctGuesses = GetCorrectNumberOfItems(indices);
         var result = new SubmitResult
         {
@@ -51,49 +49,82 @@ public class HistoryController : MonoBehaviour
     }
 
     // Purpose: Animate the sprites to move to specific destination positions within the history panel.
-    // Params: activeSprites: List of active sprites to animate
-    //         destinations: List of destination positions for the active sprites
+    // Params: sprites: List of active sprites to animate
+    //         sources: Initial GameObjects selected (e.g. initCauldron, etc.)
+    //         tryNumber: The current move the user is on
     // Return: void
     // ReSharper disable Unity.PerformanceAnalysis
-    public void AnimateActiveSprites(List<Sprite> sprites, List<Vector3> positions)
+    public void AnimateActiveSprites(List<Sprite> sprites, List<GameObject> sources, int tryNumber)
     {
-
-        // TODO: Get the AnimatedSprite into the specific move in the history panel
-        // TODO: Get the sprite to show up as verification
-        // TODO: Once verified, figure out how to handle destinations
-
-        // Loop through each sprite
-        for (var i = 0; i < sprites.Count; i++)
-        {
-            // Instantiate the GameObject and attach an Image component
-            var animatedSpriteObject = new GameObject("AnimatedSprite");
-            var imageComponent       = animatedSpriteObject.AddComponent<Image>();
-            imageComponent.sprite    = sprites[i];
-
-            // Set the position and parent of the new copy
-            animatedSpriteObject.transform.position = positions[i];
-            animatedSpriteObject.transform.SetParent(transform);
-
-            // Start coroutine to move the animated sprite to its destination
-            // StartCoroutine(MoveSpriteCoroutine(animatedSpriteObject, destinations[i]));
-        }
+        InstantiateCopies(sprites, sources, tryNumber);
+        // StartCoroutine(AnimateCopies(sprites, sources, tryNumber));
     }
+    private void InstantiateCopies(List<Sprite> sprites, List<GameObject> sources, int tryNumber)
+        {
+            // Loop through each sprite
+            for (var i = 0; i < sprites.Count; i++)
+            {
+                // Instantiate the GameObject and attach an Image component.
+                var animatedSpriteObject = new GameObject($"Copy{i}");
+                var imageComponent = animatedSpriteObject.AddComponent<Image>();
+                imageComponent.sprite = sprites[i];
+
+                // Make a copy of the ingredient.
+                var copy = new GameObject($"Copy{i}");
+
+                // Set the sprite and preserve its aspect.
+                var imgComponent = copy.AddComponent<Image>();
+                imgComponent.sprite = sprites[i];
+                imgComponent.preserveAspect = true;
+
+                // Set the initial parent to the parent of the source object.
+                copy.transform.SetParent(sources[i].transform.parent);
+                copy.transform.localPosition = sources[i].transform.localPosition;
+
+                // Set the size of the copy to match the size of the source.
+                var sourceRect = sources[i].GetComponent<RectTransform>();
+                var copyRect   = copy.GetComponent<RectTransform>();
+                copyRect.sizeDelta = sourceRect.sizeDelta;
+
+                // Get destination location.
+                var frameIndex = i % 4;
+                var move = $"Move{tryNumber}";
+                var destinationFrame = transform.Find(move).Find($"Frame{frameIndex}");
+                Debug.Log($"Parent is: {move}, {destinationFrame}");
+
+                // Start animation coroutine.
+                // yield return StartCoroutine(MoveSpriteCoroutine(copy.transform, destinationFrame.transform, 1f));
+                //
+
+                // Set the copy's parent to the destination frame.
+                // copy.transform.SetParent(destinationFrame);
+            }
+        }
 
     // Coroutine to move the sprite to the animation destination
-    private IEnumerator MoveSpriteCoroutine(GameObject animatedSpriteObject, Vector3 destination)
+    private IEnumerator MoveSpriteCoroutine(Transform objTransform, Transform destinationTransform, float duration)
     {
-        const float duration = 2f;
-        var startPosition = animatedSpriteObject.transform.position;
-
+        var startPosition = objTransform.position;
+        var startScale = objTransform.localScale;
+        var destinationPosition = destinationTransform.position;
+        var destinationScale = new Vector3(0.45f, 0.45f);
         var elapsedTime = 0f;
+
         while (elapsedTime < duration)
         {
-            animatedSpriteObject.transform.position = Vector3.Lerp(startPosition, destination, elapsedTime / duration);
+            // Interpolate position
+            objTransform.position = Vector3.Lerp(startPosition, destinationPosition, elapsedTime / duration);
+
+            // Interpolate scale
+            objTransform.localScale = Vector3.Lerp(startScale, destinationScale, elapsedTime / duration);
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        // Destroy(animatedSpriteObject); // Destroy the animated sprite object after animation is complete
+        // Ensure final position and scale are exact
+        objTransform.position = destinationPosition;
+        objTransform.localScale = destinationScale;
     }
 
     // Helper method to calculate the correct number of items

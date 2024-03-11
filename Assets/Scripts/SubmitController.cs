@@ -47,16 +47,16 @@ public class SubmitController : MonoBehaviour
     // Purpose: Gets the active sprites.
     // Params: none
     // Return: List of Sprites.
-    private List<(Sprite sprite, Vector3 position)> GetActiveItems()
+    private List<(Sprite sprite, GameObject source)> GetActiveItems()
     {
-        var activeItems = new List<(Sprite sprite, Vector3 position)>();
-        indices = new int[items.Length];
+        var activeItems = new List<(Sprite sprite, GameObject source)>();
+        indices         = new int[items.Length];
 
         var i = 0;
         foreach (var item in items)
         {
             var image = item.GetComponent<Image>();
-            activeItems.Add((image.sprite, item.transform.position));
+            activeItems.Add((image.sprite, item));
             indices[i] = item.GetComponent<ItemController>().CurrentIndex;
             i++;
         }
@@ -81,10 +81,10 @@ public class SubmitController : MonoBehaviour
     private void SubmitMove()
     {
         var activeItems = GetActiveItems();
-        var sprites = activeItems.Select(item => item.sprite).ToList();
-        var positions = activeItems.Select(item => item.position).ToList();
+        var sprites   = activeItems.Select(item => item.sprite).ToList();
+        var sources   = activeItems.Select(item => item.source).ToList();
 
-        GameWon = historyController.Submit(sprites, positions, tryNumber, indices).GameWon;
+        GameWon = historyController.Submit(sprites, sources, tryNumber, indices).GameWon;
         // SubmitAnimations.PlayAnimations(tryNumber);
         tryNumber++;
         if (GameWon)
