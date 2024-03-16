@@ -121,6 +121,20 @@ public class SubmitController : MonoBehaviour
             }
         }
 
+        // Stop previous animations before starting new ones
+        foreach (var potion in potions)
+        {
+            potion.GetComponent<ItemAnimation>().StopAnimation();
+        }
+        foreach (var crystal in crystals)
+        {
+            crystal.GetComponent<ItemAnimation>().StopAnimation();
+        }
+        foreach (var misc in misc)
+        {
+            misc.GetComponent<ItemAnimation>().StopAnimation();
+        }
+
         var selectedPotionIndex = indices[1]; // Assuming the first item determines the cauldron
         for (int i = 0; i < potions.Length; i++)
         {

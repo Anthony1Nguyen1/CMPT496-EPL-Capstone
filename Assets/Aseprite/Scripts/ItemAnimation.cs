@@ -10,15 +10,20 @@ public class ItemAnimation : MonoBehaviour
     {
         if (animator != null)
         {
-            StartCoroutine(PlayAnimationWithDelay());
+            // Stop the current animation
+            StopAnimation();
+
+            // Start the new animation
+            animator.SetTrigger("MoveTrigger");
         }
     }
 
-    private IEnumerator PlayAnimationWithDelay()
+    // Method to stop the animation
+    public void StopAnimation()
     {
-
-        yield return new WaitForSeconds(1.0f); // Adjust the delay as needed
-
-        animator.SetTrigger("MoveTrigger"); // Set the trigger or boolean parameter to start the animation
+        if (animator != null)
+        {
+            animator.Rebind(); // Reset the animator to its initial state
+        }
     }
 }
