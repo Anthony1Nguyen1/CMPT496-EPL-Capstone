@@ -18,6 +18,10 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private Sprite _defaultSprite, _pressedSprite; // Sprites for default and pressed states
     [SerializeField] private ScreenFade screenFade;
     [SerializeField] private GameObject[] cauldrons;
+    [SerializeField] private GameObject[] potions;
+    [SerializeField] private GameObject[] crystals;
+    [SerializeField] private GameObject[] misc;
+
     // [SerializeField] private WinAnimations WinAnimations;
     [SerializeField] private SubmitAnimations SubmitAnimations;
 
@@ -116,6 +120,40 @@ public class SubmitController : MonoBehaviour
                 cauldrons[i].SetActive(false);
             }
         }
+
+        var selectedPotionIndex = indices[1]; // Assuming the first item determines the cauldron
+        for (int i = 0; i < potions.Length; i++)
+        {
+            if (i == selectedPotionIndex)
+            {
+                var itemAnimation = potions[i].GetComponent<ItemAnimation>();
+                itemAnimation.MoveToCauldron();
+                yield return new WaitForSeconds(1.0f); // Adjust the delay as needed
+            }
+        }
+
+        var selectedCrystalIndex = indices[2]; // Assuming the first item determines the cauldron
+        for (int i = 0; i < crystals.Length; i++)
+        {
+            if (i == selectedCrystalIndex)
+            {
+                var itemAnimation = crystals[i].GetComponent<ItemAnimation>();
+                itemAnimation.MoveToCauldron();
+                yield return new WaitForSeconds(1.0f); // Adjust the delay as needed
+            }
+        }
+
+        var selectedMiscIndex = indices[3]; // Assuming the first item determines the cauldron
+        for (int i = 0; i < misc.Length; i++)
+        {
+            if (i == selectedMiscIndex)
+            {
+                var itemAnimation = misc[i].GetComponent<ItemAnimation>();
+                itemAnimation.MoveToCauldron();
+                yield return new WaitForSeconds(1.0f); // Adjust the delay as needed
+            }
+        }
+
     }
 
     // Purpose: Main logic for submitting game state.
