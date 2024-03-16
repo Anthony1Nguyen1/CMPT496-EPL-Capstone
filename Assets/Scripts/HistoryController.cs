@@ -8,6 +8,7 @@ public class HistoryController : MonoBehaviour
     [SerializeField] private Sprite[] guessesBoxSprites;
     [SerializeField] private int[] pattern;
     [SerializeField] private bool useDotIndicators;
+    [SerializeField] private Sprite greenFrame;
 
     // Subclass for the submit result (returns amount of correct guesses and whether the game has been won)
     public class SubmitResult
@@ -43,6 +44,18 @@ public class HistoryController : MonoBehaviour
         if (useDotIndicators)
         {
             row.GetChild(4).GetComponent<Image>().sprite = guessesBoxSprites[correctGuesses];
+        }
+
+        // Green frames used in easier difficulty.
+        else
+        {
+            for (var i = 0; i < pattern.Length; i++)
+            {
+                if (pattern[i] == indices[i])
+                {
+                    row.GetChild(i).GetComponent<Image>().sprite = greenFrame;
+                }
+            }
         }
 
         var result = new SubmitResult

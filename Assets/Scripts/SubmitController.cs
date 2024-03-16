@@ -89,9 +89,11 @@ public class SubmitController : MonoBehaviour
         var sprites = activeItems.Select(item => item.sprite).ToList();
         var sources = activeItems.Select(item => item.source).ToList();
 
+        // This is his call to the function I want moved
         StartCoroutine(AnimateAndSubmit(sprites, sources));
     }
 
+    // This is the function I want moved
     private IEnumerator AnimateAndSubmit(List<Sprite> sprites, List<GameObject> sources)
     {
         SubmitAnimations.AnimateActiveSprites(sprites, sources, tryNumber, historyController.transform);
