@@ -16,11 +16,15 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private Image _img;                           // Reference to the image component
     [SerializeField] private Sprite _defaultSprite, _pressedSprite; // Sprites for default and pressed states
-    [SerializeField] private ScreenFade screenFade;
-    [SerializeField] private GameObject[] cauldrons;
-    [SerializeField] private GameObject[] potions;
-    [SerializeField] private GameObject[] crystals;
-    [SerializeField] private GameObject[] misc;
+    [SerializeField] private ScreenFade screenFade;     // Screen fade animation
+    [SerializeField] private GameObject[] cauldrons;    // Cauldron objects
+    [SerializeField] private GameObject[] potions;      // Potion objects
+    [SerializeField] private GameObject[] crystals;     // Crystal objects
+    [SerializeField] private GameObject[] misc;         // Misc objects
+    [SerializeField] private Image wrongAnswer;
+    [SerializeField] private WrongAnswerImageManager wrongAnswerImageManager;
+    [SerializeField] private float cooldownTime = 2f; // Cooldown time in seconds
+    private bool canTap = true; // Flag to track if the image can be tapped
 
     // [SerializeField] private WinAnimations WinAnimations;
     [SerializeField] private SubmitAnimations SubmitAnimations;
@@ -109,6 +113,8 @@ public class SubmitController : MonoBehaviour
             // WinAnimations.PlayAnimations();
         }
 
+        wrongAnswerImageManager.ResetWrongAnswerImageFlag();
+
         // Show the corresponding cauldron and hide the others
         var selectedCauldronIndex = indices[0]; // Assuming the first item determines the cauldron
         for (int i = 0; i < cauldrons.Length; i++)
@@ -123,39 +129,42 @@ public class SubmitController : MonoBehaviour
             }
         }
 
-        var selectedPotionIndex = indices[1]; // Assuming the first item determines the cauldron
-        for (int i = 0; i < potions.Length; i++)
+        // Stop previous animations before starting new ones
+        foreach (var potion in potions)
         {
-            if (i == selectedPotionIndex)
-            {
-                var itemAnimation = potions[i].GetComponent<ItemAnimation>();
-                itemAnimation.MoveToCauldron();
-                yield return new WaitForSeconds(1.0f); // Adjust the delay as needed
-            }
+            potion.GetComponent<ItemAnimation>().StopAnimation();
+        }
+        foreach (var crystal in crystals)
+        {
+            crystal.GetComponent<ItemAnimation>().StopAnimation();
+        }
+        foreach (var miscs in misc)
+        {
+            miscs.GetComponent<ItemAnimation>().StopAnimation();
         }
 
-        var selectedCrystalIndex = indices[2]; // Assuming the first item determines the cauldron
-        for (int i = 0; i < crystals.Length; i++)
+        // Start animations for selected items
+        // Stop previous animations before starting new ones
+        yield return StartCoroutine(AnimateItems(potions, indices[1])); // Potions
+        yield return StartCoroutine(AnimateItems(crystals, indices[2])); // Crystals
+        yield return StartCoroutine(AnimateItems(misc, indices[3])); // Misc
+
+        // Wait for 1 second
+        yield return new WaitForSeconds(1.0f);
+
+        // Show the wrong answer image after animations
+        wrongAnswerImageManager.ShowWrongAnswerImage();
+    }
+    private IEnumerator AnimateItems(GameObject[] items, int selectedIndex)
+    {
+        if (selectedIndex < 0 || selectedIndex >= items.Length)
         {
-            if (i == selectedCrystalIndex)
-            {
-                var itemAnimation = crystals[i].GetComponent<ItemAnimation>();
-                itemAnimation.MoveToCauldron();
-                yield return new WaitForSeconds(1.0f); // Adjust the delay as needed
-            }
+            yield break; // Invalid index, do nothing
         }
 
-        var selectedMiscIndex = indices[3]; // Assuming the first item determines the cauldron
-        for (int i = 0; i < misc.Length; i++)
-        {
-            if (i == selectedMiscIndex)
-            {
-                var itemAnimation = misc[i].GetComponent<ItemAnimation>();
-                itemAnimation.MoveToCauldron();
-                yield return new WaitForSeconds(1.0f); // Adjust the delay as needed
-            }
-        }
-
+        var itemAnimation = items[selectedIndex].GetComponent<ItemAnimation>();
+        itemAnimation.MoveToCauldron();
+        yield return new WaitForSeconds(1.0f); // Adjust the delay as needed
     }
 
     // Purpose: Main logic for submitting game state.
@@ -184,6 +193,28 @@ public class SubmitController : MonoBehaviour
             Debug.Log("Not ready to submit!");
         }
     }
+    private IEnumerator SubmitWithCooldown()
+    {
+        // Disable tapping on the submit image
+        canTap = false;
+
+        // Wait for the cooldown period
+        yield return new WaitForSeconds(cooldownTime);
+
+        // Enable tapping on the submit image after the cooldown period
+        canTap = true;
+
+        // Proceed with the submit logic here
+        // For example, you can call another method to handle the submit action
+        HandleSubmit();
+    }
+
+    private void HandleSubmit()
+    {
+        // Implement your submit logic here
+        // This method will be called after the cooldown period
+        Debug.Log("Submit action executed!");
+    }
 
     private void OnEnable() { GetComponent<TapGesture>().Tapped += TappedHandler; }
     private void OnDisable() { GetComponent<TapGesture>().Tapped -= TappedHandler; }
@@ -193,6 +224,10 @@ public class SubmitController : MonoBehaviour
     // Return: void
     private void TappedHandler(object sender, System.EventArgs e)
     {
+        if (!canTap) return; // If tapping is not allowed, exit the method
+        // If tapping is allowed, proceed with the tap logic
+        StartCoroutine(SubmitWithCooldown());
+
         if (_pressSound != null && audioSource != null)
         {
             audioSource.PlayOneShot(_pressSound);
