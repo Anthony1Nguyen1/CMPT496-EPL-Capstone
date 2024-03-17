@@ -6304,6 +6304,7 @@ GameObject:
   - component: {fileID: 1126045004}
   - component: {fileID: 1126045008}
   - component: {fileID: 1126045009}
+  - component: {fileID: 1126045010}
   m_Layer: 5
   m_Name: RightWallCanvas
   m_TagString: Untagged
@@ -6417,7 +6418,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1126045002}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1390396402288144db5d41d1c3cdee0c, type: 3}
   m_Name: 
@@ -6425,6 +6426,40 @@ MonoBehaviour:
   fadeImage: {fileID: 1799017874}
   fadeDuration: 1
   delayBetweenFades: 0.5
+--- !u!114 &1126045010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126045002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98025b2c12d3411cbf00bb0b61280e8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cauldrons:
+  - {fileID: 1641012417}
+  - {fileID: 622760478}
+  - {fileID: 2103945127}
+  - {fileID: 977424371}
+  potions:
+  - {fileID: 863861662}
+  - {fileID: 869176705}
+  - {fileID: 675141690}
+  - {fileID: 1423143740}
+  crystals:
+  - {fileID: 1538897456}
+  - {fileID: 244337013}
+  - {fileID: 792141725}
+  - {fileID: 1924327158}
+  misc:
+  - {fileID: 1432771109}
+  - {fileID: 2121686742}
+  - {fileID: 284636973}
+  - {fileID: 1433871550}
+  wrongAnswer: {fileID: 377668842}
+  wrongAnswerImageManager: {fileID: 377668844}
 --- !u!224 &1139533319 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4228031448413040393, guid: 3df2ea6054688c99d94a538d7708e829, type: 3}
@@ -7992,31 +8027,10 @@ MonoBehaviour:
   _img: {fileID: 1439255030}
   _defaultSprite: {fileID: 21300000, guid: 751d5aeb6b1aff24eaee53a4ba4b1cb7, type: 3}
   _pressedSprite: {fileID: 21300000, guid: b281b919d9fd086428fb7dbaad9d8ea9, type: 3}
-  screenFade: {fileID: 1126045009}
-  cauldrons:
-  - {fileID: 1641012417}
-  - {fileID: 622760478}
-  - {fileID: 2103945127}
-  - {fileID: 977424371}
-  potions:
-  - {fileID: 863861662}
-  - {fileID: 869176705}
-  - {fileID: 675141690}
-  - {fileID: 1423143740}
-  crystals:
-  - {fileID: 1538897456}
-  - {fileID: 244337013}
-  - {fileID: 792141725}
-  - {fileID: 1924327158}
-  misc:
-  - {fileID: 1432771109}
-  - {fileID: 2121686742}
-  - {fileID: 284636973}
-  - {fileID: 1433871550}
-  wrongAnswer: {fileID: 377668842}
-  wrongAnswerImageManager: {fileID: 377668844}
-  cooldownTime: 2
   SubmitAnimations: {fileID: 527293086}
+  _rightCanvasAnimations: {fileID: 1126045010}
+  screenFade: {fileID: 1126045009}
+  cooldownTime: 2
   tryNumber: 0
 --- !u!114 &1439255033
 MonoBehaviour:

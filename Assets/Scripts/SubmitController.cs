@@ -9,27 +9,29 @@ using UnityEngine.UI;
 
 public class SubmitController : MonoBehaviour
 {
+    // Main objects
     [SerializeField] private GameObject[] items;                  // The four items selected by the user.
     [SerializeField] private HistoryController historyController; // Reference to the history pane.
     [SerializeField] private int[] indices;                       // The indices of the items chosen.
-    [SerializeField] private AudioClip _pressSound;               // Sound
+
+    // Audio/sound
+    [SerializeField] private AudioClip _pressSound;
     [SerializeField] private AudioSource audioSource;
+
+    // Submit buttons
     [SerializeField] private Image _img;                           // Reference to the image component
     [SerializeField] private Sprite _defaultSprite, _pressedSprite; // Sprites for default and pressed states
-    [SerializeField] private ScreenFade screenFade;     // Screen fade animation
-    [SerializeField] private GameObject[] cauldrons;    // Cauldron objects
-    [SerializeField] private GameObject[] potions;      // Potion objects
-    [SerializeField] private GameObject[] crystals;     // Crystal objects
-    [SerializeField] private GameObject[] misc;         // Misc objects
-    [SerializeField] private Image wrongAnswer;
-    [SerializeField] private WrongAnswerImageManager wrongAnswerImageManager;
-    [SerializeField] private float cooldownTime = 2f; // Cooldown time in seconds
     private bool canTap = true; // Flag to track if the image can be tapped
 
-    // [SerializeField] private WinAnimations WinAnimations;
+    // Animations
     [SerializeField] private SubmitAnimations SubmitAnimations;
+    [SerializeField] private RightCanvasAnimations _rightCanvasAnimations;
+    [SerializeField] private ScreenFade screenFade;     // Screen fade animation
+    [SerializeField] private float cooldownTime = 2f; // Cooldown time in seconds
+    // [SerializeField] private WinAnimations WinAnimations;
 
-    public bool GameWon { get; private set; }                     // Flag that checks if game has been won.
+    // Game state
+    public bool isGameWon { get; private set; }
     [SerializeField] private int tryNumber;
 
     private void Start()
@@ -53,9 +55,9 @@ public class SubmitController : MonoBehaviour
         return items.All(item => item.activeSelf);
     }
 
-    // Purpose: Gets the active sprites.
+    // Purpose: Gets the active sprites and their GameObjects.
     // Params: none
-    // Return: List of Sprites.
+    // Return: List of (Sprites, source objects).
     private List<(Sprite sprite, GameObject source)> GetActiveItems()
     {
         var activeItems = new List<(Sprite sprite, GameObject source)>();
@@ -84,113 +86,59 @@ public class SubmitController : MonoBehaviour
         }
     }
 
-    // Purpose: Calls the submit function on the history script and increments the try number. Disables TRY button on win.
+    // Purpose: Starts the move by
     // Params: none
     // Return: void
-    private void SubmitMove()
+    private void StartAnimations()
     {
         var activeItems = GetActiveItems();
-        var sprites = activeItems.Select(item => item.sprite).ToList();
-        var sources = activeItems.Select(item => item.source).ToList();
+        var sprites     = activeItems.Select(item => item.sprite).ToList();
+        var sources     = activeItems.Select(item => item.source).ToList();
 
-        StartCoroutine(AnimateAndSubmit(sprites, sources));
-    }
-
-    private IEnumerator AnimateAndSubmit(List<Sprite> sprites, List<GameObject> sources)
-    {
         SubmitAnimations.AnimateActiveSprites(sprites, sources, tryNumber, historyController.transform);
-
-        // Wait for one second before displaying results.
-        yield return new WaitForSeconds(1.3f);
-        GameWon = historyController.GetResult(indices, tryNumber).GameWon;
-        tryNumber++;
-
-        if (GameWon)
-        {
-            gameObject.SetActive(false);
-            // WinAnimations.PlayAnimations();
-        }
-
-        wrongAnswerImageManager.ResetWrongAnswerImageFlag();
-
-        // Show the corresponding cauldron and hide the others
-        var selectedCauldronIndex = indices[0]; // Assuming the first item determines the cauldron
-        for (int i = 0; i < cauldrons.Length; i++)
-        {
-            if (i == selectedCauldronIndex)
-            {
-                cauldrons[i].SetActive(true);
-            }
-            else
-            {
-                cauldrons[i].SetActive(false);
-            }
-        }
-
-        // Stop previous animations before starting new ones
-        foreach (var potion in potions)
-        {
-            potion.GetComponent<ItemAnimation>().StopAnimation();
-        }
-        foreach (var crystal in crystals)
-        {
-            crystal.GetComponent<ItemAnimation>().StopAnimation();
-        }
-        foreach (var miscs in misc)
-        {
-            miscs.GetComponent<ItemAnimation>().StopAnimation();
-        }
-
-        // Start animations for selected items
-        // Stop previous animations before starting new ones
-        yield return StartCoroutine(AnimateItems(potions, indices[1])); // Potions
-        yield return StartCoroutine(AnimateItems(crystals, indices[2])); // Crystals
-        yield return StartCoroutine(AnimateItems(misc, indices[3])); // Misc
-
-        // Wait for 1 second
-        yield return new WaitForSeconds(1.0f);
-
-        // Show the wrong answer image after animations
-        wrongAnswerImageManager.ShowWrongAnswerImage();
+        _rightCanvasAnimations.AnimateRightAnimations(indices);
     }
-    private IEnumerator AnimateItems(GameObject[] items, int selectedIndex)
-    {
-        if (selectedIndex < 0 || selectedIndex >= items.Length)
-        {
-            yield break; // Invalid index, do nothing
-        }
 
-        var itemAnimation = items[selectedIndex].GetComponent<ItemAnimation>();
-        itemAnimation.MoveToCauldron();
-        yield return new WaitForSeconds(1.0f); // Adjust the delay as needed
+    // Purpose: Checks if the game has been won. Disables submit button on win.
+    // Params: none
+    // Return: IEnumerator
+    private IEnumerator UpdateState()
+    {
+        yield return new WaitForSeconds(1.3f);
+
+        isGameWon = historyController.GetResult(indices, tryNumber).GameWon;
+        tryNumber++;
     }
 
     // Purpose: Main logic for submitting game state.
     // Params: none
     // Return: void
-    private IEnumerator ChangeSpriteTemporarily()
+    private IEnumerator Submit()
     {
-        // Change sprite to pressed sprite
+        // Button flip when submit is pressed.
         _img.sprite = _pressedSprite;
-
-        // Wait for a short duration
-        yield return new WaitForSeconds(0.1f); // Adjust as needed
-
-        // Revert back to default sprite
+        yield return new WaitForSeconds(0.1f);
         _img.sprite = _defaultSprite;
 
         if (IsReadyForSubmit())
         {
-            screenFade.FadeInOut();
-            SubmitMove();
-            if (GameWon || tryNumber == 12) { gameObject.SetActive(false); yield break; } // Win/loss will disable button.
+            // screenFade.FadeInOut();
+
+            // Start the animations.
+            StartAnimations();
+
+            // Wait for game state to be checked.
+            yield return StartCoroutine(UpdateState());
+
+            // Deactivate submit button upon win or loss.
+            if (isGameWon || tryNumber == 12) { gameObject.SetActive(false); yield break; }
+
+            // Otherwise, get ready for next move.
             DeactivateDots();
         }
-        else
-        {
-            Debug.Log("Not ready to submit!");
-        }
+        else { Debug.Log("Not ready to submit!"); }
     }
+
     private IEnumerator SubmitWithCooldown()
     {
         // Disable tapping on the submit image
@@ -204,15 +152,15 @@ public class SubmitController : MonoBehaviour
 
         // Proceed with the submit logic here
         // For example, you can call another method to handle the submit action
-        HandleSubmit();
+        // HandleSubmit();
     }
 
-    private void HandleSubmit()
-    {
-        // Implement your submit logic here
-        // This method will be called after the cooldown period
-        Debug.Log("Submit action executed!");
-    }
+    // private void HandleSubmit()
+    // {
+    //     // Implement your submit logic here
+    //     // This method will be called after the cooldown period
+    //     Debug.Log("Submit action executed!");
+    // }
 
     private void OnEnable() { GetComponent<TapGesture>().Tapped += TappedHandler; }
     private void OnDisable() { GetComponent<TapGesture>().Tapped -= TappedHandler; }
@@ -231,6 +179,6 @@ public class SubmitController : MonoBehaviour
             audioSource.PlayOneShot(_pressSound);
         }
 
-        StartCoroutine(ChangeSpriteTemporarily());
+        StartCoroutine(Submit());
     }
 }

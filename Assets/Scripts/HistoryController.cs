@@ -58,12 +58,7 @@ public class HistoryController : MonoBehaviour
             }
         }
 
-        var result = new SubmitResult
-        {
-            CorrectGuesses = correctGuesses,
-            GameWon = correctGuesses == 4
-        };
-
+        var result = new SubmitResult { CorrectGuesses = correctGuesses, GameWon = correctGuesses == 4 };
         return result;
     }
 
