@@ -127,14 +127,14 @@ public class SubmitController : MonoBehaviour
             // Start the animations.
             StartAnimations();
 
+            // Deactivate the initial items.
+            DeactivateDots();
+
             // Wait for game state to be checked.
             yield return StartCoroutine(UpdateState());
 
             // Deactivate submit button upon win or loss.
             if (isGameWon || tryNumber == 12) { gameObject.SetActive(false); yield break; }
-
-            // Otherwise, get ready for next move.
-            DeactivateDots();
         }
         else { Debug.Log("Not ready to submit!"); }
     }
