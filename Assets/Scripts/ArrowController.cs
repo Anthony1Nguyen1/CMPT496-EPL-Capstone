@@ -37,7 +37,7 @@ public class ArrowController : MonoBehaviour
             audioSource.PlayOneShot(_pressSound);
         }
 
-        if (submitController.GameWon == false)
+        if (submitController.isGameWon == false)
         {
             if      (direction == ArrowDirection.Upwards) { itemController.CycleUp(); }
             else if (direction == ArrowDirection.Downwards) { itemController.CycleDown(); }
