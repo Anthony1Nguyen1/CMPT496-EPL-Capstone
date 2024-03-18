@@ -6557,7 +6557,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 751d5aeb6b1aff24eaee53a4ba4b1cb7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1f4382c05204ca180951886dab162ec3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6597,8 +6597,8 @@ MonoBehaviour:
   _pressSound: {fileID: 8300000, guid: 1febd607dcc6b424e860a8a0ab4e600f, type: 3}
   audioSource: {fileID: 1439255034}
   _img: {fileID: 1439255030}
-  _defaultSprite: {fileID: 21300000, guid: 751d5aeb6b1aff24eaee53a4ba4b1cb7, type: 3}
-  _pressedSprite: {fileID: 21300000, guid: b281b919d9fd086428fb7dbaad9d8ea9, type: 3}
+  _defaultSprite: {fileID: 21300000, guid: 1f4382c05204ca180951886dab162ec3, type: 3}
+  _pressedSprite: {fileID: 21300000, guid: 8a2226d34c10ad890b17c8842514d080, type: 3}
   SubmitAnimations: {fileID: 527293086}
   _rightCanvasAnimations: {fileID: 1126045010}
   screenFade: {fileID: 0}

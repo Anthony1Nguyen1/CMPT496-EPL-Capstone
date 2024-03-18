@@ -1157,6 +1157,7 @@ GameObject:
   - component: {fileID: 515106805}
   - component: {fileID: 515106804}
   - component: {fileID: 515106803}
+  - component: {fileID: 515106809}
   m_Layer: 5
   m_Name: NormalButton
   m_TagString: Untagged
@@ -1335,13 +1336,25 @@ MonoBehaviour:
   useSendMessage: 0
   sendStateChangeMessages: 0
   sendMessageTarget: {fileID: 0}
-  useUnityEvents: 0
+  useUnityEvents: 1
   sendStateChangeEvents: 0
   requireGestureToFail: {fileID: 0}
   friendlyGestures: []
   OnRelease:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 515106809}
+        m_TargetAssemblyTypeName: DifficultyManager, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   ignoreChildren: 0
 --- !u!114 &515106806
 MonoBehaviour:
@@ -1399,6 +1412,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515106801}
   m_CullTransparentMesh: 1
+--- !u!114 &515106809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515106801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c77f81dafc2aa0d7b93ccc1afb25c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: NormalDifficulty
 --- !u!1 &596640212
 GameObject:
   m_ObjectHideFlags: 0
@@ -1806,6 +1832,7 @@ GameObject:
   - component: {fileID: 748636877}
   - component: {fileID: 748636876}
   - component: {fileID: 748636875}
+  - component: {fileID: 748636881}
   m_Layer: 5
   m_Name: EasyButton
   m_TagString: Untagged
@@ -1984,13 +2011,25 @@ MonoBehaviour:
   useSendMessage: 0
   sendStateChangeMessages: 0
   sendMessageTarget: {fileID: 0}
-  useUnityEvents: 0
+  useUnityEvents: 1
   sendStateChangeEvents: 0
   requireGestureToFail: {fileID: 0}
   friendlyGestures: []
   OnRelease:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 748636881}
+        m_TargetAssemblyTypeName: DifficultyManager, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   ignoreChildren: 0
 --- !u!114 &748636878
 MonoBehaviour:
@@ -2048,6 +2087,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748636873}
   m_CullTransparentMesh: 1
+--- !u!114 &748636881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748636873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c77f81dafc2aa0d7b93ccc1afb25c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: EasyDifficulty
 --- !u!1 &749999564
 GameObject:
   m_ObjectHideFlags: 0

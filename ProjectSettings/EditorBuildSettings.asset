@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/WizardsAssistance.unity
     guid: 21211007e7ba7714aa6984ec73a1a32a
   - enabled: 1
-    path: Assets/Scenes/MainDifficulty.unity
-    guid: 8f30360007142c0e3a1ff9f0d2de0082
+    path: Assets/Scenes/NormalDifficulty.unity
+    guid: 8e9affa2bfd1e4a2e8afec42eb6b98ba
+  - enabled: 1
+    path: Assets/Scenes/EasyDifficulty.unity
+    guid: 64a39baa5ccaeba54a17bf71bc62446e
   m_configObjects: {}
