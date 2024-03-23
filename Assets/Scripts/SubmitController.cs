@@ -26,6 +26,7 @@ public class SubmitController : MonoBehaviour
     // Animations
     [SerializeField] private SubmitAnimations SubmitAnimations;
     [SerializeField] private RightCanvasAnimations _rightCanvasAnimations;
+    [SerializeField] private WinAnimation WinAnimation;
     [SerializeField] private ScreenFade screenFade;     // Screen fade animation
     [SerializeField] private float cooldownTime = 2f; // Cooldown time in seconds
     // [SerializeField] private WinAnimations WinAnimations;
@@ -99,6 +100,11 @@ public class SubmitController : MonoBehaviour
         _rightCanvasAnimations.AnimateRightAnimations(indices);
     }
 
+    private void WinAnimations()
+    {
+        WinAnimation.AnimateWinAnimations();
+    }
+
     // Purpose: Checks if the game has been won. Disables submit button on win.
     // Params: none
     // Return: IEnumerator
@@ -122,19 +128,35 @@ public class SubmitController : MonoBehaviour
 
         if (IsReadyForSubmit())
         {
-            // screenFade.FadeInOut();
+            screenFade.FadeInOut();
 
-            // Start the animations.
-            StartAnimations();
+            yield return new WaitForSeconds(1.0f);
 
-            // Deactivate the initial items.
-            DeactivateDots();
+            if (!isGameWon || tryNumber != 12)
+            {
+                // Start the animations.
+                StartAnimations();
 
-            // Wait for game state to be checked.
-            yield return StartCoroutine(UpdateState());
+                // Deactivate the initial items.
+                DeactivateDots();
+
+                // Wait for game state to be checked.
+                yield return StartCoroutine(UpdateState());
+            }
 
             // Deactivate submit button upon win or loss.
-            if (isGameWon || tryNumber == 12) { gameObject.SetActive(false); yield break; }
+            if (isGameWon || tryNumber == 12) 
+            { 
+                gameObject.SetActive(false);
+
+                // Start the animations.
+                WinAnimations();
+
+                // Deactivate the initial items.
+                DeactivateDots();
+
+                yield break; 
+            }
         }
         else { Debug.Log("Not ready to submit!"); }
     }
