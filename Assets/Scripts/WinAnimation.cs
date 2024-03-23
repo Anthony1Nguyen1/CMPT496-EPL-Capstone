@@ -15,7 +15,7 @@ public class WinAnimation : MonoBehaviour
 
     private IEnumerator Animate()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
         smoke.Play();
         yield return new WaitForSeconds(4.0f);
         wizard.SetActive(true);

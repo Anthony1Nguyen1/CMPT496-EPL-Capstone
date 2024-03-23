@@ -6571,26 +6571,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fd8105c53b39c742ac96fd7ea1411f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cauldrons:
-  - {fileID: 1641012417}
-  - {fileID: 622760478}
-  - {fileID: 2103945127}
-  - {fileID: 977424371}
-  potions:
-  - {fileID: 863861662}
-  - {fileID: 869176705}
-  - {fileID: 675141690}
-  - {fileID: 1423143740}
-  crystals:
-  - {fileID: 1538897456}
-  - {fileID: 244337013}
-  - {fileID: 792141725}
-  - {fileID: 1924327158}
-  misc:
-  - {fileID: 1432771109}
-  - {fileID: 2121686742}
-  - {fileID: 284636973}
-  - {fileID: 1433871550}
   smoke: {fileID: 1197055683}
   wizard: {fileID: 561471519}
 --- !u!224 &1139533319 stripped
