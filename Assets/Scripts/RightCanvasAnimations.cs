@@ -19,7 +19,7 @@ public class RightCanvasAnimations : MonoBehaviour
 
     private IEnumerator Animate(IReadOnlyList<int> indices)
     {
-        wrongAnswerImageManager.ResetWrongAnswerImageFlag();
+        //wrongAnswerImageManager.ResetWrongAnswerImageFlag();
 
         ShowSelectedCauldron(indices[0]);
 
@@ -30,8 +30,8 @@ public class RightCanvasAnimations : MonoBehaviour
         yield return StartCoroutine(AnimateItems(crystals, indices[2])); // Crystals
         yield return StartCoroutine(AnimateItems(misc, indices[3]));     // Misc
 
-        yield return new WaitForSeconds(1.0f);
-        wrongAnswerImageManager.ShowWrongAnswerImage();
+        //yield return new WaitForSeconds(1.0f);
+        //wrongAnswerImageManager.ShowWrongAnswerImage();
     }
 
     private void ShowSelectedCauldron(int selectedCauldronIndex)
