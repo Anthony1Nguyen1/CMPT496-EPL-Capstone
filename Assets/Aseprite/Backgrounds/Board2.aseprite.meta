@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e022599a24b917c4ea75c2da989ef2aa
+guid: 0a27a7583ec94eb6f8c08694c383efa0
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: InstructionsBoard
+  - name: Board2
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -131,8 +131,8 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 928
-      height: 1748
-    spriteID: 92a6793fd4a6bc8e581805d9a30b4a5d
+      height: 1833
+    spriteID: 10f594df851609deeb11afb2aac397e0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,24 +144,24 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 263419381
-    name: InstructionsBoard
+    guid: 1772640420
+    name: Board2
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: InstructionsBoard
+    - name: Board2
       frameIndex: 0
       cellRect:
         x: 0
         y: 0
         width: 928
-        height: 1748
-      spriteId: 92a6793fd4a6bc8e581805d9a30b4a5d
+        height: 1833
+      spriteId: 10f594df851609deeb11afb2aac397e0
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 928, y: 1748}
+  canvasSize: {x: 928, y: 1833}
