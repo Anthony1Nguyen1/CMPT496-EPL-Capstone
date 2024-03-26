@@ -28,6 +28,7 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private RightCanvasAnimations _rightCanvasAnimations;
     [SerializeField] private WinAnimation WinAnimation;
     [SerializeField] private ScreenFade screenFade;     // Screen fade animation
+    [SerializeField] private WrongAnswerAnimation wrongAnswerAnimation;
     [SerializeField] private float cooldownTime = 2f; // Cooldown time in seconds
     // [SerializeField] private WinAnimations WinAnimations;
 
@@ -116,6 +117,16 @@ public class SubmitController : MonoBehaviour
         tryNumber++;
     }
 
+    private void StartWrongAnimations()
+    {
+        wrongAnswerAnimation.AnimateWrongAnswerAnimations();
+    }
+
+    private void StopWrongAnimations()
+    {
+        wrongAnswerAnimation.StopAllCoroutines();
+    }
+
     // Purpose: Main logic for submitting game state.
     // Params: none
     // Return: void
@@ -136,19 +147,21 @@ public class SubmitController : MonoBehaviour
             {
                 // Start the animations.
                 StartAnimations();
-
+                StartWrongAnimations();
                 // Deactivate the initial items.
                 DeactivateDots();
 
+
                 // Wait for game state to be checked.
                 yield return StartCoroutine(UpdateState());
+
             }
 
             // Deactivate submit button upon win or loss.
             if (isGameWon || tryNumber == 12) 
             { 
                 gameObject.SetActive(false);
-
+                StopWrongAnimations();
                 // Start the animations.
                 WinAnimations();
 
