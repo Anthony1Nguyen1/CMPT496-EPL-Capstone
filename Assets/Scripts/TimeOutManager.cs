@@ -4,19 +4,25 @@ using TouchScript.Gestures;
 
 public class TimeoutManager : MonoBehaviour
 {
-    [SerializeField] private float timeoutDuration = 60f; // Timeout duration in seconds
+    public float timeoutDuration = 60f; // Timeout duration in seconds
     private float timer = 0f;
 
     private void OnEnable()
     {
-        // Subscribe to touch events
-        GetComponent<TapGesture>().Tapped += OnTapped;
+        // Subscribe to tap events on image buttons
+        foreach (var gesture in GetComponentsInChildren<TapGesture>())
+        {
+            gesture.Tapped += OnTapped;
+        }
     }
 
     private void OnDisable()
     {
-        // Unsubscribe from touch events
-        GetComponent<TapGesture>().Tapped -= OnTapped;
+        // Unsubscribe from tap events
+        foreach (var gesture in GetComponentsInChildren<TapGesture>())
+        {
+            gesture.Tapped -= OnTapped;
+        }
     }
 
     private void OnTapped(object sender, System.EventArgs e)
