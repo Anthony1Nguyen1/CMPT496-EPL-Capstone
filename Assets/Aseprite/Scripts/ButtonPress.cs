@@ -6,16 +6,16 @@ using UnityEngine.Audio;
 using TouchScript.Gestures;
 using UnityEngine.SceneManagement;
 
-public class ButtonSimulator : MonoBehaviour
+public class ButtonPress : MonoBehaviour
 {
     // Reference to the images and sprites
-    [SerializeField] private Image _img;
-    [SerializeField] private Sprite _default, _pressed;
-    [SerializeField] private AudioClip _pressSound;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] protected Image _img;
+    [SerializeField] protected Sprite _default, _pressed;
+    [SerializeField] protected AudioClip _pressSound;
+    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] protected string MainCamera;
 
-    public string MainCamera;
-    private void Start()
+    protected virtual void Start()
     {
         // Get or add AudioSource component
         audioSource = GetComponent<AudioSource>();
@@ -28,7 +28,7 @@ public class ButtonSimulator : MonoBehaviour
         audioSource.clip = _pressSound;
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         GetComponent<PressGesture>().Pressed += OnPointerDown;
         GetComponent<ReleaseGesture>().Released += OnPointerUp;
@@ -40,19 +40,19 @@ public class ButtonSimulator : MonoBehaviour
         GetComponent<ReleaseGesture>().Released -= OnPointerUp;
     }
 
-    private void OnPointerDown(object sender, System.EventArgs e)
+    protected virtual void OnPointerDown(object sender, System.EventArgs e)
     {
         // Simulate button press when touch begins
         SimulateButtonDown();
     }
 
-    private void OnPointerUp(object sender, System.EventArgs e)
+    protected virtual void OnPointerUp(object sender, System.EventArgs e)
     {
         // Simulate button release when touch ends
         SimulateButtonUp();
     }
 
-    private void SimulateButtonDown()
+    protected virtual void SimulateButtonDown()
     {
         // Change image to pressed when the button is "pressed"
         _img.sprite = _pressed;
@@ -63,7 +63,7 @@ public class ButtonSimulator : MonoBehaviour
         }
     }
 
-    private void SimulateButtonUp()
+    protected virtual void SimulateButtonUp()
     {
         // Change image to default when the button is "pressed"
         _img.sprite = _default;
