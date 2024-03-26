@@ -4671,6 +4671,7 @@ GameObject:
   - component: {fileID: 1126045010}
   - component: {fileID: 1126045012}
   - component: {fileID: 1126045011}
+  - component: {fileID: 1126045014}
   m_Layer: 5
   m_Name: RightWallCanvas
   m_TagString: Untagged
@@ -4854,6 +4855,19 @@ MonoBehaviour:
   fadeImage: {fileID: 1799017874}
   fadeDuration: 1
   delayBetweenFades: 0.5
+--- !u!114 &1126045014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126045002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93b1b1f6e17c1714f981a782f7e9d60b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wrongAnswer: {fileID: 1653649497}
 --- !u!1001 &1133282024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6688,6 +6702,7 @@ MonoBehaviour:
   _rightCanvasAnimations: {fileID: 1126045010}
   WinAnimation: {fileID: 1126045011}
   screenFade: {fileID: 1126045013}
+  wrongAnswerAnimation: {fileID: 1126045014}
   cooldownTime: 2
   tryNumber: 0
 --- !u!114 &1439255033
