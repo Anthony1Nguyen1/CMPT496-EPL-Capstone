@@ -25,13 +25,11 @@ public class RightCanvasAnimations : MonoBehaviour
         ShowSelectedCauldron(indices[0]);
 
         // Stop the previous animations for each category.
-        StopPreviousAnimations(potions); StopPreviousAnimations(crystals); StopPreviousAnimations(misc); StopWrongAnswerAnimation();
+        StopPreviousAnimations(potions); StopPreviousAnimations(crystals); StopPreviousAnimations(misc);
         yield return StartCoroutine(AnimateItems(potions, indices[1]));  // Potions
         yield return StartCoroutine(AnimateItems(crystals, indices[2])); // Crystals
         yield return StartCoroutine(AnimateItems(misc, indices[3]));     // Misc
 
-        // Play the animation for the wrong answer
-        PlayWrongAnswerAnimation();
         //yield return new WaitForSeconds(1.0f);
         //wrongAnswerImageManager.ShowWrongAnswerImage();
     }
@@ -71,21 +69,4 @@ public class RightCanvasAnimations : MonoBehaviour
         }
     }
 
-    private void StopWrongAnswerAnimation()
-    {
-        var wrongAnswerAnimation = wrongAnswer.GetComponent<ItemAnimation>();
-        if (wrongAnswerAnimation != null)
-        {
-            wrongAnswerAnimation.StopAnimation();
-        }
-    }
-
-    private void PlayWrongAnswerAnimation()
-    {
-        var wrongAnswerAnimation = wrongAnswer.GetComponent<ItemAnimation>();
-        if (wrongAnswerAnimation != null)
-        {
-            wrongAnswerAnimation.MoveToCauldron();
-        }
-    }
 }
