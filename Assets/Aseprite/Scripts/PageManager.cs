@@ -38,6 +38,6 @@ namespace Aseprite.Scripts
             if (rightArrow != null) { rightArrow.SetActive(currentPage != pages.Length - 1); }
         }
 
-        public void ResetPage() { currentPage = 0; UpdatePage(); }
+        public void ResetPage() { currentPage = 0; UpdatePage(); CheckArrowsState(); }
     }
 }
