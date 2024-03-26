@@ -1442,7 +1442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &556281001
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4456,7 +4456,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 95e9142da15c7928b94ded8c229e4019, type: 2}
+  m_Texture: {fileID: 8400000, guid: c46246954c41a6a40b2ed80f47fafc71, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -4851,7 +4851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!328 &1677528328
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -4860,11 +4860,11 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677528327}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 060da5cbb0079c8ff859089023bb76b5, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: bae40c4ff4d6c2b4abcb9d273e8c0c4c, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: 95e9142da15c7928b94ded8c229e4019, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: c46246954c41a6a40b2ed80f47fafc71, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
@@ -4872,7 +4872,7 @@ VideoPlayer:
   m_AspectRatio: 2
   m_DataSource: 0
   m_TimeUpdateMode: 2
-  m_PlaybackSpeed: 1
+  m_PlaybackSpeed: 1.26
   m_AudioOutputMode: 2
   m_TargetAudioSources: []
   m_DirectAudioVolumes: []
@@ -5474,7 +5474,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1908203588
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5541,11 +5541,11 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1908203587}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 060da5cbb0079c8ff859089023bb76b5, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 23967b215180eab49af25f4ce3e10fd4, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: 95e9142da15c7928b94ded8c229e4019, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: dec1f8452f57b414cbb250bcecfc862d, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
@@ -5584,7 +5584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1929284870
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5624,7 +5624,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 95e9142da15c7928b94ded8c229e4019, type: 2}
+  m_Texture: {fileID: 8400000, guid: dec1f8452f57b414cbb250bcecfc862d, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
