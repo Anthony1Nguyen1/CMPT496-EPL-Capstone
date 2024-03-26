@@ -6542,6 +6542,7 @@ GameObject:
   - component: {fileID: 1126045010}
   - component: {fileID: 1126045011}
   - component: {fileID: 1126045012}
+  - component: {fileID: 1126045013}
   m_Layer: 5
   m_Name: RightWallCanvas
   m_TagString: Untagged
@@ -6725,6 +6726,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smoke: {fileID: 1197055683}
   wizard: {fileID: 561471519}
+--- !u!114 &1126045013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126045002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93b1b1f6e17c1714f981a782f7e9d60b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wrongAnswer: {fileID: 377668840}
 --- !u!224 &1139533319 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4228031448413040393, guid: 3df2ea6054688c99d94a538d7708e829, type: 3}
@@ -13143,6 +13157,7 @@ MonoBehaviour:
   _rightCanvasAnimations: {fileID: 1126045010}
   WinAnimation: {fileID: 1126045012}
   screenFade: {fileID: 1126045009}
+  wrongAnswerAnimation: {fileID: 1126045013}
   cooldownTime: 2
   tryNumber: 0
 --- !u!114 &1439255033
