@@ -9,8 +9,9 @@ public class RightCanvasAnimations : MonoBehaviour
     [SerializeField] private GameObject[] potions;
     [SerializeField] private GameObject[] crystals;
     [SerializeField] private GameObject[] misc;
-    [SerializeField] private Image wrongAnswer;
-    [SerializeField] private WrongAnswerImageManager wrongAnswerImageManager;
+    [SerializeField] private GameObject wrongAnswer;
+    //[SerializeField] private Image wrongAnswer;
+    //[SerializeField] private WrongAnswerImageManager wrongAnswerImageManager;
 
     public void AnimateRightAnimations(int[] indices)
     {
@@ -24,12 +25,13 @@ public class RightCanvasAnimations : MonoBehaviour
         ShowSelectedCauldron(indices[0]);
 
         // Stop the previous animations for each category.
-        StopPreviousAnimations(potions); StopPreviousAnimations(crystals); StopPreviousAnimations(misc);
-
+        StopPreviousAnimations(potions); StopPreviousAnimations(crystals); StopPreviousAnimations(misc); StopWrongAnswerAnimation();
         yield return StartCoroutine(AnimateItems(potions, indices[1]));  // Potions
         yield return StartCoroutine(AnimateItems(crystals, indices[2])); // Crystals
         yield return StartCoroutine(AnimateItems(misc, indices[3]));     // Misc
 
+        // Play the animation for the wrong answer
+        PlayWrongAnswerAnimation();
         //yield return new WaitForSeconds(1.0f);
         //wrongAnswerImageManager.ShowWrongAnswerImage();
     }
@@ -65,7 +67,25 @@ public class RightCanvasAnimations : MonoBehaviour
         if (itemAnimation != null)
         {
             itemAnimation.MoveToCauldron();
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.8f);
+        }
+    }
+
+    private void StopWrongAnswerAnimation()
+    {
+        var wrongAnswerAnimation = wrongAnswer.GetComponent<ItemAnimation>();
+        if (wrongAnswerAnimation != null)
+        {
+            wrongAnswerAnimation.StopAnimation();
+        }
+    }
+
+    private void PlayWrongAnswerAnimation()
+    {
+        var wrongAnswerAnimation = wrongAnswer.GetComponent<ItemAnimation>();
+        if (wrongAnswerAnimation != null)
+        {
+            wrongAnswerAnimation.MoveToCauldron();
         }
     }
 }
