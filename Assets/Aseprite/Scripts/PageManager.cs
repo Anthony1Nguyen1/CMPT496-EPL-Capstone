@@ -12,6 +12,8 @@ namespace Aseprite.Scripts
         [SerializeField] private GameObject leftArrow;
         [SerializeField] private GameObject rightArrow;
 
+        private void Start() { UpdatePage(); CheckArrowsState(); }
+
         // Purpose: Flips the page by the specified increment.
         // Params: increment: (either -1 or 1)
         // Return: void
