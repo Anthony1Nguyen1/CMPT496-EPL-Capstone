@@ -3304,6 +3304,8 @@ MonoBehaviour:
   - {fileID: 657269804}
   - {fileID: 523690507}
   currentPage: 0
+  leftArrow: {fileID: 1244695118}
+  rightArrow: {fileID: 641114181}
 --- !u!1 &1093315398
 GameObject:
   m_ObjectHideFlags: 0

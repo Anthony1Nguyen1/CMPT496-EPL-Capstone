@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Aseprite.Scripts
 {
-    // InstructionsButtonPress.cs
     public class InstructionsButtonPress : ButtonPress
     {
         private enum ArrowType { Left, Right }
