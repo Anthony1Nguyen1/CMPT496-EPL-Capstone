@@ -1,10 +1,11 @@
-/* Description: Script on the "TRY" button (acts as a go-between for the HistoryController and ItemController scripts). */
+/* Description: Main controller on the submit button. */
 
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TouchScript.Gestures;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SubmitController : MonoBehaviour
@@ -19,9 +20,9 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
 
     // Submit buttons
-    [SerializeField] private Image _img;                           // Reference to the image component
+    [SerializeField] private Image _img;                            // Reference to the image component
     [SerializeField] private Sprite _defaultSprite, _pressedSprite; // Sprites for default and pressed states
-    private bool canTap = true; // Flag to track if the image can be tapped
+    private bool canTap = true;                                     // Flag to track if the image can be tapped
 
     // Animations
     [SerializeField] private SubmitAnimations SubmitAnimations;
@@ -30,23 +31,25 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private ScreenFade screenFade;     // Screen fade animation
     [SerializeField] private WrongAnswerAnimation wrongAnswerAnimation;
     [SerializeField] private float cooldownTime = 2f; // Cooldown time in seconds
-    // [SerializeField] private WinAnimations WinAnimations;
 
     // Game state
     public bool isGameWon { get; private set; }
     [SerializeField] private int tryNumber;
 
+    // Difficulty level
+    [SerializeField] private int maxTriesEasy = 8;
+    [SerializeField] private int maxTriesHard = 12;
+    private int maxTries;
+
     private void Start()
     {
         // Get or add AudioSource component
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
-        }
+        audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
 
         // Assign the button press sound to the audio source
         audioSource.clip = _pressSound;
+
+        maxTries = (SceneManager.GetActiveScene().name == "EasyDifficulty") ? maxTriesEasy : maxTriesHard;
     }
 
     // Purpose: Boolean check for whether a full pattern has been selected by the user in the main panel.
@@ -63,15 +66,14 @@ public class SubmitController : MonoBehaviour
     private List<(Sprite sprite, GameObject source)> GetActiveItems()
     {
         var activeItems = new List<(Sprite sprite, GameObject source)>();
-        indices         = new int[items.Length];
+        indices = new int[items.Length];
 
-        var i = 0;
-        foreach (var item in items)
+        for (var i = 0; i < items.Length; i++)
         {
+            var item = items[i];
             var image = item.GetComponent<Image>();
             activeItems.Add((image.sprite, item));
             indices[i] = item.GetComponent<ItemController>().CurrentIndex;
-            i++;
         }
 
         return activeItems;
@@ -80,15 +82,12 @@ public class SubmitController : MonoBehaviour
     // Purpose: Calls the deactivate dots function on the item script (for each item frame).
     // Params: none
     // Return: void
-    private void DeactivateDots()
+    private void DeactivateItems()
     {
-        foreach (var item in items)
-        {
-            item.GetComponent<ItemController>().DeactivateDots();
-        }
+        foreach (var item in items) { item.GetComponent<ItemController>().DeactivateItems(); }
     }
 
-    // Purpose: Starts the move by
+    // Purpose: Starts the animations for item transformations, potions, and wrong answers.
     // Params: none
     // Return: void
     private void StartAnimations()
@@ -101,10 +100,7 @@ public class SubmitController : MonoBehaviour
         _rightCanvasAnimations.AnimateRightAnimations(indices);
     }
 
-    private void WinAnimations()
-    {
-        WinAnimation.AnimateWinAnimations();
-    }
+    private void WinAnimations() { WinAnimation.AnimateWinAnimations(); }
 
     // Purpose: Checks if the game has been won. Disables submit button on win.
     // Params: none
@@ -112,20 +108,12 @@ public class SubmitController : MonoBehaviour
     private IEnumerator UpdateState()
     {
         yield return new WaitForSeconds(1.3f);
-
         isGameWon = historyController.GetResult(indices, tryNumber).GameWon;
         tryNumber++;
     }
 
-    private void StartWrongAnimations()
-    {
-        wrongAnswerAnimation.AnimateWrongAnswerAnimations();
-    }
-
-    private void StopWrongAnimations()
-    {
-        wrongAnswerAnimation.StopAllCoroutines();
-    }
+    private void StartWrongAnimations() { wrongAnswerAnimation.AnimateWrongAnswerAnimations(); }
+    private void StopWrongAnimations() { wrongAnswerAnimation.StopAllCoroutines(); }
 
     // Purpose: Main logic for submitting game state.
     // Params: none
@@ -140,35 +128,25 @@ public class SubmitController : MonoBehaviour
         if (IsReadyForSubmit())
         {
             screenFade.FadeInOut();
-
             yield return new WaitForSeconds(1.0f);
 
-            if (!isGameWon || tryNumber != 12)
+            // Game in play.
+            if (!isGameWon || tryNumber != maxTries)
             {
-                // Start the animations.
                 StartAnimations();
                 StartWrongAnimations();
-                // Deactivate the initial items.
-                DeactivateDots();
-
-
-                // Wait for game state to be checked.
+                DeactivateItems();
                 yield return StartCoroutine(UpdateState());
-
             }
 
-            // Deactivate submit button upon win or loss.
-            if (isGameWon || tryNumber == 12) 
-            { 
+            // Game over.
+            if (isGameWon || tryNumber == maxTries)
+            {
+                Debug.Log("Game over!");
                 gameObject.SetActive(false);
                 StopWrongAnimations();
-                // Start the animations.
                 WinAnimations();
-
-                // Deactivate the initial items.
-                DeactivateDots();
-
-                yield break; 
+                DeactivateItems();
             }
         }
         else { Debug.Log("Not ready to submit!"); }
@@ -176,26 +154,10 @@ public class SubmitController : MonoBehaviour
 
     private IEnumerator SubmitWithCooldown()
     {
-        // Disable tapping on the submit image
         canTap = false;
-
-        // Wait for the cooldown period
         yield return new WaitForSeconds(cooldownTime);
-
-        // Enable tapping on the submit image after the cooldown period
         canTap = true;
-
-        // Proceed with the submit logic here
-        // For example, you can call another method to handle the submit action
-        // HandleSubmit();
     }
-
-    // private void HandleSubmit()
-    // {
-    //     // Implement your submit logic here
-    //     // This method will be called after the cooldown period
-    //     Debug.Log("Submit action executed!");
-    // }
 
     private void OnEnable() { GetComponent<TapGesture>().Tapped += TappedHandler; }
     private void OnDisable() { GetComponent<TapGesture>().Tapped -= TappedHandler; }
@@ -205,8 +167,8 @@ public class SubmitController : MonoBehaviour
     // Return: void
     private void TappedHandler(object sender, System.EventArgs e)
     {
-        if (!canTap) return; // If tapping is not allowed, exit the method
-        // If tapping is allowed, proceed with the tap logic
+        if (!canTap) return;
+
         StartCoroutine(SubmitWithCooldown());
 
         if (_pressSound != null && audioSource != null)
