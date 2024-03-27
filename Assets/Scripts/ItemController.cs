@@ -44,7 +44,7 @@ public class ItemController : MonoBehaviour
     // Purpose: Deactivates all images.
     // Params: none
     // Return: void
-    public virtual void DeactivateDots()
+    public virtual void DeactivateItems()
     {
         CurrentIndex = 0;
         initObject.SetActive(false);
