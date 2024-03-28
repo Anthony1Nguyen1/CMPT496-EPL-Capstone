@@ -11,8 +11,8 @@ using UnityEngine.UI;
 public class SubmitController : MonoBehaviour
 {
     // Main objects
-    [SerializeField] private GameObject[] items;                  // The four items selected by the user.
     [SerializeField] private HistoryController historyController; // Reference to the history pane.
+    [SerializeField] private GameObject[] items;                  // The four items selected by the user.
     [SerializeField] private int[] indices;                       // The indices of the items chosen.
 
     // Audio/sound
@@ -30,6 +30,7 @@ public class SubmitController : MonoBehaviour
     [SerializeField] private WinAnimation WinAnimation;
     [SerializeField] private ScreenFade screenFade;     // Screen fade animation
     [SerializeField] private WrongAnswerAnimation wrongAnswerAnimation;
+    [SerializeField] private ResultsAnimation resultsAnimation;
     [SerializeField] private float cooldownTime = 2f; // Cooldown time in seconds
 
     // Game state
@@ -115,6 +116,8 @@ public class SubmitController : MonoBehaviour
     private void StartWrongAnimations() { wrongAnswerAnimation.AnimateWrongAnswerAnimations(); }
     private void StopWrongAnimations() { wrongAnswerAnimation.StopAllCoroutines(); }
 
+    private void ResultsAnimations() { resultsAnimation.PlayResultsAnimation(isGameWon);}
+
     // Purpose: Main logic for submitting game state.
     // Params: none
     // Return: void
@@ -142,11 +145,11 @@ public class SubmitController : MonoBehaviour
             // Game over.
             if (isGameWon || tryNumber == maxTries)
             {
-                Debug.Log("Game over!");
-                gameObject.SetActive(false);
+                Debug.Log($"Game won? {isGameWon}");
                 StopWrongAnimations();
                 WinAnimations();
                 DeactivateItems();
+                ResultsAnimations();
             }
         }
         else { Debug.Log("Not ready to submit!"); }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class HistoryController : MonoBehaviour
 {
+    [SerializeField] private ResultsController resultsController;
     [SerializeField] private Sprite[] guessesBoxSprites;
     [SerializeField] private int[] pattern;
     [SerializeField] private bool useDotIndicators;
@@ -28,7 +29,11 @@ public class HistoryController : MonoBehaviour
         {
             pattern[i] = (Random.Range(0, 4));
         }
-        print("Pattern is: " + string.Join(", ", pattern));
+        Debug.Log("Pattern is: " + string.Join(", ", pattern));
+
+        // Prefilling the Results Menu with the randomized pattern.
+        resultsController.SetPattern(GetPattern());
+        resultsController.FillFrames();
     }
 
     // Purpose: Fills a row/move in the history panel with whatever the user submitted.
@@ -76,4 +81,9 @@ public class HistoryController : MonoBehaviour
 
         return correctSoFar;
     }
+
+    // Purpose: Gets the winning pattern.
+    // Params: none
+    // Return: The array of integers representing the winning pattern indices.
+    public int[] GetPattern() { return pattern; }
 }
