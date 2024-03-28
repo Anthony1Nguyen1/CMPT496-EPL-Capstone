@@ -143,11 +143,19 @@ public class SubmitController : MonoBehaviour
             }
 
             // Game over.
-            if (isGameWon || tryNumber == maxTries)
+            if (isGameWon)
             {
                 Debug.Log($"Game won? {isGameWon}");
                 StopWrongAnimations();
                 WinAnimations();
+                DeactivateItems();
+                ResultsAnimations();
+            }
+
+            if (tryNumber == maxTries)
+            {
+                Debug.Log($"Game won? {isGameWon}");
+                StopWrongAnimations();
                 DeactivateItems();
                 ResultsAnimations();
             }
