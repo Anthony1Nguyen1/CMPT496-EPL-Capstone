@@ -4495,8 +4495,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _img: {fileID: 1442646246}
-  _default: {fileID: 21300000, guid: c40bbff2521e84542b9d36575d2b3bc1, type: 3}
-  _pressed: {fileID: 21300000, guid: 67b2e5abc92f5094e8fde54427af4e5d, type: 3}
+  _default: {fileID: 21300000, guid: a3cd0604518fd73f781e61ba51da9914, type: 3}
+  _pressed: {fileID: 21300000, guid: 0182e570eb5cffb1f930ff700b7f28b8, type: 3}
   _pressSound: {fileID: 8300000, guid: 1febd607dcc6b424e860a8a0ab4e600f, type: 3}
   audioSource: {fileID: 1442646248}
   MainCamera: 
@@ -4520,7 +4520,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c40bbff2521e84542b9d36575d2b3bc1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a3cd0604518fd73f781e61ba51da9914, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

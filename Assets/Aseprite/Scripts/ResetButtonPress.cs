@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Aseprite.Scripts
 {
-    // ResetButtonPress.cs
     public class ResetButtonPress : ButtonPress
     {
         [SerializeField] private PageManager pageManager;
