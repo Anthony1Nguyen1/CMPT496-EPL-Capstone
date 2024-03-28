@@ -116,7 +116,7 @@ public class SubmitController : MonoBehaviour
     private void StartWrongAnimations() { wrongAnswerAnimation.AnimateWrongAnswerAnimations(); }
     private void StopWrongAnimations() { wrongAnswerAnimation.StopAllCoroutines(); }
 
-    private void ResultsAnimations() { resultsAnimation.PlayResultsAnimation();}
+    private void ResultsAnimations() { resultsAnimation.PlayResultsAnimation(isGameWon);}
 
     // Purpose: Main logic for submitting game state.
     // Params: none
@@ -145,7 +145,7 @@ public class SubmitController : MonoBehaviour
             // Game over.
             if (isGameWon || tryNumber == maxTries)
             {
-                Debug.Log("Game over!");
+                Debug.Log($"Game won? {isGameWon}");
                 gameObject.SetActive(false);
                 StopWrongAnimations();
                 WinAnimations();

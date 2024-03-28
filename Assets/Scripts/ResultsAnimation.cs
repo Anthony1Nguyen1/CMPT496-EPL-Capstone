@@ -4,16 +4,17 @@ using UnityEngine;
 public class ResultsAnimation : MonoBehaviour
 {
     [SerializeField] private float delayBeforeResults = 10.5f;
-    [SerializeField] private GameObject Board;
-    [SerializeField] private GameObject MiddleContent;
+    [SerializeField] private GameObject winBoard;
+    [SerializeField] private GameObject lossBoard;
+    [SerializeField] private GameObject middleContent;
 
-    public void PlayResultsAnimation() { StartCoroutine(ShowResultsMenuAfterDelay()); }
+    public void PlayResultsAnimation(bool result) { StartCoroutine(ShowResultsMenu(result)); }
 
-    private IEnumerator ShowResultsMenuAfterDelay()
+    private IEnumerator ShowResultsMenu(bool gameWon)
     {
         yield return new WaitForSeconds(delayBeforeResults);
-
-        MiddleContent.SetActive(false);
-        Board.SetActive(true);
+        middleContent.SetActive(false);
+        if (gameWon) { winBoard.SetActive(true); }
+        else         { lossBoard.SetActive(true); }
     }
 }
