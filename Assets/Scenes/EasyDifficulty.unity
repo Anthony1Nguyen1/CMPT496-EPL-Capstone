@@ -4695,7 +4695,7 @@ MonoBehaviour:
   _pressed: {fileID: 21300000, guid: 0d0a8f50d4e3c24ddb3e0f98af2167d6, type: 3}
   _pressSound: {fileID: 8300000, guid: 1febd607dcc6b424e860a8a0ab4e600f, type: 3}
   audioSource: {fileID: 847364290}
-  MainCamera: 
+  MainCamera: EasyDifficulty
 --- !u!82 &847364290
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10510,7 +10510,7 @@ MonoBehaviour:
   _pressed: {fileID: 21300000, guid: 0d0a8f50d4e3c24ddb3e0f98af2167d6, type: 3}
   _pressSound: {fileID: 8300000, guid: 1febd607dcc6b424e860a8a0ab4e600f, type: 3}
   audioSource: {fileID: 1739797345}
-  MainCamera: 
+  MainCamera: EasyDifficulty
 --- !u!82 &1739797345
 AudioSource:
   m_ObjectHideFlags: 0
