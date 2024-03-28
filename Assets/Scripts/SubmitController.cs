@@ -146,7 +146,6 @@ public class SubmitController : MonoBehaviour
             if (isGameWon || tryNumber == maxTries)
             {
                 Debug.Log($"Game won? {isGameWon}");
-                gameObject.SetActive(false);
                 StopWrongAnimations();
                 WinAnimations();
                 DeactivateItems();

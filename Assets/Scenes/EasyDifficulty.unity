@@ -270,7 +270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1110720aa1aa4ff8a2237ad2f47c447f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeResults: 10.5
+  winDelay: 10.5
+  lossDelay: 3
   winBoard: {fileID: 1928870754}
   lossBoard: {fileID: 263800658}
   middleContent: {fileID: 1066222251}
