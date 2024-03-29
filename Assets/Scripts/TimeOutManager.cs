@@ -4,7 +4,7 @@ using TouchScript.Gestures;
 
 public class TimeoutManager : MonoBehaviour
 {
-    public float timeoutDuration = 60f; // Timeout duration in seconds
+    [SerializeField] private float timeoutDuration = 150f; // Timeout duration in seconds
     private float timer = 0f;
 
     private void OnEnable()
