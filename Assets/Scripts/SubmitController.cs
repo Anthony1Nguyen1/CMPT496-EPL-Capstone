@@ -114,12 +114,12 @@ public class SubmitController : ButtonPress
 
         // Prevent subsequent button presses while submit in progress.
         if (!canSubmit) { yield break; }
-        DisableArrowAndItemFunctionality();
 
         if (IsReadyForSubmit())
         {
-            // Disable button press for now
+            // Disable further submits, arrows, and items until animations are complete.
             canSubmit = false;
+            DisableArrowAndItemFunctionality();
 
             // Screen fade
             screenFade.FadeInOut();
