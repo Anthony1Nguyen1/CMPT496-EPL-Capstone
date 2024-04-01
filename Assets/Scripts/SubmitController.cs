@@ -3,31 +3,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TouchScript.Gestures;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SubmitController : MonoBehaviour
+public class SubmitController : ButtonPress
 {
     // Main objects
     [SerializeField] private HistoryController historyController; // Reference to the history pane.
     [SerializeField] private GameObject[] items;                  // The four items selected by the user.
     [SerializeField] private int[] indices;                       // The indices of the items chosen.
 
-    // Audio/sound
-    [SerializeField] private AudioClip _pressSound;
-    [SerializeField] private AudioSource audioSource;
-
-    // Submit buttons
-    [SerializeField] private Image _img;                            // Reference to the image component
-    [SerializeField] private Sprite _defaultSprite, _pressedSprite; // Sprites for default and pressed states
-    private bool canTap = true;                                     // Flag to track if the image can be tapped
+    // Arrow and item controllers
+    [SerializeField] private ArrowController[] arrowControllers;
+    [SerializeField] private ItemController[] itemControllers;
 
     // Animations
-    [SerializeField] private SubmitAnimations SubmitAnimations;
-    [SerializeField] private RightCanvasAnimations _rightCanvasAnimations;
-    [SerializeField] private WinAnimation WinAnimation;
+    [SerializeField] private SubmitAnimations submitAnimations;
+    [SerializeField] private RightCanvasAnimations rightCanvasAnimations;
+    [SerializeField] private WinAnimation winAnimation;
     [SerializeField] private ScreenFade screenFade;     // Screen fade animation
     [SerializeField] private WrongAnswerAnimation wrongAnswerAnimation;
     [SerializeField] private ResultsAnimation resultsAnimation;
@@ -36,20 +30,16 @@ public class SubmitController : MonoBehaviour
     // Game state
     public bool isGameWon { get; private set; }
     [SerializeField] private int tryNumber;
+    private bool canSubmit = true;
 
     // Difficulty level
     [SerializeField] private int maxTriesEasy = 8;
     [SerializeField] private int maxTriesHard = 12;
     private int maxTries;
 
-    private void Start()
+    protected override void Start()
     {
-        // Get or add AudioSource component
-        audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
-
-        // Assign the button press sound to the audio source
-        audioSource.clip = _pressSound;
-
+        base.Start();
         maxTries = (SceneManager.GetActiveScene().name == "EasyDifficulty") ? maxTriesEasy : maxTriesHard;
     }
 
@@ -97,11 +87,14 @@ public class SubmitController : MonoBehaviour
         var sprites     = activeItems.Select(item => item.sprite).ToList();
         var sources     = activeItems.Select(item => item.source).ToList();
 
-        SubmitAnimations.AnimateActiveSprites(sprites, sources, tryNumber, historyController.transform);
-        _rightCanvasAnimations.AnimateRightAnimations(indices);
+        submitAnimations.AnimateActiveSprites(sprites, sources, tryNumber, historyController.transform);
+        rightCanvasAnimations.AnimateRightAnimations(indices);
     }
 
-    private void WinAnimations() { WinAnimation.AnimateWinAnimations(); }
+    private void WinAnimations()        { winAnimation.AnimateWinAnimations();                 }
+    private void StartWrongAnimations() { wrongAnswerAnimation.AnimateWrongAnswerAnimations(); }
+    private void StopWrongAnimations()  { wrongAnswerAnimation.StopAllCoroutines();            }
+    private void ResultsAnimations()    { resultsAnimation.PlayResultsAnimation(isGameWon);    }
 
     // Purpose: Checks if the game has been won. Disables submit button on win.
     // Params: none
@@ -113,23 +106,22 @@ public class SubmitController : MonoBehaviour
         tryNumber++;
     }
 
-    private void StartWrongAnimations() { wrongAnswerAnimation.AnimateWrongAnswerAnimations(); }
-    private void StopWrongAnimations() { wrongAnswerAnimation.StopAllCoroutines(); }
-
-    private void ResultsAnimations() { resultsAnimation.PlayResultsAnimation(isGameWon);}
-
     // Purpose: Main logic for submitting game state.
     // Params: none
     // Return: void
     private IEnumerator Submit()
     {
-        // Button flip when submit is pressed.
-        _img.sprite = _pressedSprite;
-        yield return new WaitForSeconds(0.1f);
-        _img.sprite = _defaultSprite;
+
+        // Prevent subsequent button presses while submit in progress.
+        if (!canSubmit) { yield break; }
 
         if (IsReadyForSubmit())
         {
+            // Disable further submits, arrows, and items until animations are complete.
+            canSubmit = false;
+            DisableArrowAndItemFunctionality();
+
+            // Screen fade
             screenFade.FadeInOut();
             yield return new WaitForSeconds(1.0f);
 
@@ -142,7 +134,7 @@ public class SubmitController : MonoBehaviour
                 yield return StartCoroutine(UpdateState());
             }
 
-            // Game over.
+            // Game over by winning.
             if (isGameWon)
             {
                 Debug.Log($"Game won? {isGameWon}");
@@ -152,6 +144,7 @@ public class SubmitController : MonoBehaviour
                 ResultsAnimations();
             }
 
+            // Game over by losing.
             if (tryNumber == maxTries)
             {
                 Debug.Log($"Game won? {isGameWon}");
@@ -161,32 +154,27 @@ public class SubmitController : MonoBehaviour
             }
         }
         else { Debug.Log("Not ready to submit!"); }
+
+        // Enable button presses again
+        EnableArrowAndItemFunctionality();
+        canSubmit = true;
     }
 
-    private IEnumerator SubmitWithCooldown()
+    protected override void SimulateButtonUp()
     {
-        canTap = false;
-        yield return new WaitForSeconds(cooldownTime);
-        canTap = true;
-    }
-
-    private void OnEnable() { GetComponent<TapGesture>().Tapped += TappedHandler; }
-    private void OnDisable() { GetComponent<TapGesture>().Tapped -= TappedHandler; }
-
-    // Purpose: Main function for controlling submit behaviour.
-    // Params: sender, e
-    // Return: void
-    private void TappedHandler(object sender, System.EventArgs e)
-    {
-        if (!canTap) return;
-
-        StartCoroutine(SubmitWithCooldown());
-
-        if (_pressSound != null && audioSource != null)
-        {
-            audioSource.PlayOneShot(_pressSound);
-        }
-
+        base.SimulateButtonUp();
         StartCoroutine(Submit());
+    }
+
+    private void DisableArrowAndItemFunctionality()
+    {
+        foreach (var arrowController in arrowControllers) { arrowController.SetSubmitInProgress(true); }
+        foreach (var itemController in itemControllers)   { itemController.SetSubmitInProgress(true);  }
+    }
+
+    private void EnableArrowAndItemFunctionality()
+    {
+        foreach (var arrowController in arrowControllers) { arrowController.SetSubmitInProgress(false); }
+        foreach (var itemController in itemControllers)   { itemController.SetSubmitInProgress(false);  }
     }
 }

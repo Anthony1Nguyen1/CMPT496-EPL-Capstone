@@ -10,6 +10,9 @@ public class ArrowController : MonoBehaviour
     [SerializeField] public ArrowDirection direction;
     [SerializeField] private AudioClip _pressSound;
     [SerializeField] private AudioSource audioSource;
+
+    private bool submitInProgress = false;
+
     private void Start()
     {
         // Get or add AudioSource component
@@ -32,6 +35,10 @@ public class ArrowController : MonoBehaviour
     // Return: void
     private void TappedHandler(object sender, System.EventArgs e)
     {
+
+        // Submit in progress; do nothing.
+        if (submitInProgress) { return; }
+
         if (_pressSound != null && audioSource != null)
         {
             audioSource.PlayOneShot(_pressSound);
@@ -43,4 +50,9 @@ public class ArrowController : MonoBehaviour
             else if (direction == ArrowDirection.Downwards) { itemController.CycleDown(); }
         }
     }
+
+    // Purpose: Sets the in progress variable accordingly.
+    // Params: isInProgress: true if game is being submitted, false otherwise
+    // Return: void
+    public void SetSubmitInProgress(bool isInProgress) { submitInProgress = isInProgress; }
 }
