@@ -14,6 +14,10 @@ public class SubmitController : ButtonPress
     [SerializeField] private GameObject[] items;                  // The four items selected by the user.
     [SerializeField] private int[] indices;                       // The indices of the items chosen.
 
+    // Arrow and item controllers
+    [SerializeField] private ArrowController[] arrowControllers;
+    [SerializeField] private ItemController[] itemControllers;
+
     // Animations
     [SerializeField] private SubmitAnimations submitAnimations;
     [SerializeField] private RightCanvasAnimations rightCanvasAnimations;
@@ -110,6 +114,7 @@ public class SubmitController : ButtonPress
 
         // Prevent subsequent button presses while submit in progress.
         if (!canSubmit) { yield break; }
+        DisableArrowAndItemFunctionality();
 
         if (IsReadyForSubmit())
         {
@@ -151,6 +156,7 @@ public class SubmitController : ButtonPress
         else { Debug.Log("Not ready to submit!"); }
 
         // Enable button presses again
+        EnableArrowAndItemFunctionality();
         canSubmit = true;
     }
 
@@ -158,5 +164,17 @@ public class SubmitController : ButtonPress
     {
         base.SimulateButtonUp();
         StartCoroutine(Submit());
+    }
+
+    private void DisableArrowAndItemFunctionality()
+    {
+        foreach (var arrowController in arrowControllers) { arrowController.SetSubmitInProgress(true); }
+        foreach (var itemController in itemControllers)   { itemController.SetSubmitInProgress(true);  }
+    }
+
+    private void EnableArrowAndItemFunctionality()
+    {
+        foreach (var arrowController in arrowControllers) { arrowController.SetSubmitInProgress(false); }
+        foreach (var itemController in itemControllers)   { itemController.SetSubmitInProgress(false);  }
     }
 }
