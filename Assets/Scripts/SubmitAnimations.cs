@@ -63,8 +63,7 @@ public class SubmitAnimations : MonoBehaviour
             var frameIndex = i % 4;
             var move = $"Move{tryNumber}";
             var destinationFrame = panel.Find(move).Find($"Frame{frameIndex}");
-
-            StartCoroutine(MoveSpriteCoroutine(copies[i].transform, destinationFrame.transform, 1f, i * 0.1f));
+            StartCoroutine(MoveSpriteCoroutine(copies[i].transform, destinationFrame.transform, 1f, i * 0.15f));
         }
     }
 

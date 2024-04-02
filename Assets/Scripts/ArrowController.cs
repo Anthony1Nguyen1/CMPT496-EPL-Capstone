@@ -10,6 +10,9 @@ public class ArrowController : MonoBehaviour
     [SerializeField] public ArrowDirection direction;
     [SerializeField] private AudioClip _pressSound;
     [SerializeField] private AudioSource audioSource;
+
+    private bool arrowEnabled = true;
+
     private void Start()
     {
         // Get or add AudioSource component

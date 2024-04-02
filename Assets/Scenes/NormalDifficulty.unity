@@ -14477,9 +14477,10 @@ GameObject:
   - component: {fileID: 1439255027}
   - component: {fileID: 1439255031}
   - component: {fileID: 1439255030}
-  - component: {fileID: 1439255033}
   - component: {fileID: 1439255032}
   - component: {fileID: 1439255034}
+  - component: {fileID: 1439255036}
+  - component: {fileID: 1439255035}
   m_Layer: 5
   m_Name: Submit Button
   m_TagString: Untagged
@@ -14556,6 +14557,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e568d6622880520d48f8d4c33cff2b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _img: {fileID: 1439255030}
+  _default: {fileID: 21300000, guid: 1f4382c05204ca180951886dab162ec3, type: 3}
+  _pressed: {fileID: 21300000, guid: 8a2226d34c10ad890b17c8842514d080, type: 3}
+  _pressSound: {fileID: 8300000, guid: 1febd607dcc6b424e860a8a0ab4e600f, type: 3}
+  audioSource: {fileID: 1439255034}
+  MainCamera: 
   historyController: {fileID: 1152157538}
   items:
   - {fileID: 964330524}
@@ -14563,14 +14570,9 @@ MonoBehaviour:
   - {fileID: 128360651}
   - {fileID: 826929987}
   indices: 
-  _pressSound: {fileID: 8300000, guid: 1febd607dcc6b424e860a8a0ab4e600f, type: 3}
-  audioSource: {fileID: 1439255034}
-  _img: {fileID: 1439255030}
-  _defaultSprite: {fileID: 21300000, guid: 1f4382c05204ca180951886dab162ec3, type: 3}
-  _pressedSprite: {fileID: 21300000, guid: 8a2226d34c10ad890b17c8842514d080, type: 3}
-  SubmitAnimations: {fileID: 527293086}
-  _rightCanvasAnimations: {fileID: 1126045010}
-  WinAnimation: {fileID: 1126045012}
+  submitAnimations: {fileID: 527293086}
+  rightCanvasAnimations: {fileID: 1126045010}
+  winAnimation: {fileID: 1126045012}
   screenFade: {fileID: 1126045009}
   wrongAnswerAnimation: {fileID: 1126045013}
   resultsAnimation: {fileID: 138300337}
@@ -14578,42 +14580,6 @@ MonoBehaviour:
   tryNumber: 0
   maxTriesEasy: 8
   maxTriesHard: 12
---- !u!114 &1439255033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439255026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a878a6ff128243dfb1d89ca0273f059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnStateChange:
-    m_PersistentCalls:
-      m_Calls: []
-  basicEditor: 1
-  generalProps: 0
-  limitsProps: 0
-  advancedProps: 0
-  minPointers: 0
-  maxPointers: 0
-  useSendMessage: 0
-  sendStateChangeMessages: 0
-  sendMessageTarget: {fileID: 0}
-  useUnityEvents: 0
-  sendStateChangeEvents: 0
-  requireGestureToFail: {fileID: 0}
-  friendlyGestures: []
-  OnTap:
-    m_PersistentCalls:
-      m_Calls: []
-  numberOfTapsRequired: 1
-  timeLimit: Infinity
-  distanceLimit: Infinity
-  combinePointers: 0
-  combinePointersInterval: 0.3
 --- !u!82 &1439255034
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14710,6 +14676,70 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1439255035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439255026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141e75b9b7edb42df80a22a14f03ae4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+  basicEditor: 1
+  generalProps: 0
+  limitsProps: 0
+  advancedProps: 0
+  minPointers: 0
+  maxPointers: 0
+  useSendMessage: 0
+  sendStateChangeMessages: 0
+  sendMessageTarget: {fileID: 0}
+  useUnityEvents: 0
+  sendStateChangeEvents: 0
+  requireGestureToFail: {fileID: 0}
+  friendlyGestures: []
+  OnRelease:
+    m_PersistentCalls:
+      m_Calls: []
+  ignoreChildren: 0
+--- !u!114 &1439255036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439255026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6be551879cd14d739b0188844ef2c60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+  basicEditor: 1
+  generalProps: 0
+  limitsProps: 0
+  advancedProps: 0
+  minPointers: 0
+  maxPointers: 0
+  useSendMessage: 0
+  sendStateChangeMessages: 0
+  sendMessageTarget: {fileID: 0}
+  useUnityEvents: 0
+  sendStateChangeEvents: 0
+  requireGestureToFail: {fileID: 0}
+  friendlyGestures: []
+  OnPress:
+    m_PersistentCalls:
+      m_Calls: []
+  ignoreChildren: 0
 --- !u!1 &1439390331
 GameObject:
   m_ObjectHideFlags: 0
