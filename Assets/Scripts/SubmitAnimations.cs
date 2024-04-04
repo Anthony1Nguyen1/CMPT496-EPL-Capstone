@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SubmitAnimations : MonoBehaviour
 {
+    [SerializeField] private bool isEasyDifficulty;
+
     // Purpose: Animate the sprites to move to specific destination positions within the history panel.
     // Params: sprites: List of active sprites to animate
     //         sources: Initial GameObjects selected (e.g. initCauldron, etc.)
@@ -73,14 +75,14 @@ public class SubmitAnimations : MonoBehaviour
     //         duration: Duration of the movement animation.
     //         delay: Delay before starting the animation.
     // Return: IEnumerator
-    private static IEnumerator MoveSpriteCoroutine(Transform source, Transform destination, float duration, float delay)
+    private IEnumerator MoveSpriteCoroutine(Transform source, Transform destination, float duration, float delay)
     {
         yield return new WaitForSeconds(delay);
 
         var startPosition = source.position;
         var startScale = source.localScale;
         var destinationPosition = destination.position;
-        var destinationScale = new Vector3(0.45f, 0.45f);
+        var destinationScale = isEasyDifficulty? new Vector3(0.55f, 0.55f) : new Vector3(0.45f, 0.45f);
         var elapsedTime = 0f;
 
         while (elapsedTime < duration)
