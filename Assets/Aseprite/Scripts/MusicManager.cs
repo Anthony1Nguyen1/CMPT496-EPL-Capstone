@@ -14,6 +14,8 @@ public class MusicManager : MonoBehaviour
 
     void Start()
     {
+        Settings.MusicVolume = 0.5f;
+
         pressGesture = volumeSlider.GetComponent<PressGesture>();
         releaseGesture = volumeSlider.GetComponent<ReleaseGesture>();
 
