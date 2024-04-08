@@ -12,7 +12,7 @@ public class MusicManager : MonoBehaviour
     private bool isDragging = false;
     public AudioSource musicAudioSource;
 
-    void Start()
+    private void Start()
     {
         pressGesture = volumeSlider.GetComponent<PressGesture>();
         releaseGesture = volumeSlider.GetComponent<ReleaseGesture>();
@@ -20,7 +20,9 @@ public class MusicManager : MonoBehaviour
         pressGesture.Pressed += OnSliderPressed;
         releaseGesture.Released += OnSliderReleased;
 
+        Settings.MusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
         volumeSlider.value = Settings.MusicVolume;
+
         ApplySettings();
     }
 
@@ -35,7 +37,11 @@ public class MusicManager : MonoBehaviour
         if (!isDragging)
         {
             Settings.MusicVolume = volumeSlider.value;
+
             ApplySettings();
+
+            PlayerPrefs.SetFloat("MusicVolume", Settings.MusicVolume);
+            PlayerPrefs.Save();
         }
     }
 
@@ -51,5 +57,8 @@ public class MusicManager : MonoBehaviour
         ChangeVolume();
     }
 
-    private void ApplySettings() { musicAudioSource.volume = Settings.MusicVolume; }
+    private void ApplySettings()
+    {
+        musicAudioSource.volume = Settings.MusicVolume;
+    }
 }
